@@ -1,0 +1,51 @@
+.grey-card
+    @include flex(row, space-between,center)
+    @include size(100%, auto)
+    border-radius: 8px
+    padding: 25px 25px
+    background-color: #f6f5f8
+    .text
+        @include flex(column,center, center)
+        gap: 10px
+        position: relative
+        padding-bottom: 40px
+        h3
+            text-align: center
+            font-size: 14px
+            line-height: 18px
+        .text-price
+            @include font(16px, 700)
+            span
+                font-size: 12px
+                font-weight: 500
+        .buy-btn
+            border: 1px solid $navbarTextColor
+            @include flex(row, center, center)
+            font-size: 10px
+            padding: 7px 20px
+            position: absolute
+            bottom: 0px
+            border-radius: 16px
+            cursor: pointer
+    .first-image
+        width: 25%
+    .second-image
+        width: 15%
+    @media (min-width: 1366px)
+        @include size(50%, 400px)
+        .text
+            gap: 10px
+            padding-bottom: 60px
+            h3
+                font-size: 35px
+                line-height: 40px
+            .text-price
+                @include font(40px, 600)
+                span
+                    font-size: 15px
+            .buy-btn
+                font-size: 15px
+        .first-image
+            width: 22%
+        .second-image
+            width: 16%

@@ -1,0 +1,20 @@
+@import "../assets/styles/utils/_mixins"
+@import "../assets/styles/utils/_variables"
+@import "../assets/styles/utils/_reset"
+@import "../components/layout/header/main/header"
+@import "../components/layout/header/navbar/navbar"
+@import "../components/layout/header/navbar-menu/menu"
+@import "../components/carousel/carousel"
+@import "../components/phoneList/phoneList"
+@import "../components/card/main/card"
+@import "../components/card/whiteCard/whiteCard"
+@import "../components/card/whiteCard/greyCard"
+
+#home
+    padding: 5%
+    &::before
+        content: ""
+        display: block
+        margin-top: 12rem
+    @media (min-width: 1366px)
+        padding: 2% 5%

@@ -1,0 +1,100 @@
+.menu
+    @include size(100%, 100%)
+    position: absolute
+    top: 0
+    position: fixed
+    left: -100%
+    background-color: white
+    transition: 0.5s
+    z-index: 10
+    .categories
+        padding: 5px 20px
+        margin-top: 65px
+        border-top: 1px solid #303030
+        .items
+            gap: 30px
+            font-size: 20px
+            font-weight: 400
+            padding: 15px 0
+            cursor: pointer
+            .sub-categories
+                display: none
+    .menu-buttons
+        @include flex(row, space-between, center)
+        @include size(100%)
+        padding: 20px
+        position: absolute
+        bottom: 0
+        background-color: #FAF9F9
+        .log-btn
+            @include flex(row, center, center)
+            @include size(155px, 50px)
+            border: 1px solid $hoverText
+            border-radius: 8px
+            color: $hoverText
+            font-weight: 500
+        .sign-btn
+            @extend .log-btn
+            color: white
+            background-color: $hoverText
+
+    @media (min-width: 1366px)
+        position: static
+        .categories
+            @include flex(row, flex-start, center)
+            @include size(auto,auto)
+            gap: 55px
+            border-top: none
+            margin-top: 30px
+            padding: 0
+            .items
+                font-size: 14px
+                position: relative
+                padding-bottom: 15px
+                &:hover
+                    color: $hoverText
+                    transition: 0.3s
+                .sub-categories
+                    z-index: 11
+                    @include flex(row, flex-start, flex-start)
+                    position: absolute
+                    background-color: white
+                    @include size(100%, auto)
+                    left: 0
+                    margin-top: 14px
+                    padding: 30px 5%
+                    display: none
+                    gap: 10%
+                    padding-bottom: 10%
+                    border-top: 1px solid $hoverText
+
+                    p
+                        font-size: 16px
+                        font-weight: 500
+                        padding: 15px 0
+                    .sub-items
+                        padding: 5px 0
+                        font-size: 14px
+                        font-weight: 400
+                        cursor: pointer
+                    .black-page
+                        position: absolute
+                        @include size(100%, 100vh)
+                        background-color: #00000080
+                        top: 100%
+                        left: 0
+                        &:hover
+                            display: none
+                &:hover .sub-categories
+                    display: flex
+                    color: black
+                    cursor: default
+                    position: fixed   //sonra
+        .menu-buttons
+            display: none
+
+.active
+    left: 0
+
+.active-body
+    overflow: hidden

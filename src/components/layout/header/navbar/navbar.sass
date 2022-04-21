@@ -1,0 +1,81 @@
+.navbar
+    @include flex(row, space-between, flex-start)
+    @include size(100%, auto)
+    z-index: 10
+    background-color: white
+    top: 0
+    left: 0
+    flex-wrap: wrap
+    gap: 20px
+    .left-section
+        z-index: 99
+        @include flex(row, center, center)
+        gap: 20px
+        .hamburger
+            @include flex(column, space-between, center)
+            gap: 4px
+            cursor: pointer
+            .line
+                @include size(25px, 2px)
+                background-color: black
+                transition: 0.5s
+        .logo-project
+            width: 130px
+            cursor: pointer
+    .middle-section
+        @include flex(row, space-between, center)
+        @include size (100%)
+        background-color: grey
+        padding: 10px 20px
+        border-radius: 8px
+        background-color: #F7F9FC
+        border: 1px solid #E4E9F2
+        order: 3
+        z-index: 8
+        .search-form
+            width: 100%
+            input
+                border: none
+                background-color: transparent
+                @include size(100%, 20px)
+                padding: 10px
+                &:focus
+                    outline: none
+
+    .right-section
+        .header-icon
+            @include flex(row, center, center)
+            gap: 15px
+            .icon
+                @include size(20px, 20px)
+                cursor: pointer
+    @media (min-width: 1366px)
+        align-items: center
+        height: auto
+        .left-section
+            .hamburger
+                display: none
+        .middle-section
+            width: 45%
+            order: 0
+            .search-form
+                width: 100%
+                input
+                    width: 100%
+        .right-section
+            .header-icon
+                gap: 25px
+.x-button
+    position: relative
+
+.first-line
+    transition: 3s
+    position: absolute
+    transform: rotate(45deg)
+.second-line
+    display: none
+    transition: 0.5s
+.third-line
+    transition: 3s
+    transform: rotate(-45deg)
+
