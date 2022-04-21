@@ -1,8 +1,8 @@
 import React from 'react'
 import WhiteCard from "../whiteCard/WhiteCard"
-import AppleAirtag from "../../../assets/images/apple-airtag.png"
-import Airtag from "../../../assets/images/airtag.png"
-import Iphone from "../../../assets/images/iphone 11.png"
+import AppleAirtag from "../../../../assets/images/apple-airtag.png"
+import Airtag from "../../../../assets/images/airtag.png"
+import Iphone from "../../../../assets/images/iphone 11.png"
 
 
 function Card() {

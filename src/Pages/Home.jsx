@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import Carousel from "../components/carousel/Carousel"
-import PhoneList from "../components/phoneList/PhoneList"
-import Card from "../components/card/main/Card"
+import Carousel from "../components/Home/carousel/Carousel"
+import PhoneList from "../components/Home/phoneList/PhoneList"
+import Card from "../components/Home/card/main/Card"
 import commerce from '../lib/Commerce';
-import LinkCard from "../components/link-card/main/LinkCard"
+import LinkCard from "../components/Home/link-card/main/LinkCard"
 import "./home.sass"
 
 

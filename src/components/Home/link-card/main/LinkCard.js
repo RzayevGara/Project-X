@@ -1,8 +1,8 @@
 import React from 'react'
 import Cards from "../card/Cards"
-import PhoneImg from "../../../assets/images/xiaomi-card.png"
-import WatchImg from "../../../assets/images/watch-card.png"
-import IphoneImg from "../../../assets/images/iphone-card.png"
+import PhoneImg from "../../../../assets/images/xiaomi-card.png"
+import WatchImg from "../../../../assets/images/watch-card.png"
+import IphoneImg from "../../../../assets/images/iphone-card.png"
 
 function LinkCard(props) {
   return (
