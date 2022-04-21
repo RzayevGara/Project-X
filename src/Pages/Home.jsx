@@ -5,6 +5,7 @@ import Card from "../components/Home/card/main/Card"
 import commerce from '../lib/Commerce';
 import LinkCard from "../components/Home/link-card/main/LinkCard"
 import About from "../components/Home/about/main/About"
+import Brands from "../components/Home/brands/Brands"
 import "./home.sass"
 
 
@@ -45,6 +46,7 @@ function Home() {
 
   return (
     <div id="home">
+      <div className="container">
         <Carousel/>
         <PhoneList dataLoading={loadingPhone} BackData={phone} title={"Ən çox satılan məhsullar"}/>
         <PhoneList dataLoading={loadingPhone} BackData={phone} title={"Yeni gələn məhsullar"}/>
@@ -52,6 +54,8 @@ function Home() {
         <PhoneList dataLoading={loadingAccessory} BackData={accessory} title={"Yeni gələn aksessuarlar"}/>
         <LinkCard countPhone={phone.length}/>
         <About/>
+      </div>
+        <Brands/>
     </div>
   )
 }
