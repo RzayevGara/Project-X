@@ -73,10 +73,12 @@
                         font-weight: 500
                         padding: 15px 0
                     .sub-items
-                        padding: 5px 0
+                        margin: 6px 0
                         font-size: 14px
                         font-weight: 400
                         cursor: pointer
+                        &:hover
+                            color: $hoverText
                     .black-page
                         position: absolute
                         @include size(100%, 100vh)
@@ -98,3 +100,6 @@
 
 .active-body
     overflow: hidden
+
+.hide
+    display: none
