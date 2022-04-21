@@ -1,0 +1,22 @@
+.about-item
+    @include flex(column, center, center)
+    width: 100%
+    gap: 15px
+    img
+        width: 20%
+    h5
+        @include font(16px, 500)
+    p
+        font-size: 16px
+        text-align: center
+    @media (min-width: 1366px)
+        @include flex(column, center, center)
+        width: 20%
+        gap: 15px
+        img
+            width: 25%
+        h5
+            @include font(20px, 500)
+        p
+            font-size: 16px
+            text-align: center

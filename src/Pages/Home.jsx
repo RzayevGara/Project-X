@@ -4,6 +4,7 @@ import PhoneList from "../components/Home/phoneList/PhoneList"
 import Card from "../components/Home/card/main/Card"
 import commerce from '../lib/Commerce';
 import LinkCard from "../components/Home/link-card/main/LinkCard"
+import About from "../components/Home/about/main/About"
 import "./home.sass"
 
 
@@ -50,6 +51,7 @@ function Home() {
         <Card/>
         <PhoneList dataLoading={loadingAccessory} BackData={accessory} title={"Yeni gələn aksessuarlar"}/>
         <LinkCard countPhone={phone.length}/>
+        <About/>
     </div>
   )
 }
