@@ -1,0 +1,33 @@
+.cards
+    @include flex(column)
+    background: rgb(242,228,221)
+    background: linear-gradient(180deg, rgba(242,228,221,1) 0%, rgba(233,233,233,1) 100%)
+    border-radius: 8px
+    padding: 30px
+    contain: content
+    .text
+        @include flex(column)
+        gap: 20px
+        h4
+            @include font (16px, 600)
+        p
+            @include font(12px, 300)
+        a
+            color: #3366FF
+            @include flex(row, $align: center)
+            gap: 10px
+            @include font(12px, 300)
+
+    img
+        position: fixed
+        bottom: 0
+        right: 0
+    @media (min-width: 1366px)
+        padding: 40px
+        .text
+            h4
+                @include font (26px, 600)
+            p
+                @include font(16px, 400)
+            a
+                font-size: 16px
