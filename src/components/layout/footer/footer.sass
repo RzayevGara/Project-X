@@ -1,0 +1,68 @@
+.footer
+    background-color: #262626
+    color: white
+    .first-section
+        @include flex(column, center, center)
+        padding: 60px 5% 20%
+        gap: 40px
+        div
+            @include flex(column, $align: center)
+            gap: 20px
+            img
+                width: 150px
+            .first-section_icons
+                @include flex(row, center,center)
+                gap: 20px
+                img
+                    width: 20px
+                    &:nth-child(2)
+                        width: 13px
+        ul
+            @include flex(column, $align: center)
+            gap: 15px
+            p
+                @include font(24px, 500)
+                margin-bottom: 15px
+            li
+                @include font(16px, 400)
+                opacity: 0.8
+            &:nth-child(4)
+                @include flex(column, $align: flex-start)
+                p
+                    align-self: center
+                li
+                    @include flex(row, $align: center)
+                    gap: 15px
+                    &:nth-child(2)
+                        color: $hoverText
+                        
+    .second-section
+        @include flex(column, center, center)
+        opacity: 0.8
+        padding: 30px 5%
+        border-top: 1px solid #ffffff92
+        position: relative
+        .right
+            @include font(16px, 400)
+        .rules
+            @include flex(row, $align: center)
+            @include font(14px, 400)
+            gap: 30px
+            order: -1
+            position: absolute
+            top: -40px
+    @media (min-width: 1366px)
+        .first-section
+            @include flex(row, space-between, flex-start)
+            padding: 3% 5% 4%
+            gap: 0
+            ul
+                @include flex(column, $align: flex-start)
+                &:nth-child(4)
+                    p
+                        align-self: flex-start                
+        .second-section
+            @include flex(row, space-between, center)
+            .rules
+                order: 0
+                position: static
