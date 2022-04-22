@@ -8,7 +8,6 @@ import Checkbox from "@mui/material/Checkbox";
 
 
 function FilterCategory(props) {
-    console.log(props.brendList);
     const [active, setActive] = useState(false);
 
   function plusBtn() {
@@ -35,6 +34,7 @@ function FilterCategory(props) {
                             control={<Checkbox color="success"/>}
                             label={item}
                             labelPlacement="end"
+                            key={index}
                         />
                     ))
                 }
