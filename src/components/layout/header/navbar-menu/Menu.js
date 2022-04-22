@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import commerce from '../../../../lib/Commerce';
+import {useDispatch } from 'react-redux'
+import { setCategory} from '../../../../Reducer/ProductReducer'
+import { Link } from "react-router-dom";
 
 
 const Menu = React.memo((props) =>{
   const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch()
 
   const fetchProducts = () => {
     commerce.categories.retrieve('products', { type: 'slug', depth:'3' }).then((products) => {
@@ -22,12 +27,16 @@ const Menu = React.memo((props) =>{
       <ul className="categories">
         {
           products.map((item, index)=>(
-            <li key={index} className="items">{item.name}
+            <li
+            onClick={() =>
+              dispatch(setCategory((item.slug)))
+            }
+            key={index} className="items">     <Link to="/telefonlar">{item.name}</Link>
               <div className={item.children.length===0? ".hide" : "sub-categories"}>
                 {
                   item.children.map((elem, indexx)=>(
                     <ul key={indexx+1}>
-                      <p>{elem.name}</p>
+                      <p >{elem.name}</p>
                       {elem.children.map((sub, indexxx)=>(
                         <li key={indexxx+1} className="sub-items">{sub.name}</li>
                       ))}

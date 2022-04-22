@@ -11,12 +11,12 @@ import "./home.sass"
 
 
 
+
 function Home() {
   const [phone, setPhone] = useState([]);
   const [accessory, setAccessory] = useState([]);
   const [loadingPhone, setLoadingPhone] = useState(true)
   const [loadingAccessory, setLoadingAccessory] = useState(true)
-
   
   const fetchPhone = () => {
     commerce.products.list({category_slug: ['phone'],})

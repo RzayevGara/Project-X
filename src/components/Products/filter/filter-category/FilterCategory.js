@@ -30,7 +30,7 @@ function FilterCategory(props) {
                 {
                     props.brendList.map((item,index) => (
                         <FormControlLabel
-                            value={item}
+                            value={item.toLowerCase()}
                             control={<Checkbox color="success"/>}
                             label={item}
                             labelPlacement="end"
