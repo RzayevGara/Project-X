@@ -1,0 +1,22 @@
+.brend
+    position: relative
+    .brend-title
+        @include flex(row, space-between, center)
+        border-bottom: 1px solid black
+        padding:  10px 10px 15px 20px
+
+        h5
+            font-size: 16px
+            font-weight: 500
+        img
+            cursor: pointer
+    .brend-text
+        contain: content
+        padding: 0 20px
+        margin-top: 20px
+        height: 0
+        transition: 0.5s
+        .MuiFormGroup-row
+            @include flex(column)
+    .active-brend
+        height: 170px
