@@ -1,5 +1,5 @@
 import React from "react";
-import FilterCategory from "./filter-category/FilterCategory"
+import FilterCategory from "../filter-category/FilterCategory"
 
 function Filter() {
   

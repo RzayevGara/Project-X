@@ -1,9 +1,11 @@
 @import "../assets/styles/utils/_mixins"
 @import "../assets/styles/utils/_variables"
 @import "../assets/styles/utils/_reset"
-@import "../components/Products/filter/filter"
-@import "../components/Products/product-list/productList"
+@import "../components/Products/filter/main/filter"
+@import "../components/Products/product-list/main/productList"
 @import "../components/Products/filter/filter-category/filterCategory"
+@import "../components/Products/product-list/Sort/sort"
+@import "../components/Products/product-list/phone-list/phoneList"
     
 #products
     .css-1p5q5e5-MuiStack-root
@@ -18,5 +20,5 @@
         @media (min-width: 1366px)
             padding: 2% 5%
             @include flex(row, space-between)
-            gap: 20px
+            gap: 40px
     

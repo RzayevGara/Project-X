@@ -1,10 +1,9 @@
 // import React, {useState, useEffect} from 'react'
-import Filter from "../components/Products/filter/Filter"
-import ProductList from "../components/Products/product-list/ProductList"
+import Filter from "../components/Products/filter/main/Filter"
+import ProductList from "../components/Products/product-list/main/ProductList"
 import "./products.sass"
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
-// import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Link as RouterLink } from 'react-router-dom';
