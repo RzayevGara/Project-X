@@ -8,7 +8,7 @@ function Layout() {
   return (
     <div className="layout">
         <Header/>
-        <Outlet/>
+        <Outlet className="outlet"/>
         <Footer/>
     </div>
   )
