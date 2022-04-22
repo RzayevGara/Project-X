@@ -9,7 +9,7 @@ function Cards(props) {
         <div className="text">
             <h4>{props.title}</h4>
             <p>Məhsul Sayı: <span>{props.count}</span></p>
-            <Link to="/">Məhsullara keçid <FontAwesomeIcon icon={faAngleRight}/> </Link>
+            <Link to={props.link}>Məhsullara keçid <FontAwesomeIcon icon={faAngleRight}/> </Link>
         </div>
         <img src={props.image} alt="logo"/>
     </div>
