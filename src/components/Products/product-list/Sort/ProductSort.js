@@ -3,9 +3,14 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useSelector, useDispatch } from "react-redux";
+import { sortArray, returnDefaultSort } from "../../../../Reducer/ProductReducer";
 
 function ProductSort() {
   const [age, setAge] = React.useState("");
+  console.log(age); ///age warning verirdi
+  const count = useSelector((state) => state.category.arrayList.length);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -13,7 +18,7 @@ function ProductSort() {
 
   return (
     <div className="product-sort">
-      <p>200 məhsul tapıldı</p>
+      <p>{count} məhsul tapıldı</p>
       <Box sx={{ minWidth: 220 }} size="small">
         <FormControl fullWidth>
           <Select
@@ -22,9 +27,13 @@ function ProductSort() {
             onChange={handleChange}
             defaultValue={10}
           >
-            <MenuItem default value={10}>Ən Yenilər</MenuItem>
-            <MenuItem value={20}>Qiymət - Artan sıra</MenuItem>
-            <MenuItem value={30}>Qiymət - Azalan sıra</MenuItem>
+            <MenuItem onClick={() => dispatch(returnDefaultSort())} default value={10}>
+              Ən Yenilər
+            </MenuItem>
+            <MenuItem onClick={() => dispatch(sortArray(true))} value={20}>
+              Qiymət - Artan sıra
+            </MenuItem>
+            <MenuItem onClick={() => dispatch(sortArray(false))} value={30}>Qiymət - Azalan sıra</MenuItem>
           </Select>
         </FormControl>
       </Box>

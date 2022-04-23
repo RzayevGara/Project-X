@@ -1,1 +1,33 @@
 .phone-list
+    @include flex(column, $align: flex-start)
+    gap: 60px
+    ul
+        @include flex(row, space-evenly, center)
+        flex-wrap: wrap
+        gap: 50px
+    .pagination-btns
+        @include flex(row, center)
+        align-self: center
+        gap: 20px
+        cursor: pointer
+        .pagination-active
+            background-color: $hoverText
+            @include size(32px, 32px)
+            padding: 20px
+            color: white
+            border-radius: 8px
+            @include flex(row, center , center)
+            overflow: hidden
+        .pagination-disabled
+            @include size(32px, 32px)
+            padding: 20px
+            border-radius: 8px
+            @include flex(row, center , center)
+            overflow: hidden
+        .previous-btn 
+            @include size(36px, 36px)
+            border-radius: 50%
+            border: 1px solid #C4C4C4
+            @include flex(row, center, center)
+        .next-btn
+            @extend .previous-btn
