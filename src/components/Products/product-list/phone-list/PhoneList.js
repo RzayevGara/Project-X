@@ -10,7 +10,7 @@ function PhoneList() {
   const category = useSelector((state) => state.category.category);
   let arrayList = useSelector((state) => state.category.arrayList);
   const dispatch = useDispatch();
-  console.log(arrayList);
+  // console.log(arrayList);
 
   useEffect(() => {
     const fetchProductList = () => {
