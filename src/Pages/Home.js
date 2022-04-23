@@ -37,10 +37,19 @@ function Home() {
       console.log('There was an error fetching the products', error)
     });
   }
+  // const fetchA = () => {
+  //   commerce.products.list({category_slug: ['hamisi', 'apple, samsung',],})
+  //   .then((products) => {
+  //     console.log(products.data);
+  //   }).catch((error) => {
+  //     console.log('There was an error fetching the products', error)
+  //   });
+  // }
 
   useEffect(() => {
     fetchPhone();
     fetchAccessory()
+    // fetchA()
   }, []);
 
 

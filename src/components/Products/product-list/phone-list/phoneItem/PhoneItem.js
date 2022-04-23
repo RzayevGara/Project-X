@@ -1,6 +1,7 @@
 import React from "react";
 
 function PhoneItem(props) {
+  // console.log(props.array);
   return (
     <li  className="phone-item">
       <img src={props.array.image.url} alt="logo" />

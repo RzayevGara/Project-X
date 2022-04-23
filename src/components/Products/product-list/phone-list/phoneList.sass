@@ -11,19 +11,21 @@
         gap: 20px
         cursor: pointer
         .pagination-active
-            background-color: $hoverText
-            @include size(32px, 32px)
-            padding: 20px
-            color: white
-            border-radius: 8px
-            @include flex(row, center , center)
-            overflow: hidden
+            a
+                background-color: $hoverText
+                @include size(32px, 32px)
+                padding: 20px
+                color: white
+                border-radius: 8px
+                @include flex(row, center , center)
+                overflow: hidden
         .pagination-disabled
-            @include size(32px, 32px)
-            padding: 20px
-            border-radius: 8px
-            @include flex(row, center , center)
-            overflow: hidden
+            a
+                @include size(32px, 32px)
+                padding: 20px
+                border-radius: 8px
+                @include flex(row, center , center)
+                overflow: hidden
         .previous-btn 
             @include size(36px, 36px)
             border-radius: 50%
