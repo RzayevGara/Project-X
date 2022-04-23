@@ -6,10 +6,10 @@ import Skeleton from "../../skeleton/phone/Skeleton"
 
 
 
-const PhoneList = React.memo((props) =>{
+const ProductSwipe = React.memo((props) =>{
   return (
-    <div className="phone-list">
-      <div className="list-title">
+    <div className="product-swipe">
+      <div className="product-swipe_title">
         <h3>{props.title}</h3>
         <p className='look-all-btn'>Hamısına bax 
         <FontAwesomeIcon icon={faAngleRight}/> 
@@ -44,4 +44,4 @@ const PhoneList = React.memo((props) =>{
   )
 })
 
-export default PhoneList
+export default ProductSwipe
