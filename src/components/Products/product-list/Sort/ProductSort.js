@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {sortArray,returnDefaultSort,} from "../../../../Reducer/ProductReducer";
 import { setActive } from "../../../../Reducer/FilterReducer";
 import FilterBtn from "../../../../assets/images/filter.svg";
+import Swap from "../../../../assets/images/swap.svg"
 
 function ProductSort() {
   const activeFilter = useSelector((state) => state.filter.filterActive);
@@ -24,7 +25,8 @@ function ProductSort() {
     <div className="product-sort">
       <p>{count} məhsul tapıldı</p>
       <div className="product-btns">
-        <Box sx={{ minWidth: 220 }} size="small">
+        <Box className="box-sort" sx={{ minWidth: 220 }} size="small">
+          <img src={Swap} alt="logo"/>
           <FormControl fullWidth>
             <Select
               labelId="demo-simple-select-label"
