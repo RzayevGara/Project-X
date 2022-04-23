@@ -20,7 +20,7 @@ const FilterCategory=(props)=> {
         <h5>{props.brendTitle}</h5>
         <img
           onClick={plusBtn}
-          src={!active ? MinusIcon : PlusIcon}
+          src={!active ?PlusIcon : MinusIcon}
           alt="logo"
         />
       </div>

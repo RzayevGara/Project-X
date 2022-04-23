@@ -1,3 +1,48 @@
 .filter
-    flex: 1
+    flex: none
+    position: fixed
+    @include size(100%, 100vh)
+    right: -100%
+    background-color: white
+    top: 0
+    z-index: 99999
+    transition: 0.5s
+    .filter-menu_mobile
+        @include flex(row, flex-start, center)
+        gap: 15px
+        margin-bottom: 20px
+        border-bottom: 1px solid black
+        padding: 20px
+        h4
+            @include font(20px, 500)
+        img
+            width: 8%
+    .filter-category
+        padding: 20px
+    .filter-button
+        background-color: $hoverText
+        color: white
+        padding: 20px
+        @include flex(row, center, center)
+        @include size(80%)
+        position: absolute
+        bottom: 30px
+        border-radius: 8px
+        left: 50%
+        transform: translate(-50%, 0)
+    @media (min-width: 1366px)
+        flex:1
+        position: static
+        padding: 0
+        z-index: 0
 
+        .filter-menu_mobile
+            display: none
+        .filter-category
+            padding: 0
+        .filter-button
+            display: none
+
+.active-filter
+    right: 0
+    transition: 0.5s

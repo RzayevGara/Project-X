@@ -1,6 +1,30 @@
 .product-sort
-    @include flex(row, space-between, center)
+    @include flex(column-reverse)
     p
-        @include font(20px, 500)
-    .css-1d3z3hw-MuiOutlinedInput-notchedOutline
-        border-radius: 16px
+        @include font(16px, 500)
+    .product-btns
+        @include flex(row, space-between, center)
+        padding: 0 40px 30px
+        .css-htbx1d
+            min-width: 100px
+            .css-1d3z3hw-MuiOutlinedInput-notchedOutline
+                border-radius: 16px
+                border: none
+        .filter-btn
+            @include flex(row, center, center)
+            gap: 10px
+            @include font(16px, 500)
+    @media (min-width: 1366px)
+        @include flex(row, space-between, center)
+        p
+            @include font(20px, 500)
+        .product-btns
+            @include flex(row, space-between, center)
+            padding: 0
+            .css-htbx1d
+                min-width: 220px
+                .css-1d3z3hw-MuiOutlinedInput-notchedOutline
+                    border-radius: 16px
+                    border: 1px solid #BDBDBD
+            .filter-btn
+                display: none
