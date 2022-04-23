@@ -2,9 +2,9 @@
     @include flex(column, $align: flex-start)
     gap: 60px
     ul
-        @include flex(row, flex-start, center)
+        @include flex(row, space-between, center)
         flex-wrap: wrap
-        gap: 50px
+        gap: 15px
     .pagination-btns
         @include flex(row, center)
         align-self: center
@@ -33,3 +33,7 @@
             @include flex(row, center, center)
         .next-btn
             @extend .previous-btn
+    @media (min-width: 1366px)
+        ul
+            @include flex(row, flex-start, center)
+            gap: 50px
