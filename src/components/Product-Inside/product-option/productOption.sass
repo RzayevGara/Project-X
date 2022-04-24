@@ -1,0 +1,35 @@
+.product-option
+    width: 60%
+    @include flex(column)
+    gap: 20px
+    .price
+        @include font(20px, 500)
+    .colors
+        @include flex(row, flex-start, center)
+        gap: 20px
+        div
+            @include size(35px, 35px)
+            border-radius: 50%
+            border: 1px solid #E0E0E0
+            cursor: pointer
+    .size
+        @include flex(row, flex-start, center)
+        gap: 20px
+        div
+            @include flex(row, center, center)
+            @include size(70px, 40px)
+            border-radius: 8px
+            border: 1px solid #E0E0E0
+            cursor: pointer
+            background-color: #F2F2F2
+
+.ağ
+    background-image: white
+.qara
+    background-color: black
+.qırmızı
+    background-color: red
+.yaşıl
+    background-color: green
+.göy
+    background-color: blue

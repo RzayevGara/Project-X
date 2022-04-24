@@ -1,0 +1,25 @@
+@import "../assets/styles/utils/_mixins"
+@import "../assets/styles/utils/_variables"
+@import "../assets/styles/utils/_reset"
+
+@import "../components/Product-Inside/product-image-slider/productImages"
+@import "../components/Product-Inside/product-option/productOption"
+    
+#product-inside
+    .css-1p5q5e5-MuiStack-root
+        display: none
+        @media (min-width: 1366px)
+            display: flex
+            padding:  20px 5%
+            a
+                &:hover
+                    text-decoration: underline
+                &:active
+                    color: black
+    .container
+        padding: 5%
+        @media (min-width: 1366px)
+            padding: 2% 5%
+        .product-detail
+            @include flex(row, space-between, flex-start)
+            gap: 50px
