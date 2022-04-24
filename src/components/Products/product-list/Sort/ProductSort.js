@@ -12,14 +12,14 @@ import Swap from "../../../../assets/images/swap.svg"
 function ProductSort() {
   const activeFilter = useSelector((state) => state.filter.filterActive);
 
-  const [age, setAge] = useState("");
-  console.log(age); ///age warning verirdi
+  // const [age, setAge] = useState("");
+  // console.log(age); ///age warning verirdi
   const count = useSelector((state) => state.category.arrayList.length);
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
 
   return (
     <div className="product-sort">
@@ -31,7 +31,7 @@ function ProductSort() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              onChange={handleChange}
+              // onChange={handleChange}
               defaultValue={10}
             >
               <MenuItem

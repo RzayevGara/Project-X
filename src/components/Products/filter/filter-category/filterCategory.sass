@@ -23,7 +23,6 @@
     @media (min-width: 1366px)
         position: relative
         @include size(auto, auto)
-
         .brend-title
             @include flex(row, space-between, center)
             border-bottom: 1px solid black
@@ -44,3 +43,35 @@
                 @include flex(column)
         .active-brend
             height: 170px
+
+
+.brend-text
+    .price-form
+        @include flex(row, center,  center)
+        gap: 15px
+        button
+            display: none
+        div
+            @include flex(row, center, center)
+            @include size(110px, 40px)
+            border-radius: 8px
+            border: 1px solid #E0E0E0
+            img
+                width: 20px
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button 
+                -webkit-appearance: none
+                margin: 0
+            .min-price
+                @include size(50%, 100%)
+                border-radius: 8px
+                border: 1px solid #E0E0E0
+                padding: 5px
+                -webkit-appearance: none
+                border: none
+                &:focus
+                    outline: none
+            .max-price
+                @extend .min-price
+.active-price
+    height: 50px!important
