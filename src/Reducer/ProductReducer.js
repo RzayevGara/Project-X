@@ -5,7 +5,9 @@ const initialState = {
     arrayList: [],
     originalList: [],
     filterString:[],
-    LocalList:[]
+    LocalList:[],
+    priceRange: []
+
 }
 
 
@@ -29,10 +31,20 @@ export const ProductReducer = createSlice({
     filterString:(state,action)=>{
       state.filterString=[...state.filterString, action.payload]
       
-      let copy =state.originalList.filter((item)=>{
+      state.arrayList.filter((item)=>{
         return (new RegExp(state.filterString.join('|')).test(item.name))
       })
+      // state.arrayList=copy
+    },
+    filterPrice:(state, action)=>{
+      state.priceRange=[]
+      state.priceRange = action.payload
+      let copy =state.arrayList.filter((item)=>{
+        return(item.price.raw>state.priceRange.minPrice && item.price.raw<state.priceRange.maxPrice)
+      })
       state.arrayList=copy
+
+
     },
     deleteString:(state, action)=>{
       let filteredArray = state.filterString.filter(e => e !== action.payload)
@@ -53,6 +65,6 @@ export const ProductReducer = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {setCategory, SetArray, sortArray, returnDefaultSort, deleteString, filterString,localData} = ProductReducer.actions
+export const {setCategory, SetArray, sortArray, returnDefaultSort, deleteString, filterString,localData, filterPrice} = ProductReducer.actions
 
 export default ProductReducer.reducer

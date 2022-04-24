@@ -13,6 +13,7 @@ function PhoneList() {
   // console.log(arrayList);
 
   useEffect(() => {
+    dispatch(SetArray([]));
     const fetchProductList = () => {
       commerce.products
         .list({ category_slug: [category] })

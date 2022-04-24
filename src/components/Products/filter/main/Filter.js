@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import FilterCategory from "../filter-category/FilterCategory"
+import FilterPrice from "../filter-price/FilterPrice"
 import Xbtn from "../../../../assets/images/X-btn.svg"
 import {useDispatch, useSelector} from "react-redux";
 import { setActive } from "../../../../Reducer/FilterReducer";
@@ -27,8 +28,10 @@ function Filter() {
       </div>
       <div className="filter-category">
         <FilterCategory brendTitle={"Brend"} brendList={["Apple", "Samsung", "Xiaomi", "Huawei"]}/>
-        <FilterCategory brendTitle={"Rəng"} brendList={["Qara", "Ağ", "Göy", "Yaşıl"]}/>
-        <FilterCategory brendTitle={"Qiymət"} brendList={["0-500 AZN", "500-1000 AZN", "1000-1500 AZN", "1500 + AZN"]}/>
+        {/* <FilterCategory brendTitle={"Rəng"} brendList={["Qara", "Ağ", "Göy", "Yaşıl"]}/> */}
+        {/* <FilterCategory brendTitle={"Qiymət"} brendList={[0-500, 500-1000, 1000-1500, 1500 ]}/> */}
+        <FilterPrice/>
+
       </div>
       <div className="filter-button">
         Filterlənmiş məhsulları göstər
