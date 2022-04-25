@@ -37,9 +37,33 @@ function Home() {
       console.log('There was an error fetching the products', error)
     });
   }
+
+  // const fetchA = () => {
+  //   commerce.products.getVariants('prod_31q0o39jQBlDdj', 'vrnt_9BAmwJOE3YoeXd').then((variant) => console.log(variant.data));
+  //   // commerce.categories.list().then((category) => console.log(category));
+  // //   const url = new URL(
+  // //     "https://api.chec.io/v1/products/prod_31q0o39jQBlDdj/variants/optn_nPEVlNQAJd5a7d"
+  // // );
+  
+  // // let headers = {
+  // //     "X-Authorization": "pk_421899a6fa77f00b3c5cf2fc90d064890cfdecfe7bffe",
+  // //     "Accept": "application/json",
+  // //     "Content-Type": "application/json",
+  // // };
+  
+  // // fetch(url, {
+  // //     method: "GET",
+  // //     headers: headers,
+  // // })
+  // //     .then(response => response.json())
+  // //     .then(json => console.log(json.data));
+  // }
+  
+
   useEffect(() => {
     fetchPhone();
     fetchAccessory()
+    // fetchA()
   }, []);
 
 

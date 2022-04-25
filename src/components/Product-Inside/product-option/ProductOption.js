@@ -1,25 +1,37 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, {useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {setSize, setColor, setCount} from "../../../Reducer/ProductInsideIDReducer"
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import MinusIcon from "../../../assets/images/IconMinus.svg"
+import PlusIcon from "../../../assets/images/Iconplus.svg"
+import BasketBtn from "../../../assets/images/basket.svg"
 
 function ProductOption() {
+  const dispatch = useDispatch();
   const product = useSelector((state) => state.setProductID.list);
+  const count = useSelector((state) => state.setProductID.count);
   // console.log(product);
 
+  const colorPrice = useSelector((state) => state.setProductID.colorPrice);
+  const sizePrice = useSelector((state) => state.setProductID.sizePrice);
+  const [colorName, setColorName] = useState("")
+  const [sizeName, setSizeName] = useState("")
+  // const [count, setCount] = useState(1)
+  
   return (
     <div className="product-option">
-      <h2>{product.name}</h2>
+      <h2>{product.name} {colorName && <span>, {colorName}</span>} {sizeName && <span>, {sizeName}</span>}</h2>
       <Stack spacing={1}>
         <Rating name="size-medium" defaultValue={2} />
       </Stack>
-      <p className="price">{product.price && product.price.formatted_with_symbol}</p>
+      <p className="price">{product.price && ((product.price.raw + colorPrice + sizePrice)*count)} ₼</p>
       <div className="colors">
         <p>Rəng:</p>
         {
           product.variant_groups && 
           product.variant_groups[0].options.map((item, index)=>(
-            <div key={index} className={item.name.toLowerCase()}></div>
+            <div key={index}  onClick={()=>{dispatch(setColor(item.price.raw)); setColorName(item.name)}} className={item.name.toLowerCase()}></div>
           ))
         }
       </div>
@@ -28,10 +40,22 @@ function ProductOption() {
         {
           product.variant_groups && 
           product.variant_groups[1].options.map((item, index)=>(
-            <div key={index} >{item.name}</div>
+            <div key={index} onClick={()=>{dispatch(setSize(item.price.raw)); setSizeName(item.name)}} >{item.name}</div>
           ))
         }
       </div>
+      <div className="item-quantity">
+        <div className="icon" onClick={()=> dispatch(setCount(false))}>
+          <img src={MinusIcon} alt="logo"/>
+        </div>
+        <p>{count}</p>
+        <div className="icon" onClick={()=> dispatch(setCount(true))}>
+          <img src={PlusIcon} alt="logo"/>
+        </div>
+      </div>
+      <div className="basket-btn">
+        <img src={BasketBtn} alt="logo"/>
+        Səbətə at</div>
     </div>
   );
 }
