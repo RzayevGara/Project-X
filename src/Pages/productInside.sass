@@ -4,6 +4,7 @@
 
 @import "../components/Product-Inside/product-image-slider/productImages"
 @import "../components/Product-Inside/product-option/productOption"
+@import "../components/Product-Inside/Params-Comment/paramsComment"
     
 #product-inside
     .css-1p5q5e5-MuiStack-root
@@ -23,3 +24,17 @@
         .product-detail
             @include flex(row, space-between, flex-start)
             gap: 50px
+        .params-comment
+            @include flex(row)
+            margin-top: 8%
+            color: #BDBDBD
+            @include font(20px, 400)
+            gap: 15%
+            padding: 20px 50px
+            border-bottom: 2px solid #BDBDBD
+            p
+                cursor: pointer
+
+
+.active-text
+    color: black
