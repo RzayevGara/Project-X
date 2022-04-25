@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 
 function ProductOption() {
   const product = useSelector((state) => state.setProductID.list);
-  console.log(product);
+  // console.log(product);
 
   return (
     <div className="product-option">

@@ -7,13 +7,18 @@ import './assets/styles/index.sass'
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout/>}>
-        <Route index element={<Home/>}/>
-        <Route path="/telefonlar" element={<Products/>}/>
-        <Route path="/telefonlar/:id" element={<ProductInside/>}/>
-      </Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<Home/>}/>
+          <Route path="/telefonlar" element={<Products/>}/>
+          <Route path="/telefonlar/:id" element={<ProductInside/>}/>
+          <Route path="*" element={
+          <div>
+            Errordana
+          </div>
+          }/>
+        </Route>
+      </Routes>
   );
 }
 

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = { 
-    productID:"prod_bO6J5aBEJ7lEjp",
+    productID:"",
     list: ""
 }
 

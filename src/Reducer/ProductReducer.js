@@ -31,10 +31,10 @@ export const ProductReducer = createSlice({
     filterString:(state,action)=>{
       state.filterString=[...state.filterString, action.payload]
       
-      state.arrayList.filter((item)=>{
+      let copy = state.originalList.filter((item)=>{
         return (new RegExp(state.filterString.join('|')).test(item.name))
       })
-      // state.arrayList=copy
+      state.arrayList=copy
     },
     filterPrice:(state, action)=>{
       state.priceRange=[]
