@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {setSize, setColor, setCount} from "../../../Reducer/ProductInsideIDReducer"
+import {setSize, setColor, setCount, setColorName, setSizeName} from "../../../Reducer/ProductInsideIDReducer"
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import MinusIcon from "../../../assets/images/IconMinus.svg"
@@ -11,12 +11,12 @@ function ProductOption() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.setProductID.list);
   const count = useSelector((state) => state.setProductID.count);
-  // console.log(product);
+  console.log(product);
 
   const colorPrice = useSelector((state) => state.setProductID.colorPrice);
   const sizePrice = useSelector((state) => state.setProductID.sizePrice);
-  const [colorName, setColorName] = useState("")
-  const [sizeName, setSizeName] = useState("")
+  const colorName = useSelector((state) => state.setProductID.colorName);
+  const sizeName= useSelector((state) => state.setProductID.sizeName);
   // const [count, setCount] = useState(1)
   
   return (
@@ -31,7 +31,7 @@ function ProductOption() {
         {
           product.variant_groups && 
           product.variant_groups[0].options.map((item, index)=>(
-            <div key={index}  onClick={()=>{dispatch(setColor(item.price.raw)); setColorName(item.name)}} className={item.name.toLowerCase()}></div>
+            <div key={index}  onClick={()=>{dispatch(setColor(item.price.raw)); dispatch(setColorName(item.name))}} className={item.name.toLowerCase()}></div>
           ))
         }
       </div>
@@ -40,7 +40,7 @@ function ProductOption() {
         {
           product.variant_groups && 
           product.variant_groups[1].options.map((item, index)=>(
-            <div key={index} onClick={()=>{dispatch(setSize(item.price.raw)); setSizeName(item.name)}} >{item.name}</div>
+            <div key={index} onClick={()=>{dispatch(setSize(item.price.raw)); dispatch(setSizeName(item.name))}} >{item.name}</div>
           ))
         }
       </div>
@@ -55,7 +55,9 @@ function ProductOption() {
       </div>
       <div className="basket-btn">
         <img src={BasketBtn} alt="logo"/>
-        Səbətə at</div>
+        Səbətə at
+      </div>
+      
     </div>
   );
 }

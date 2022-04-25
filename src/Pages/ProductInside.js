@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./productInside.sass";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setList } from "../Reducer/ProductInsideIDReducer";
 import ProductImages from "../components/Product-Inside/product-image-slider/ProductImages"
 import ProductOption from "../components/Product-Inside/product-option/ProductOption"
+import ParamsComment from "../components/Product-Inside/Params-Comment/ParamsComment"
 
 
 function ProductInside() {
@@ -31,9 +32,9 @@ function ProductInside() {
   ];
 
   const category = useSelector((state) => state.setProductID.productID);
-  // const product = useSelector((state) => state.setProductID.list);
-  // console.log(product);
   const dispatch = useDispatch();
+
+  const [Switch, setSwitch] = useState(false)
 
   useEffect(() => {
       const fetchProduct = () => {
@@ -62,6 +63,11 @@ function ProductInside() {
               <ProductImages/>
               <ProductOption/>
           </div>
+          <div className="params-comment">
+            <p className={!Switch?"active-text":null} onClick={()=>setSwitch(false)}>Texniki Xüsusiyyətləri</p>
+            <p className={Switch?"active-text":null}  onClick={()=>setSwitch(true)}>Rəylər</p>
+          </div>
+          <ParamsComment switch={Switch}/>
       </div>
     </div>
   );

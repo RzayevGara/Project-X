@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = { 
-    productID:"prod_RyWOwmPvVGlnEa",
+    productID:"",
     list: "",
     sizePrice: 0,
     colorPrice: 0,
     count: 1,
-    total: ""
+    total: "",
+    colorName: "",
+    sizeName: ""
 }
 
 
@@ -15,7 +17,6 @@ export const ProductInsideIDReducer = createSlice({
   initialState,
   reducers: {
     setID: (state,action) => {
-      state.productID= ""
       state.productID = action.payload
     },
     setList:(state, action)=>{
@@ -29,15 +30,25 @@ export const ProductInsideIDReducer = createSlice({
     },
     setCount:(state, action)=>{
       if(!action.payload){
-        state.count=1?state.count = 1:state.count -=1
+        if(state.count===1){
+          state.count = 1
+        }else{
+          state.count -=1
+        }
       }else{
         state.count +=1 
       }
+    },
+    setColorName:(state, action)=>{
+      state.colorName = action.payload
+    },
+    setSizeName:(state, action)=>{
+      state.sizeName = action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {setID, setList, setSize ,setColor,setCount} = ProductInsideIDReducer.actions
+export const {setID, setList, setSize ,setColor,setCount, setColorName, setSizeName} = ProductInsideIDReducer.actions
 
 export default ProductInsideIDReducer.reducer
