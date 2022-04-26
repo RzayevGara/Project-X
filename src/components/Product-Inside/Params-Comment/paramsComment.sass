@@ -1,7 +1,8 @@
 .product-params
-    padding: 50px 70px
+    // padding: 50px 70px
     @include flex(row, space-between)
-    gap: 50px
+    // gap: 50px
+    margin: 50px 0 60px
     .params
         flex: 2
         ul
@@ -16,12 +17,13 @@
                 @include flex(row, space-between, center)
                 @include font(16px, 400)
                 color: #828282
-                padding-left: 20px
+                padding: 0 20px
     .description
         flex: 3
         padding: 0 50px
         @include flex(column)
         gap: 30px
+        display: none
         h4
             @include font(20px, 500)
         p
@@ -29,3 +31,35 @@
             padding-left: 30px
             color: #828282
             @include font(16px, 400)
+    @media (min-width: 1366px)
+        padding: 50px 70px
+        @include flex(row, space-between)
+        gap: 50px
+        margin-top: 0
+        .params
+            flex: 2
+            ul
+                @include flex(column)
+                gap: 25px
+                &:not(:nth-child(1))
+                    margin-top: 35px
+                    
+                .params-title
+                    @include font(20px, 500)
+                li
+                    @include flex(row, space-between, center)
+                    @include font(16px, 400)
+                    color: #828282
+                    padding-left: 20px
+        .description
+            flex: 3
+            padding: 0 50px
+            @include flex(column)
+            gap: 30px
+            h4
+                @include font(20px, 500)
+            p
+                width: 70%
+                padding-left: 30px
+                color: #828282
+                @include font(16px, 400)

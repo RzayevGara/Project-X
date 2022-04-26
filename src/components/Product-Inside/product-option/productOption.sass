@@ -1,11 +1,12 @@
 .product-option
-    width: 55%
+    width: 100%
     @include flex(column)
     gap: 20px
     h2
-        @include font(30px, 600)
+        @include font(25px, 600)
     .price
         @include font(28px, 600)
+        display: none
     .colors
         @include flex(row, flex-start, center)
         gap: 20px
@@ -28,7 +29,7 @@
             background-color: #F2F2F2
     .item-quantity
         @include flex(row, space-between, center)
-        width: 15%
+        width: 150px
         .icon
             @include flex(row, center, center)
             @include size(35px, 35px)
@@ -40,16 +41,41 @@
                 @include size(20px, 20px)
         p
             @include font(20px, 500)
-    .basket-btn
-        @include flex(row, center , center)
-        @include size(200px, 50px)
-        background-color: $hoverText
-        color: white
-        border-radius: 8px
-        gap: 15px
-        cursor: pointer
-        margin-top: 30px
+    .fixed-box
+        @include flex(row, space-between, center)
+        background-color: white
+        width: 100%
+        padding: 10px 20px
+        left: 0
+        z-index: 0
+        position: fixed
+        bottom: 0
+        margin-top: 0
 
+        .price-box
+            @include font(24px, 600)
+        .basket-btn
+            @include flex(row, center , center)
+            @include size(200px, 50px)
+            background-color: $hoverText
+            color: white
+            border-radius: 8px
+            gap: 15px
+            cursor: pointer
+    @media (min-width: 1366px)
+        width: 55%
+        h2
+            @include font(30px, 600)
+        .price
+            @include font(28px, 600)
+            display: block
+        .fixed-box
+            @include flex(row, flex-start, center)
+            position: static
+            padding: 0
+            margin-top: 30px
+            .price-box
+                display: none
 
 
 
