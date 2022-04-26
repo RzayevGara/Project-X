@@ -14,7 +14,7 @@ function Products() {
       Ana Sehife
     </RouterLink>,
     <Typography key="2" color="text.primary">
-      Telefonlar
+      Bütün Məhsullar
     </Typography>,
   ]
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {setSize, setColor, setCount, setColorName, setSizeName} from "../../../Reducer/ProductInsideIDReducer"
 import Rating from "@mui/material/Rating";
@@ -53,9 +53,12 @@ function ProductOption() {
           <img src={PlusIcon} alt="logo"/>
         </div>
       </div>
-      <div className="basket-btn">
-        <img src={BasketBtn} alt="logo"/>
-        Səbətə at
+      <div className="fixed-box">
+        <p className="price-box">{product.price && ((product.price.raw + colorPrice + sizePrice)*count)} ₼</p>
+        <div className="basket-btn">
+          <img src={BasketBtn} alt="logo"/>
+          Səbətə at
+        </div>
       </div>
       
     </div>

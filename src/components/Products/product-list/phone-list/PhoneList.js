@@ -13,10 +13,9 @@ function PhoneList() {
   // console.log(arrayList);
 
   useEffect(() => {
-    dispatch(SetArray([]));
     const fetchProductList = () => {
       commerce.products
-        .list({ category_slug: [category] })
+        .list({ category_slug: ['butun-mehsullar'] })
         .then((products) => {
           dispatch(SetArray(products.data));
         })

@@ -18,23 +18,40 @@
                 &:active
                     color: black
     .container
-        padding: 5%
-        @media (min-width: 1366px)
-            padding: 2% 5%
+        padding:  0 5%
         .product-detail
-            @include flex(row, space-between, flex-start)
+            @include flex(column, $align: center)
             gap: 50px
         .params-comment
             @include flex(row)
-            margin-top: 8%
+            margin-top: 60px
             color: #BDBDBD
-            @include font(20px, 400)
+            @include font(16px, 400)
             gap: 15%
-            padding: 20px 50px
-            border-bottom: 2px solid #BDBDBD
             p
                 cursor: pointer
+                padding: 5px 0
+        @media (min-width: 1366px)
+            padding: 2% 5%
+            .product-detail
+                @include flex(row, space-between, flex-start)
+                gap: 50px
+            .params-comment
+                margin-top: 8%
+                @include font(20px, 400)
+                padding: 20px 50px
+                border-bottom: 2px solid #BDBDBD
+                p
+                    padding: 0
 
 
+
+    
+    
+    
 .active-text
-    color: black
+    color: $hoverText
+    border-bottom: 3px solid $hoverText
+    @media (min-width: 1366px)
+        color: black
+        border-bottom: none

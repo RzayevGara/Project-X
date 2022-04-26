@@ -31,7 +31,7 @@ const Menu = React.memo((props) =>{
             onClick={() =>
               dispatch(setCategory((item.slug)))
             }
-            key={index} className="items">     <Link to="/telefonlar">{item.name}</Link>
+            key={index} className="items">     <Link to={`/${item.slug}`}>{item.name}</Link>
               <div className={item.children.length===0? ".hide" : "sub-categories"}>
                 {
                   item.children.map((elem, indexx)=>(
