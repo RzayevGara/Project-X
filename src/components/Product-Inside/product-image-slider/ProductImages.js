@@ -12,7 +12,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 
 function ProductImages(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const product = useSelector((state) => state.setProductID.list);
+    const product = useSelector((state) => state.setProductDetail.list);
 
   return (
     <div className="product-images">

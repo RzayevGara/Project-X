@@ -7,7 +7,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link as RouterLink, useParams, useNavigate} from "react-router-dom";
 import commerce from '../lib/Commerce';
 import { useSelector, useDispatch } from "react-redux";
-import { setList } from "../Reducer/ProductInsideIDReducer";
+import { setList } from "../Reducer/ProductInsideDetail";
 import ProductImages from "../components/Product-Inside/product-image-slider/ProductImages"
 import ProductOption from "../components/Product-Inside/product-option/ProductOption"
 import ParamsComment from "../components/Product-Inside/Params-Comment/ParamsComment"
@@ -17,37 +17,35 @@ function ProductInside() {
   let navigate = useNavigate();
   let {id} = useParams();
   console.log('my idddd', id)
-    let arrayList = useSelector((state) => state.setProductID.productID);
-  console.log(arrayList);
+  let productID = useSelector((state) => state.saveID.ProductID);
   const breadcrumbs = [
     <RouterLink key="1" to="/">
       Ana Sehife
     </RouterLink>,
-    <RouterLink key="2" to="/telefonlar">
-      Telefonlar
+    <RouterLink key="2" to="/butun-mehsullar">
+      Bütün Məhsullar
     </RouterLink>,
     <Typography key="3" color="text.primary">
       Telefonlar
     </Typography>,
   ];
 
-  const category = useSelector((state) => state.setProductID.productID);
   const dispatch = useDispatch();
 
   const [Switch, setSwitch] = useState(false)
 
   useEffect(() => {
       const fetchProduct = () => {
-        commerce.products.retrieve([category]).then((product) => dispatch(setList(product)));
+        commerce.products.retrieve([productID]).then((product) => dispatch(setList(product)));
       }
       fetchProduct()
-  }, [category, dispatch]);
+  }, [productID, dispatch]);
 
   React.useEffect(() => {
-    if(id !== arrayList){
+    if(id !== productID){
       return navigate("*")
     }
-}, [id, arrayList,navigate]);
+}, [id, productID,navigate]);
   return (
     <div id="product-inside">
       <Stack spacing={2}>
