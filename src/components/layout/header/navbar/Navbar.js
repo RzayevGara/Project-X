@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState ,useEffect} from 'react'
 import LogoProject from '../../../../assets/images/Project X.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +10,7 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import commerce from "../../../../lib/Commerce"
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -21,6 +22,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Navbar = React.memo((props)=> {
+  const [ BasketCount, setBasketCount] = useState("")
+  useEffect(() => {
+    commerce.cart.contents().then((items) => setBasketCount(items.length));
+  })
+
+
   return (
     <div className="navbar">
       <div className="left-section">
@@ -44,7 +51,7 @@ const Navbar = React.memo((props)=> {
           <FontAwesomeIcon className="icon" icon={faUser}/>
           <FontAwesomeIcon className="icon" icon={faHeart}/>
           <IconButton className="icon" aria-label="cart">
-            <StyledBadge badgeContent={0} color="secondary">
+            <StyledBadge badgeContent={BasketCount} color="secondary">
               <ShoppingCartIcon />
             </StyledBadge>
           </IconButton>

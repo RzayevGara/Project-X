@@ -3,6 +3,7 @@ import ProductReducer from "./ProductReducer"
 import FilterReducer from './FilterReducer'
 import ProductInsideDetail from "./ProductInsideDetail"
 import SaveID from "./SaveID"
+import AddCardReducer from "./AddCardReducer"
 
 // export const store = configureStore({
 //   reducer: {
@@ -21,7 +22,8 @@ const reducers = combineReducers({
       category: ProductReducer,
       filter: FilterReducer,
       setProductDetail: ProductInsideDetail,
-      saveID: SaveID
+      saveID: SaveID,
+      AddToCard: AddCardReducer
 });
 
 const persistConfig = {
