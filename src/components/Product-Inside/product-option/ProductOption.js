@@ -59,6 +59,10 @@ function ProductOption() {
           Səbətə at
         </div>
       </div>
+      <div className="description-phone">
+          <h4>Məhsul haqqında</h4>
+          <p>{product.description}</p>
+      </div>
       
     </div>
   );

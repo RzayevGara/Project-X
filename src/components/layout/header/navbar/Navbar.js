@@ -6,7 +6,19 @@ import {faUser} from '@fortawesome/free-regular-svg-icons'
 import {faHeart} from '@fortawesome/free-regular-svg-icons'
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
 import { Link} from "react-router-dom";
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
 
 const Navbar = React.memo((props)=> {
   return (
@@ -31,7 +43,11 @@ const Navbar = React.memo((props)=> {
         <div className="header-icon">
           <FontAwesomeIcon className="icon" icon={faUser}/>
           <FontAwesomeIcon className="icon" icon={faHeart}/>
-          <FontAwesomeIcon className="icon" icon={faCartShopping}/>
+          <IconButton className="icon" aria-label="cart">
+            <StyledBadge badgeContent={0} color="secondary">
+              <ShoppingCartIcon />
+            </StyledBadge>
+          </IconButton>
         </div>
       </div>
     </div>

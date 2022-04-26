@@ -34,7 +34,6 @@ function ParamsComment(props) {
               <div className="description">
                   <h4>Məhsul haqqında</h4>
                   <p>{product.description}</p>
-                
               </div>
           </div>
         )
