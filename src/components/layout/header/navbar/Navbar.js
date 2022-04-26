@@ -5,6 +5,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import {faUser} from '@fortawesome/free-regular-svg-icons'
 import {faHeart} from '@fortawesome/free-regular-svg-icons'
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
+import { Link} from "react-router-dom";
 
 
 const Navbar = React.memo((props)=> {
@@ -16,7 +17,9 @@ const Navbar = React.memo((props)=> {
           <div className={props.active ? "line second-line" : "line"}></div>
           <div className={props.active ? "line third-line" : "line"}></div>
         </div>
-        <img className="logo-project" src={LogoProject} alt="ProjectLogo"/>
+        <Link to={`/`}>
+          <img className="logo-project" src={LogoProject} alt="ProjectLogo"/>
+        </Link>
       </div>
       <div className="middle-section">
         <FontAwesomeIcon icon={ faMagnifyingGlass } />

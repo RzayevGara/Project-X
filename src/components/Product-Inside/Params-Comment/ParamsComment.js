@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector} from "react-redux";
 
 function ParamsComment(props) {
-  const product = useSelector((state) => state.setProductID.list);
+  const product = useSelector((state) => state.setProductDetail.list);
   console.log(product);
 
     if(props.switch===false){
