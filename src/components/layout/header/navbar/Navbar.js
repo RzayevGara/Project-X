@@ -49,11 +49,13 @@ const Navbar = (props)=> {
         <div className="header-icon">
           <FontAwesomeIcon className="icon" icon={faUser}/>
           <FontAwesomeIcon className="icon" icon={faHeart}/>
-          <IconButton className="icon" aria-label="cart">
-            <StyledBadge badgeContent={basketCount.length} color="secondary">
-              <ShoppingCartIcon />
-            </StyledBadge>
-          </IconButton>
+          <Link to={`/sebet`}>
+            <IconButton className="icon" aria-label="cart">
+              <StyledBadge badgeContent={basketCount.length} color="secondary">
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </IconButton>
+          </Link>
         </div>
       </div>
     </div>
