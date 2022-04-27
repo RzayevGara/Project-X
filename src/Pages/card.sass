@@ -1,3 +1,17 @@
 @import "../assets/styles/utils/_mixins"
 @import "../assets/styles/utils/_variables"
 @import "../assets/styles/utils/_reset"
+
+@import "../components/Card/empty card/empty"
+@import "../components/Card/full card/full"
+@import '../components/Card/full card/Basket product/basketProduct'
+@import '../components/Card/full card/Basket price/basketPrice'
+
+#card-page
+    background-color: #faf9f9
+    .container
+        @include flex(column)
+        gap: 60px
+        h3
+            @include font(20px, 500)
+            align-self: flex-start

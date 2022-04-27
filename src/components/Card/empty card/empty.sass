@@ -1,0 +1,17 @@
+.empty-card
+    @include flex(column, center, center)
+    gap: 30px
+    padding: 0 0 10%
+    .empty-div
+        @include size(100%, 100%)
+        background-color: white
+        @include flex(column, center, center)
+        gap: 40px
+        padding: 10% 0
+        .basket-btn
+            @include size(250px, 50px)
+            background-color: $hoverText
+            color: white
+            border-radius: 8px
+            @include flex(row, center, center)
+            cursor: pointer

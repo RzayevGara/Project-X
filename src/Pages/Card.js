@@ -3,9 +3,10 @@ import "./card.sass"
 import commerce from '../lib/Commerce';
 import { useSelector, useDispatch } from "react-redux";
 // import {setList} from "../Reducer/CardListReducer"
+import Empty from '../components/Card/empty card/Empty'
+import Full from '../components/Card/full card/Full'
 
-
-function Cart() {
+function Card() {
   const dispatch = useDispatch()
   useEffect(() => {
     const fetcha = ()=>{
@@ -14,13 +15,16 @@ function Cart() {
     console.log("isledi");
     fetcha()
   }, [dispatch]);
-  // const BasketCount = useSelector((state) => state.listOrder.list);
-  // console.log(BasketCount)
+  const BasketList = useSelector((state) => state.listOrder.SimpleList);
+  // const BasketList = 0
   return (
-    <div className="cart">
-      <div className="container">gh</div>
+    <div id="card-page">
+      <div className="container">
+        <h3>Səbət <span>({BasketList.length} məhsul)</span> </h3>
+        {BasketList.length>0?<Full/>:<Empty/>}
+      </div>
     </div>
   )
 }
 
-export default Cart
+export default Card
