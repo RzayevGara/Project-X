@@ -1,12 +1,46 @@
 .basket-products
-    flex: 3
+    flex: 4
     .products
         @include flex(column)
         gap: 30px
         li
+            @include flex(row, space-between, center)
+            gap: 30px
             background-color: white
-            padding: 15px
-            border: 1px solid black
+            padding: 30px 50px
+            box-shadow: 0px 4px 8px rgba(164, 164, 164, 0.50)
             border-radius: 8px
-            img
-                width: 60px
+            .logo-text
+                @include flex(row, $align: center)
+                gap: 20px
+                .product-logo
+                    width: 100px
+                .product-text
+                    @include flex(column)
+                    gap: 20px
+                    .product-basket_title
+                        @include font(22px, 500)
+                    .product-basket_detail
+                        @include flex(row)
+                        gap: 15px
+                        color: #828282
+                        .bold-text
+                            font-weight: 500
+                            color: black
+            .item-quantity-basket
+                @include flex(row, space-between, center)
+                width: 150px
+                .icon
+                    @include flex(row, center, center)
+                    @include size(35px, 35px)
+                    background-color: #F2F2F2
+                    border-radius: 50%
+                    border: 1px solid #E0E0E0
+                    cursor: pointer
+                    img
+                        @include size(20px, 20px)
+                p
+                    @include font(20px, 500)
+            .delete-icon
+                width: 25px
+                cursor: pointer

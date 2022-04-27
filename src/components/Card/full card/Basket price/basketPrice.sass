@@ -1,2 +1,24 @@
 .basket-price
     flex: 1
+    @include size(100%, auto)
+    background-color: white
+    box-shadow: 0px 4px 8px rgba(164, 164, 164, 0.50)
+    border-radius: 8px
+    padding: 50px
+    gap: 20px
+    @include flex(column)
+    h6
+        @include font(25px, 500)
+    p
+        @include font(20px, 400)
+        @include flex(row, space-between, center)
+        &:nth-child(5)
+            border-bottom: 1px solid #828282
+            padding-bottom: 15px
+    h5
+        @include font(20px, 500)
+        @include flex(row, space-between, center)
+        span
+            color: #DB2C66
+
+            
