@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import {faUser} from '@fortawesome/free-regular-svg-icons'
 import {faHeart} from '@fortawesome/free-regular-svg-icons'
-import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
 import { Link} from "react-router-dom";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import commerce from "../../../../lib/Commerce"
+import {useSelector} from "react-redux";
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -21,11 +21,10 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const Navbar = React.memo((props)=> {
-  const [ BasketCount, setBasketCount] = useState("")
-  useEffect(() => {
-    commerce.cart.contents().then((items) => setBasketCount(items.length));
-  })
+const Navbar = (props)=> {
+  
+  const basketCount = useSelector((state) => state.listOrder.SimpleList);
+  console.log(basketCount);
 
 
   return (
@@ -51,7 +50,7 @@ const Navbar = React.memo((props)=> {
           <FontAwesomeIcon className="icon" icon={faUser}/>
           <FontAwesomeIcon className="icon" icon={faHeart}/>
           <IconButton className="icon" aria-label="cart">
-            <StyledBadge badgeContent={BasketCount} color="secondary">
+            <StyledBadge badgeContent={basketCount.length} color="secondary">
               <ShoppingCartIcon />
             </StyledBadge>
           </IconButton>
@@ -59,6 +58,6 @@ const Navbar = React.memo((props)=> {
       </div>
     </div>
   )
-})
+}
 
 export default Navbar

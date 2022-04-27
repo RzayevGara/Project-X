@@ -2,8 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import ProductReducer from "./ProductReducer"
 import FilterReducer from './FilterReducer'
 import ProductInsideDetail from "./ProductInsideDetail"
-import SaveID from "./SaveID"
 import AddCardReducer from "./AddCardReducer"
+import CardListReducer from "./CardListReducer"
 
 // export const store = configureStore({
 //   reducer: {
@@ -22,14 +22,14 @@ const reducers = combineReducers({
       category: ProductReducer,
       filter: FilterReducer,
       setProductDetail: ProductInsideDetail,
-      saveID: SaveID,
-      AddToCard: AddCardReducer
+      AddToCard: AddCardReducer,
+      listOrder: CardListReducer
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['saveID']
+  whitelist: ['']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

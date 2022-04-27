@@ -1,21 +1,21 @@
 import React, {useEffect} from 'react'
 import "./card.sass"
 import commerce from '../lib/Commerce';
+import { useSelector, useDispatch } from "react-redux";
+// import {setList} from "../Reducer/CardListReducer"
 
 
 function Cart() {
-  const fetcha = ()=>{
-    // commerce.cart.add('prod_31q0o39jQBlDdj', 1).then((response) => console.log(response));
-    // commerce.cart.add('prod_31q0o39jQBlDdj', 1,{
-    //   'vgrp_ZRjywMZ3ao7Y8G': 'optn_nPEVlNQAJd5a7d',
-    // }).then((variants) => console.log(variants));
-    // commerce.cart.remove('item_1ypbroE658n4ea').then((response) => console.log(response));
-    commerce.cart.contents().then((items) => console.log(items));
-  }
+  const dispatch = useDispatch()
   useEffect(() => {
+    const fetcha = ()=>{
+      // commerce.cart.remove('item_1ypbroE658n4ea').then((response) => console.log(response));
+    }
     console.log("isledi");
     fetcha()
-  }, []);
+  }, [dispatch]);
+  // const BasketCount = useSelector((state) => state.listOrder.list);
+  // console.log(BasketCount)
   return (
     <div className="cart">
       <div className="container">gh</div>

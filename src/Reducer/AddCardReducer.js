@@ -6,7 +6,7 @@ const initialState = {
     VariantSize: "",
     OptionSize: "",
     ItemCount: 1,
-    ItemonBasket: ""
+    ItemonBasket: "",
 }
 
 
