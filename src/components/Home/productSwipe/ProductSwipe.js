@@ -5,13 +5,8 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Skeleton from "../../skeleton/phone/Skeleton";
 import { Link} from "react-router-dom";
 import { useDispatch} from "react-redux";
-import { setID } from "../../../Reducer/SaveID";
 
 const ProductSwipe = React.memo((props) => {
-  const dispatch = useDispatch();
-  // let arrayList = useSelector((state) => state.setProductID.productID);
-  // console.log(arrayList);
-
   return (
     <div className="product-swipe">
       <div className="product-swipe_title">
@@ -33,12 +28,7 @@ const ProductSwipe = React.memo((props) => {
 
         {!props.dataLoading &&
           props.BackData.map((item, index) => (
-            <SwiperSlide
-              onClick={() => {
-                dispatch(setID(item.id));
-              }}
-              key={index}
-            >
+            <SwiperSlide key={index}>
               <Link to={`/butun-mehsullar/${item.id}`}>
                 <img src={item.image.url} alt="logo" />
               </Link>

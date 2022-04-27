@@ -13,6 +13,7 @@ import {
   setItemCount,
 } from "../../../Reducer/AddCardReducer";
 import commerce from "../../../lib/Commerce";
+import {setSimpleList} from "../../../Reducer/CardListReducer"
 
 
 function ProductOption() {
@@ -112,11 +113,11 @@ function ProductOption() {
         </p>
         <div
           onClick={() => {
-            // dispatch(setProduct(product.id));
+            
             commerce.cart.add(`${product.id}`, quantity,{
               [colorvr]: `${colorop}`,
               [sizevr]: `${sizeop}`,
-            }).then((variants) => console.log(variants));
+            }).then(() => commerce.cart.contents().then((items) => dispatch(setSimpleList(items))));
           }}
           className="basket-btn"
         >

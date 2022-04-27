@@ -5,7 +5,7 @@ import { setCategory} from '../../../../Reducer/ProductReducer'
 import { Link } from "react-router-dom";
 
 
-const Menu = React.memo((props) =>{
+const Menu = (props) =>{
   const [products, setProducts] = useState([]);
 
   const dispatch = useDispatch()
@@ -56,6 +56,6 @@ const Menu = React.memo((props) =>{
       </div>
     </div>
   )
-})
+}
 
 export default Menu

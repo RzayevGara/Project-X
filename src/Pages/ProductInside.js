@@ -4,20 +4,18 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { Link as RouterLink, useParams, useNavigate} from "react-router-dom";
+import { Link as RouterLink, useParams} from "react-router-dom";
 import commerce from '../lib/Commerce';
 import { useSelector, useDispatch } from "react-redux";
-import { setList } from "../Reducer/ProductInsideDetail";
+import { ProductInsideList } from "../Reducer/ProductInsideDetail";
 import ProductImages from "../components/Product-Inside/product-image-slider/ProductImages"
 import ProductOption from "../components/Product-Inside/product-option/ProductOption"
 import ParamsComment from "../components/Product-Inside/Params-Comment/ParamsComment"
 
 
 function ProductInside() {
-  let navigate = useNavigate();
   let {id} = useParams();
-  console.log('my idddd', id)
-  let productID = useSelector((state) => state.saveID.ProductID);
+  
   const breadcrumbs = [
     <RouterLink key="1" to="/">
       Ana Sehife
@@ -36,16 +34,11 @@ function ProductInside() {
 
   useEffect(() => {
       const fetchProduct = () => {
-        commerce.products.retrieve([productID]).then((product) => dispatch(setList(product)));
+        commerce.products.retrieve([id]).then((product) => dispatch(ProductInsideList(product)));
       }
       fetchProduct()
-  }, [productID, dispatch]);
+  }, [id, dispatch]);
 
-  React.useEffect(() => {
-    if(id !== productID){
-      return navigate("*")
-    }
-}, [id, productID,navigate]);
   return (
     <div id="product-inside">
       <Stack spacing={2}>
