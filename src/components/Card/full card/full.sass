@@ -1,3 +1,5 @@
 .full-card
-    @include flex(row, space-between, flex-start)
+    @include flex(column, space-between, flex-start)
     gap: 50px
+    @media (min-width: 1366px)
+        @include flex(row, space-between, flex-start)
