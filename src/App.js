@@ -15,7 +15,8 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     const fetcha = ()=>{
-      commerce.cart.contents().then((items) => dispatch(setSimpleList(items)));
+      // commerce.cart.contents().then((items) => dispatch(setSimpleList(items)));
+      commerce.cart.retrieve().then((cart) =>  dispatch(setSimpleList(cart)));
     }
     console.log("isledi");
     fetcha()

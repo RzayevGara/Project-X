@@ -7,7 +7,9 @@
         background-color: white
         @include flex(column, center, center)
         gap: 40px
-        padding: 10% 0
+        padding: 30% 0
+        box-shadow: 0px 4px 8px rgba(164, 164, 164, 0.50)
+        border-radius: 8px
         .basket-btn
             @include size(250px, 50px)
             background-color: $hoverText
@@ -15,3 +17,6 @@
             border-radius: 8px
             @include flex(row, center, center)
             cursor: pointer
+    @media (min-width: 1366px)
+        .empty-div
+            padding: 10% 0

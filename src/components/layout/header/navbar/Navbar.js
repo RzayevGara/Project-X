@@ -24,7 +24,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Navbar = (props)=> {
   
   const basketCount = useSelector((state) => state.listOrder.SimpleList);
-  console.log(basketCount);
+
 
 
   return (
@@ -51,7 +51,7 @@ const Navbar = (props)=> {
           <FontAwesomeIcon className="icon" icon={faHeart}/>
           <Link to={`/sebet`}>
             <IconButton className="icon" aria-label="cart">
-              <StyledBadge badgeContent={basketCount.length} color="secondary">
+              <StyledBadge badgeContent={basketCount && basketCount.line_items.length} color="secondary">
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>

@@ -11,17 +11,20 @@ function Card() {
   useEffect(() => {
     const fetcha = ()=>{
       // commerce.cart.remove('item_1ypbroE658n4ea').then((response) => console.log(response));
+      commerce.cart.retrieve().then((cart) => console.log(cart));
+
     }
     console.log("isledi");
     fetcha()
   }, [dispatch]);
   const BasketList = useSelector((state) => state.listOrder.SimpleList);
-  // const BasketList = 0
   return (
     <div id="card-page">
       <div className="container">
-        <h3>Səbət <span>({BasketList.length} məhsul)</span> </h3>
-        {BasketList.length>0?<Full/>:<Empty/>}
+        <h3 className="basket-count_text">Səbət <span>({BasketList && BasketList.line_items.length} məhsul)</span> </h3>
+        {BasketList && 
+        BasketList.line_items.length>0?<Full/>:<Empty/>
+        }
       </div>
     </div>
   )

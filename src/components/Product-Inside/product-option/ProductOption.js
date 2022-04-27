@@ -117,7 +117,7 @@ function ProductOption() {
             commerce.cart.add(`${product.id}`, quantity,{
               [colorvr]: `${colorop}`,
               [sizevr]: `${sizeop}`,
-            }).then(() => commerce.cart.contents().then((items) => dispatch(setSimpleList(items))));
+            }).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
           }}
           className="basket-btn"
         >
