@@ -7,6 +7,7 @@ const initialState = {
     OptionSize: "",
     ItemCount: 1,
     ItemonBasket: "",
+    itemID: ""
 }
 
 
@@ -32,11 +33,18 @@ export const FilterReducer = createSlice({
           }else{
             state.ItemCount +=1 
           }
+    },
+    setItemID: (state,action) => {
+      state.itemID = action.payload
+      state.VariantColor = ""
+      state.OptionColor = ""
+      state.VariantSize = ""
+      state.OptionSize = ""
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {setVariantColor, setOptionColor, setVariantSize, setOptionSize, setItemCount} = FilterReducer.actions
+export const {setVariantColor, setOptionColor, setVariantSize, setOptionSize, setItemCount, setItemID} = FilterReducer.actions
 
 export default FilterReducer.reducer
