@@ -33,7 +33,7 @@ function PhoneList() {
 
   const displayUsers = arrayList
     .slice(pageVisited, pageVisited + userPerPage)
-    .map((item, index) => <PhoneItem key={index} array={item} />);
+    .map((item, index) => <PhoneItem key={index} array={item}/>);
 
   const pageCount = Math.ceil(arrayList.length / userPerPage);
 

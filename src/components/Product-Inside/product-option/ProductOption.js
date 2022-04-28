@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
@@ -11,9 +11,11 @@ import {
   setVariantSize,
   setOptionSize,
   setItemCount,
+  setItemID
 } from "../../../Reducer/AddCardReducer";
 import commerce from "../../../lib/Commerce";
 import {setSimpleList} from "../../../Reducer/CardListReducer"
+import {useParams} from 'react-router-dom'
 
 
 function ProductOption() {
@@ -29,14 +31,22 @@ function ProductOption() {
   console.log(sizeop);
   const quantity = useSelector((state) => state.AddToCard.ItemCount);
   console.log(quantity);
-
+  
   const [Count, setCount] = useState(1);
   const [ColorPrice, setColorPrice] = useState(0);
   const [SizePrice, setSizePrice] = useState(0);
   const [ColorName, setColorName] = useState("");
   const [SizeName, setSizeName] = useState("");
 
+
+  
   const dispatch = useDispatch();
+  
+  // let { id } = useParams();
+  useEffect(() => {
+    dispatch(setItemID(product.id))
+  }, [dispatch, product])
+
 
   return (
     <div className="product-option">
@@ -52,8 +62,8 @@ function ProductOption() {
         ₼
       </p>
       <div className="colors">
-        <p>Rəng:</p>
-        {product.variant_groups &&
+        <p>{product.variant_groups && product.variant_groups.length>0?'Rəng:':''}</p>
+        {product.variant_groups && product.variant_groups.length>0?
           product.variant_groups[0].options.map((item, index) => (
             <div
               key={index}
@@ -65,11 +75,12 @@ function ProductOption() {
               }}
               className={item.name.toLowerCase()}
             ></div>
-          ))}
+          )):" "
+          }
       </div>
       <div className="size">
-        <p>Yaddaş:</p>
-        {product.variant_groups &&
+        <p>{product.variant_groups && product.variant_groups.length>1?'Yaddaş:':''}</p>
+        {product.variant_groups && product.variant_groups.length>1?
           product.variant_groups[1].options.map((item, index) => (
             <div
               key={index}
@@ -82,7 +93,8 @@ function ProductOption() {
             >
               {item.name}
             </div>
-          ))}
+          )):' '
+        }
       </div>
       <div className="item-quantity">
         <div
@@ -113,11 +125,24 @@ function ProductOption() {
         </p>
         <div
           onClick={() => {
-            
-            commerce.cart.add(`${product.id}`, quantity,{
-              [colorvr]: `${colorop}`,
-              [sizevr]: `${sizeop}`,
-            }).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+            if(colorop && sizeop){
+              commerce.cart.add(`${product.id}`, quantity,{
+                [colorvr]: `${colorop}`,
+                [sizevr]: `${sizeop}`,
+              }).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+            }else if(colorop){
+              commerce.cart.add(`${product.id}`, quantity,{
+                [colorvr]: `${colorop}`,
+              }).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+            }else if(sizeop){
+              commerce.cart.add(`${product.id}`, quantity,{
+                [sizevr]: `${sizeop}`,
+              }).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+            }
+            else{
+              commerce.cart.add(`${product.id}`, quantity
+              ).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+            }
           }}
           className="basket-btn"
         >

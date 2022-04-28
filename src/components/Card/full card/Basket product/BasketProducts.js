@@ -20,14 +20,15 @@ function BasketProducts(props) {
               <div className="product-text">
                 <h3 className="product-basket_title">{item.name}</h3>
                 <p className="product-basket_detail">
-                  <span>
-                    {item.selected_options[0].group_name}:{" "}
-                    <span className="bold-text">{item.selected_options[0].option_name}</span>
-                  </span>
-                  <span>
-                    {item.selected_options[1].group_name}:{" "}
-                    <span className="bold-text">{item.selected_options[1].option_name}</span>
-                  </span>
+                  {
+                    item.selected_options &&
+                    item.selected_options.map((item) =>(
+                      <span>
+                        {item.group_name}{": "}
+                        <span className="bold-text">{item.option_name}</span>
+                      </span>
+                    ))
+                  }
                   <span>
                     Qiymət: <span className="bold-text">{item.line_total.formatted_with_symbol}</span>
                   </span>

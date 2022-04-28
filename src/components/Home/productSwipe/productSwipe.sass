@@ -40,18 +40,20 @@
             flex-direction: column
             box-shadow: 0px 4px 8px rgba(164, 164, 164, 0.50)
             border-radius: 4px
-            img 
-                display: block 
-                width: 120px
-                // height: 100% 
-                object-fit: cover 
-                margin-top: 15px
-            h4
-                margin: 25px 0 10px
-                @include font(14px, 500)
-                align-self: flex-start
-            .product-price
-                align-self: flex-start
+            .link
+                @include flex(column, center, center)
+                img 
+                    display: block 
+                    width: 120px
+                    // height: 100% 
+                    object-fit: cover 
+                    margin-top: 15px
+                h4
+                    margin: 25px 0 10px
+                    @include font(14px, 500)
+                    align-self: flex-start
+                .product-price
+                    align-self: flex-start
     @media (min-width: 1366px)
         padding-bottom: 0
         .product-swipe_title
@@ -68,5 +70,10 @@
 
                 padding: 20px 20px 30px 20px
                 // height: 400px
-                img 
-                    width: 90%
+                .link
+                    img 
+                        width: 80%
+                    h4
+                        @include font(18px)
+                    .product-price
+                        @include font(18px)
