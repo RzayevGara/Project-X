@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import Carousel from "../components/Home/carousel/Carousel"
 import ProductSwipe from "../components/Home/productSwipe/ProductSwipe"
 import Card from "../components/Home/card/main/Card"
@@ -7,42 +7,44 @@ import LinkCard from "../components/Home/link-card/main/LinkCard"
 import About from "../components/Home/about/main/About"
 import Brands from "../components/Home/brands/Brands"
 import "./home.sass"
-
+import {useDispatch, useSelector} from 'react-redux'
+import {setPhoneList, setAccessoryList, setFetchStatus} from '../Reducer/HomePageReducer'
 
 
 
 
 function Home() {
-  const [phone, setPhone] = useState([]);
-  const [accessory, setAccessory] = useState([]);
-  const [loadingPhone, setLoadingPhone] = useState(true)
-  const [loadingAccessory, setLoadingAccessory] = useState(true)
+  const dispatch = useDispatch()
+  const fetchStatus = useSelector((state) => state.homeList.fetchProduct)
+  console.log(fetchStatus);
+  const phone = useSelector((state) => state.homeList.phoneList)
+  const accessory = useSelector((state) => state.homeList.accessoryList)
+  const loadingPhone  = useSelector((state) => state.homeList.loadingPhone)
+  const loadingAccessory  = useSelector((state) => state.homeList.loadingAccessory)
   
-  const fetchPhone = () => {
-    commerce.products.list({category_slug: ['phone'],})
-    .then((products) => {
-      setLoadingPhone(false)
-      setPhone(products.data)
-    }).catch((error) => {
-      console.log('There was an error fetching the products', error)
-    });
-  }
-
-  const fetchAccessory = () => {
-    commerce.products.list({category_slug: ['aksessuarlar'],})
-    .then((products) => {
-      setLoadingAccessory(false)
-      setAccessory(products.data)
-    }).catch((error) => {
-      console.log('There was an error fetching the products', error)
-    });
-  }
-  
-
   useEffect(() => {
-    fetchPhone();
-    fetchAccessory()
-  }, []);
+    if(fetchStatus===true){
+      const fetchPhone = () => {
+        commerce.products.list({category_slug: ['phone'],})
+        .then((products) => {
+          dispatch(setPhoneList(products.data))
+        }).catch((error) => {
+          console.log('There was an error fetching the products', error)
+        });
+      }
+      const fetchAccessory = () => {
+        commerce.products.list({category_slug: ['aksessuarlar'],})
+        .then((products) => {
+          dispatch(setAccessoryList(products.data))
+        }).catch((error) => {
+          console.log('There was an error fetching the products', error)
+        });
+      }
+      fetchPhone();
+      fetchAccessory()
+      dispatch(setFetchStatus(false))
+    }
+  }, [dispatch, fetchStatus]);
 
 
   return (
