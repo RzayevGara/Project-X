@@ -1,20 +1,22 @@
 import React,{useState, useEffect, useCallback} from 'react'
 import Navbar from "../navbar/Navbar"
 import Menu from "../navbar-menu/Menu"
+import {useDispatch, useSelector} from "react-redux";
+// import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
 
 function Header() {
-  const[clickHamburger, setHamburger] = useState(false)
-  const HandleHamburger = useCallback(()=>{
-    !clickHamburger?setHamburger(true):setHamburger(false)
-  },[clickHamburger])
+  const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
+  console.log(HamburgerStatus)
+
   useEffect(() => {
     let body = document.body
-    clickHamburger?body.classList.add('active-body'):body.classList.remove('active-body')
-  }, [clickHamburger])
+    !HamburgerStatus?body.classList.remove('active-body'):body.classList.add('active-body')
+  }, [HamburgerStatus])
+
   return (
       <nav className="header">
-        <Navbar active={clickHamburger} hamburger={HandleHamburger}/>
-        <Menu active={clickHamburger}/>
+        <Navbar/>
+        <Menu />
       </nav>
   )
 }

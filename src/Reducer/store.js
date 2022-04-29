@@ -4,6 +4,7 @@ import FilterReducer from './FilterReducer'
 import ProductInsideDetail from "./ProductInsideDetail"
 import AddCardReducer from "./AddCardReducer"
 import CardListReducer from "./CardListReducer"
+import HamburgerReducer from './HamburgerReducer'
 
 // export const store = configureStore({
 //   reducer: {
@@ -23,7 +24,8 @@ const reducers = combineReducers({
       filter: FilterReducer,
       setProductDetail: ProductInsideDetail,
       AddToCard: AddCardReducer,
-      listOrder: CardListReducer
+      listOrder: CardListReducer,
+      setHamburger: HamburgerReducer
 });
 
 const persistConfig = {

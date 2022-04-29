@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { SetArray } from "../../../../Reducer/ProductReducer";
 import PhoneItem from "./phoneItem/PhoneItem";
 import ReactPaginate from "react-paginate";
+import { TailSpin  } from 'react-loading-icons'
 
 function PhoneList() {
   // fetch data
@@ -11,13 +12,17 @@ function PhoneList() {
   let arrayList = useSelector((state) => state.category.arrayList);
   const dispatch = useDispatch();
   // console.log(arrayList);
+  const [IsLoading, setIsLoading] = useState(false)
+
 
   useEffect(() => {
     const fetchProductList = () => {
+      setIsLoading(true)
       commerce.products
         .list({ category_slug: ['butun-mehsullar'] })
         .then((products) => {
           dispatch(SetArray(products.data));
+          setIsLoading(false)
         })
         .catch((error) => {
           console.log("There was an error fetching the products", error);
@@ -45,6 +50,12 @@ function PhoneList() {
 
   return (
     <div className="phone-list">
+       {IsLoading && 
+      <div className="black-page">
+        <TailSpin  stroke="#00D68F" className="loading"/>
+        <p>Məhsullar yüklənir</p>
+      </div>
+      }
       <ul>
         {displayUsers}
       </ul>

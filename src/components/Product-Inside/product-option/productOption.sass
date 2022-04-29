@@ -2,25 +2,25 @@
     width: 100%
     @include flex(column)
     gap: 20px
-    // .black-page
-    //     position: fixed
-    //     background-color: #0000006e
-    //     @include size(100vw, 100vh)
-    //     top: 0
-    //     left: 0
-    //     z-index: 9999
-    //     @include flex(column, center, center)
-    //     .loading
-    //         @include size(20%, auto)
-    //     p
-    //         margin-top: 40px
-    //         color: white
-    //         @include font(16px, 500)
-    //     @media (min-width: 1366px)
-    //         .loading
-    //             @include size(10%, auto)
-    //         p
-    //             @include font(20px, 500)
+    .black-page
+        position: fixed
+        background-color: #0000006e
+        @include size(100vw, 100vh)
+        top: 0
+        left: 0
+        z-index: 9999
+        @include flex(column, center, center)
+        .loading
+            @include size(20%, auto)
+        p
+            margin-top: 40px
+            color: white
+            @include font(16px, 500)
+        @media (min-width: 1366px)
+            .loading
+                @include size(10%, auto)
+            p
+                @include font(20px, 500)
 
     h2
         @include font(25px, 600)

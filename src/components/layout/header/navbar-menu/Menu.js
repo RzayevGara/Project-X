@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import commerce from '../../../../lib/Commerce';
-import {useDispatch } from 'react-redux'
+import {useDispatch, useSelector } from 'react-redux'
 import { setCategory} from '../../../../Reducer/ProductReducer'
 import { Link } from "react-router-dom";
+import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
 
 
 const Menu = (props) =>{
   const [products, setProducts] = useState([]);
+  const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
+  // console.log(HamburgerStatus)
 
   const dispatch = useDispatch()
 
@@ -23,13 +26,16 @@ const Menu = (props) =>{
   }, []);
 
   return (
-    <div className={props.active ? "menu active" : "menu"}>
+    <div className={HamburgerStatus ? "menu active" : "menu"}>
       <ul className="categories">
         {
           products.map((item, index)=>(
             <li
             onClick={() =>
-              dispatch(setCategory((item.slug)))
+             {
+                dispatch(setCategory((item.slug)));
+                dispatch(HamburgerClick(false))
+              }
             }
             key={index} className="items">     <Link to={`/${item.slug}`}>{item.name}</Link>
               <div className={item.children.length===0? ".hide" : "sub-categories"}>
@@ -46,7 +52,6 @@ const Menu = (props) =>{
                   <div className='black-page'></div>
                 </div>
             </li>
-
           ))
         }
       </ul>

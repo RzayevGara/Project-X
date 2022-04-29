@@ -9,7 +9,8 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -22,18 +23,24 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Navbar = (props)=> {
+  const dispatch = useDispatch()
+  const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
+  console.log(HamburgerStatus)
   
   const basketCount = useSelector((state) => state.listOrder.SimpleList);
 
+  function HamburgerClickFunc(){
+    !HamburgerStatus?dispatch(HamburgerClick(true)):dispatch(HamburgerClick(false))
+  }
 
 
   return (
     <div className="navbar">
       <div className="left-section">
-        <div onClick={props.hamburger} className={props.active ? "hamburger x-button" : "hamburger"}>
-          <div className={props.active ? "line first-line" : "line"}></div>
-          <div className={props.active ? "line second-line" : "line"}></div>
-          <div className={props.active ? "line third-line" : "line"}></div>
+        <div onClick={HamburgerClickFunc} className={HamburgerStatus ? "hamburger x-button" : "hamburger"}>
+          <div className={HamburgerStatus ? "line first-line" : "line"}></div>
+          <div className={HamburgerStatus ? "line second-line" : "line"}></div>
+          <div className={HamburgerStatus ? "line third-line" : "line"}></div>
         </div>
         <Link to={`/`}>
           <img className="logo-project" src={LogoProject} alt="ProjectLogo"/>
