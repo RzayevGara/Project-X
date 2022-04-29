@@ -23,6 +23,10 @@ function Home() {
   const loadingAccessory  = useSelector((state) => state.homeList.loadingAccessory)
   
   useEffect(() => {
+    const changePage = () => {
+      window.scrollTo({top: 0});
+    };
+    changePage()
     if(fetchStatus===true){
       const fetchPhone = () => {
         commerce.products.list({category_slug: ['phone'],})

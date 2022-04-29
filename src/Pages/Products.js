@@ -1,4 +1,4 @@
-// import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import Filter from "../components/Products/filter/main/Filter"
 import ProductList from "../components/Products/product-list/main/ProductList"
 import "./products.sass"
@@ -17,6 +17,12 @@ function Products() {
       Bütün Məhsullar
     </Typography>,
   ]
+  useEffect(()=>{
+    const changePage = () => {
+      window.scrollTo({top: 0});
+    };
+    changePage()
+  },[])
 
   return (
     <div id="products">
