@@ -6,17 +6,20 @@ import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Link as RouterLink, useParams} from "react-router-dom";
 import commerce from '../lib/Commerce';
-import {useDispatch } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import { ProductInsideList } from "../Reducer/ProductInsideDetail";
 import ProductImages from "../components/Product-Inside/product-image-slider/ProductImages"
 import ProductOption from "../components/Product-Inside/product-option/ProductOption"
 import ParamsComment from "../components/Product-Inside/Params-Comment/ParamsComment"
 import ErrorPageComp from '../components/Error Page/ErrorPage'
+import { TailSpin  } from 'react-loading-icons'
 
 
 function ProductInside() {
   let {id} = useParams();
-  
+
+  const productName = useSelector((state) => state.setProductDetail.list);
+
   const breadcrumbs = [
     <RouterLink key="1" to="/">
       Ana Sehife
@@ -25,7 +28,7 @@ function ProductInside() {
       Bütün Məhsullar
     </RouterLink>,
     <Typography key="3" color="text.primary">
-      Telefonlar
+      {productName.name}
     </Typography>,
   ];
 
@@ -35,17 +38,31 @@ function ProductInside() {
   const [ErrorPage, setErrorPage] = useState(false)
   console.log(ErrorPage)
 
+  const [IsLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
+    setIsLoading(true)
       const fetchProduct = () => {
-        commerce.products.retrieve([id]).then((product) => dispatch(ProductInsideList(product))).catch((error) => setErrorPage(true));
+        commerce.products.retrieve([id]).then((product) =>{ dispatch(ProductInsideList(product)); setIsLoading(false)}).catch((error) => setErrorPage(true));
       }
       fetchProduct()
+      const changePage = () => {
+        window.scrollTo({top: 0});
+      };
+      changePage()
   }, [id, dispatch]);
+
 
 
   if (!ErrorPage){
     return (
       <div id="product-inside">
+         {IsLoading && 
+      <div className="black-page">
+        <TailSpin  stroke="#00D68F" className="loading"/>
+        <p>Məhsullar yüklənir</p>
+      </div>
+      }
         <Stack spacing={2}>
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
