@@ -13,23 +13,25 @@ function PhoneList() {
   const dispatch = useDispatch();
   // console.log(arrayList);
   const [IsLoading, setIsLoading] = useState(false)
-
+  const fetchStatus = useSelector((state) => state.category.fetchStatus)
 
   useEffect(() => {
-    const fetchProductList = () => {
-      setIsLoading(true)
-      commerce.products
-        .list({ category_slug: ['butun-mehsullar'] })
-        .then((products) => {
-          dispatch(SetArray(products.data));
-          setIsLoading(false)
-        })
-        .catch((error) => {
-          console.log("There was an error fetching the products", error);
-        });
-    };
-    fetchProductList();
-  }, [category, dispatch]);
+    if(fetchStatus){
+      const fetchProductList = () => {
+        setIsLoading(true)
+        commerce.products
+          .list({ category_slug: ['butun-mehsullar'] })
+          .then((products) => {
+            dispatch(SetArray(products.data));
+            setIsLoading(false)
+          })
+          .catch((error) => {
+            console.log("There was an error fetching the products", error);
+          });
+      };
+      fetchProductList();
+    }
+  }, [category, dispatch, fetchStatus]);
 
   // react paginate state
   const [PageNumber, setPageNumber] = useState(0);

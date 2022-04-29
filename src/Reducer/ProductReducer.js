@@ -6,8 +6,8 @@ const initialState = {
     originalList: [],
     filterString:[],
     LocalList:[],
-    priceRange: []
-
+    priceRange: [],
+    fetchStatus: true
 }
 
 
@@ -21,6 +21,7 @@ export const ProductReducer = createSlice({
     SetArray: (state, action)=>{
       state.arrayList= action.payload
       state.originalList= action.payload
+      state.fetchStatus = false
     },
     sortArray:(state, action)=>{
       action.payload?state.arrayList.sort((a,b) => a.price.raw - b.price.raw):state.arrayList.sort((a,b) =>b.price.raw - a.price.raw)
