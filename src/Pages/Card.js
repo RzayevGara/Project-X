@@ -9,6 +9,10 @@ import Full from '../components/Card/full card/Full'
 function Card() {
   const dispatch = useDispatch()
   useEffect(() => {
+    const changePage = () => {
+      window.scrollTo({top: 0});
+    };
+    changePage()
     const fetcha = ()=>{
       // commerce.cart.remove('item_1ypbroE658n4ea').then((response) => console.log(response));
       commerce.cart.retrieve().then((cart) => console.log(cart));
