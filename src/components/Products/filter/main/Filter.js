@@ -32,7 +32,9 @@ function Filter() {
         <FilterPrice/>
 
       </div>
-      <div className="filter-button">
+      <div  onClick={() => {
+            dispatch(setActive(false));
+        }} className="filter-button">
         Filterlənmiş məhsulları göstər
       </div>
     </div>
