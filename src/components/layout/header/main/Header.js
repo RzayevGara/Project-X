@@ -1,8 +1,7 @@
-import React,{useState, useEffect, useCallback} from 'react'
+import React,{useEffect} from 'react'
 import Navbar from "../navbar/Navbar"
 import Menu from "../navbar-menu/Menu"
-import {useDispatch, useSelector} from "react-redux";
-// import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
+import {useSelector} from "react-redux";
 
 function Header() {
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
