@@ -1,0 +1,12 @@
+@import '../../assets/styles/utils/_mixins'
+@import '../../assets/styles/utils/_variables'
+@import '../../assets/styles/utils/_reset'
+    
+.error-page
+    @include flex(column, center, center)
+    padding: 10% 0
+    .error-code
+        @include font(120px, 600)
+        color: $hoverText
+    .error-msg
+        @include font(30px, 500)

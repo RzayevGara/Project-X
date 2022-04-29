@@ -15,7 +15,7 @@ import {
 } from "../../../Reducer/AddCardReducer";
 import commerce from "../../../lib/Commerce";
 import {setSimpleList} from "../../../Reducer/CardListReducer"
-import {useParams} from 'react-router-dom'
+import { TailSpin  } from 'react-loading-icons'
 
 
 function ProductOption() {
@@ -31,6 +31,8 @@ function ProductOption() {
   console.log(sizeop);
   const quantity = useSelector((state) => state.AddToCard.ItemCount);
   console.log(quantity);
+
+  const [IsLoading, setIsLoading] = useState(false)
   
   const [Count, setCount] = useState(1);
   const [ColorPrice, setColorPrice] = useState(0);
@@ -50,6 +52,12 @@ function ProductOption() {
 
   return (
     <div className="product-option">
+      {IsLoading && 
+      <div className="black-page">
+        <TailSpin  stroke="#00D68F" className="loading"/>
+        <p>Məhsul səbətə əlavə olunur</p>
+      </div>
+      }
       <h2>
         {product.name} {ColorName && <span>, {ColorName}</span>}{" "}
         {SizeName && <span>, {SizeName}</span>}
@@ -126,22 +134,26 @@ function ProductOption() {
         <div
           onClick={() => {
             if(colorop && sizeop){
+              setIsLoading(true)
               commerce.cart.add(`${product.id}`, quantity,{
                 [colorvr]: `${colorop}`,
                 [sizevr]: `${sizeop}`,
-              }).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+              }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
             }else if(colorop){
+              setIsLoading(true)
               commerce.cart.add(`${product.id}`, quantity,{
                 [colorvr]: `${colorop}`,
-              }).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+              }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
             }else if(sizeop){
+              setIsLoading(true)
               commerce.cart.add(`${product.id}`, quantity,{
                 [sizevr]: `${sizeop}`,
-              }).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+              }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
             }
             else{
+              setIsLoading(true)
               commerce.cart.add(`${product.id}`, quantity
-              ).then(() => commerce.cart.retrieve().then((items) => dispatch(setSimpleList(items))));
+              ).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
             }
           }}
           className="basket-btn"

@@ -10,6 +10,7 @@ import commerce from './lib/Commerce';
 import React, {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {setSimpleList} from "./Reducer/CardListReducer"
+import ErrorPage from './components/Error Page/ErrorPage'
 
 function App() {
   const dispatch = useDispatch()
@@ -30,11 +31,7 @@ function App() {
           <Route path="/butun-mehsullar/:id" element={<ProductInside/>}/>
           <Route path="/Apple" element={<Apple/>}/>
           <Route path="/Sebet" element={<Card/>}/>
-          <Route path="*" element={
-          <div>
-            Errordana
-          </div>
-          }/>
+          <Route path="*" element={<ErrorPage/>}/>
         </Route>
       </Routes>
   );
