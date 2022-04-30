@@ -11,7 +11,8 @@ import {
   setVariantSize,
   setOptionSize,
   setItemCount,
-  setItemID
+  setItemID,
+  setAssetID
 } from "../../../Reducer/AddCardReducer";
 import commerce from "../../../lib/Commerce";
 import {setSimpleList} from "../../../Reducer/CardListReducer"
@@ -80,6 +81,7 @@ function ProductOption() {
                 setColorName(item.name);
                 dispatch(setVariantColor(product.variant_groups[0].id));
                 dispatch(setOptionColor(item.id));
+                dispatch(setAssetID(item.assets[0]));
               }}
               className={item.name.toLowerCase()}
             ></div>

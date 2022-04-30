@@ -1,22 +1,23 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
-function ProductImages(props) {
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const product = useSelector((state) => state.setProductDetail.list);
+function ProductImages() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const product = useSelector((state) => state.setProductDetail.list);
+  const assetsID = useSelector((state) => state.AddToCard.assetID);
+  console.log(assetsID);
 
   return (
     <div className="product-images">
-        <Swiper
+      <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
           "--swiper-pagination-color": "#fff",
@@ -28,12 +29,24 @@ function ProductImages(props) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="swiper-up"
       >
-        {product.assets && product.assets.map((item,index)=>(
-          <SwiperSlide key={index}>
-            <img src={item.url} alt="logo"/>
-          </SwiperSlide>
-        ))
-        }
+        {product.assets &&
+          product.assets.map((item, index) => {
+            if (assetsID) {
+              if (assetsID === item.id) {
+                return (
+                  <SwiperSlide key={index}>
+                    <img src={item.url} alt="logo" />
+                  </SwiperSlide>
+                );
+              }
+            } else {
+              return (
+                <SwiperSlide key={index}>
+                  <img src={item.url} alt="logo" />
+                </SwiperSlide>
+              );
+            }
+          })}
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -45,15 +58,27 @@ function ProductImages(props) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="swiper-down"
       >
-        {product.assets && product.assets.map((item,indexx)=>(
-          <SwiperSlide key={indexx+1}>
-            <img src={item.url} alt="logo"/>
-          </SwiperSlide>
-        ))
-        }
+        {product.assets &&
+          product.assets.map((item, indexx) => {
+            if (assetsID) {
+              if (assetsID === item.id) {
+                return (
+                  <SwiperSlide key={indexx}>
+                    <img src={item.url} alt="logo" />
+                  </SwiperSlide>
+                );
+              }
+            } else {
+              return (
+                <SwiperSlide key={indexx}>
+                  <img src={item.url} alt="logo" />
+                </SwiperSlide>
+              );
+            }
+          })}
       </Swiper>
     </div>
-  )
+  );
 }
 
-export default ProductImages
+export default ProductImages;
