@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import Filter from "../components/Products/filter/main/Filter"
 import ProductList from "../components/Products/product-list/main/ProductList"
 import "./products.sass"
