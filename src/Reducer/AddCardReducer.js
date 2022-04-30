@@ -41,6 +41,7 @@ export const FilterReducer = createSlice({
       state.OptionColor = ""
       state.VariantSize = ""
       state.OptionSize = ""
+      state.assetID = ""
     },
     setAssetID: (state,action) => {
       state.assetID = action.payload
