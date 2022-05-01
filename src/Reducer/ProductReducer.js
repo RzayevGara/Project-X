@@ -8,7 +8,8 @@ const initialState = {
     LocalList:[],
     priceRange: [],
     fetchStatus: true,
-    filterColor: []
+    filterColor: [],
+    filterSize: []
 }
 
 
@@ -40,11 +41,19 @@ export const ProductReducer = createSlice({
     },
     filterColor:(state,action)=>{
       state.filterColor=[...state.filterColor, action.payload]
-      // let copy = state.originalList.filter((item)=>{
-      //   return (new RegExp(state.filterString.join('|')).test(item.variant_groups.length>1 && item.variant_groups[0].options.map(item=>item.name)))
-      // })
-      // console.log(copy);
-      // state.arrayList=copy
+    },
+    deleteColor:(state,action)=>{
+      let filteredArray = state.filterColor.filter(e => e !== action.payload)
+
+      state.filterColor = filteredArray
+    },
+    filterSize:(state,action)=>{
+      state.filterSize=[...state.filterSize, action.payload]
+    },
+    deleteSize:(state,action)=>{
+      let filteredArray = state.filterSize.filter(e => e !== action.payload)
+
+      state.filterSize = filteredArray
     },
 
 
@@ -75,6 +84,6 @@ export const ProductReducer = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {setCategory, SetArray, sortArray, returnDefaultSort, deleteString, filterString,localData, filterPrice, filterColor} = ProductReducer.actions
+export const {setCategory, SetArray, sortArray, returnDefaultSort, deleteString, filterString,localData, filterPrice, filterColor, deleteColor, filterSize, deleteSize} = ProductReducer.actions
 
 export default ProductReducer.reducer

@@ -29,6 +29,7 @@ function Filter() {
       <div className="filter-category">
         <FilterCategory brendTitle={"Brend"} brendList={["Apple", "Samsung", "Xiaomi", "Huawei"]}/>
         <FilterCategory colorTitle={"Rəng"} colorList={["Qara", "Ağ", "Göy", "Yaşıl"]}/>
+        <FilterCategory sizeTitle={"Yaddaş"} sizeList={["64GB", "128GB", "256GB", "512GB"]}/>
         <FilterPrice/>
 
       </div>

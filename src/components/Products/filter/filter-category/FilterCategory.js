@@ -3,7 +3,7 @@ import PlusIcon from "../../../../assets/images/Iconplus.svg";
 import MinusIcon from "../../../../assets/images/IconMinus.svg";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteString,filterString, filterColor } from "../../../../Reducer/ProductReducer";
+import { deleteString,filterString, filterColor , deleteColor, filterSize, deleteSize} from "../../../../Reducer/ProductReducer";
 
 const FilterCategory=(props)=> {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const FilterCategory=(props)=> {
   return (
     <div className="brend">
       <div className="brend-title">
-        <h5>{props.brendTitle && props.brendTitle}{props.colorTitle && props.colorTitle}</h5>
+        <h5>{props.brendTitle && props.brendTitle}{props.colorTitle && props.colorTitle}{props.sizeTitle && props.sizeTitle}</h5>
         <img
           onClick={plusBtn}
           src={!active ?PlusIcon : MinusIcon}
@@ -39,7 +39,15 @@ const FilterCategory=(props)=> {
           {props.colorList &&
             props.colorList.map((item, index)=>(
               <div key={index}>
-                <Checkbox onClick={(e) => e.target.checked?dispatch(filterColor(item)):dispatch(deleteString(item)) } id={item} value={item.toLowerCase()}  color="success" />
+                <Checkbox onClick={(e) => e.target.checked?dispatch(filterColor(item)):dispatch(deleteColor(item)) } id={item} value={item.toLowerCase()}  color="success" />
+                <label htmlFor={item}>{item}</label>
+              </div>
+            ))
+          }
+          {props.sizeList &&
+            props.sizeList.map((item, index)=>(
+              <div key={index}>
+                <Checkbox onClick={(e) => e.target.checked?dispatch(filterSize(item)):dispatch(deleteSize(item)) } id={item} value={item.toLowerCase()}  color="success" />
                 <label htmlFor={item}>{item}</label>
               </div>
             ))
