@@ -11,7 +11,7 @@ function PhoneList() {
   const category = useSelector((state) => state.category.category);
   let arrayList = useSelector((state) => state.category.arrayList);
   const dispatch = useDispatch();
-  // console.log(arrayList);
+  console.log(arrayList);
   const [IsLoading, setIsLoading] = useState(false)
   const fetchStatus = useSelector((state) => state.category.fetchStatus)
 
@@ -31,6 +31,7 @@ function PhoneList() {
       };
       fetchProductList();
     }
+    // console.log(document.querySelectorAll(".link"))
   }, [category, dispatch, fetchStatus]);
 
   // react paginate state
@@ -58,7 +59,7 @@ function PhoneList() {
         <p>Məhsullar yüklənir</p>
       </div>
       }
-      <ul>
+      <ul id="my-phone-list">
         {displayUsers}
       </ul>
       <ReactPaginate

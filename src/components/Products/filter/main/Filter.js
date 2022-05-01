@@ -28,7 +28,7 @@ function Filter() {
       </div>
       <div className="filter-category">
         <FilterCategory brendTitle={"Brend"} brendList={["Apple", "Samsung", "Xiaomi", "Huawei"]}/>
-        {/* <FilterCategory brendTitle={"Rəng"} brendList={["Qara", "Ağ", "Göy", "Yaşıl"]}/> */}
+        <FilterCategory colorTitle={"Rəng"} colorList={["Qara", "Ağ", "Göy", "Yaşıl"]}/>
         <FilterPrice/>
 
       </div>
