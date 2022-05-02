@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function PhoneItem(props) {
-  // console.log(props.array);
+  console.log(props.array);
   return (
     <Link className="link" to={`/butun-mehsullar/${props.array.id}`}>
       <li className="phone-item">

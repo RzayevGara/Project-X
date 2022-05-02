@@ -33,7 +33,7 @@
         .color-option
             @include flex(row, flex-start, center)
             gap: 20px
-            div
+            .color-box
                 @include size(35px, 35px)
                 border-radius: 50%
                 border: 1px solid #E0E0E0
@@ -48,7 +48,7 @@
         .size-option
             @include flex(row, flex-start, center)
             gap: 20px
-            div
+            .size-box
                 @include flex(row, center, center)
                 @include size(70px, 40px)
                 border-radius: 8px
@@ -124,6 +124,8 @@
 
 .ağ
     background-image: white
+    div
+        background-color: black !important
 .qara
     background-color: black
 .qırmızı
@@ -134,3 +136,12 @@
     background-color: blue
 .çəhrayı
     background-color: pink
+
+.active-color
+    @include flex(row, center, center)
+    div
+        @include size(50%, 50%)
+        border-radius: 50%
+        background-color: white
+.active-size
+    border: 1px solid #f6861f !important

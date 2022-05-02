@@ -43,8 +43,6 @@ function ProductOption() {
   const [ColorName, setColorName] = useState("");
   const [SizeName, setSizeName] = useState("");
 
-  // const[colorMsg, setColorMsg] = useState("")
-  // const[sizeMsg, setSizeMsg] = useState("")
 
   const colorMsg = useSelector((state) => state.AddToCard.colorMsg)
   const sizeMsg = useSelector((state) => state.AddToCard.sizeMsg)
@@ -89,10 +87,16 @@ function ProductOption() {
                   dispatch(setVariantColor(product.variant_groups[0].id));
                   dispatch(setOptionColor(item.id));
                   dispatch(setAssetID(item.assets[0]));
-                  dispatch(setColorMsg(""))
+                  dispatch(setColorMsg(""));
+                  document.querySelectorAll(".color-box").forEach((item)=>
+                    item.classList.remove("active-color")
+                  )
+                  document.querySelector(`.${item.name.toLowerCase()}`).classList.add("active-color")
                 }}
-                className={item.name.toLowerCase()}
-                ></div>
+                className={`color-box ${item.name.toLowerCase()}`}
+                >
+                  <div></div>
+                </div>
             )):" "
           }
         </div>
@@ -111,7 +115,12 @@ function ProductOption() {
                   dispatch(setVariantSize(product.variant_groups[1].id));
                   dispatch(setOptionSize(item.id));
                   dispatch(setSizeMsg(""))
+                  document.querySelectorAll(".size-box").forEach((item)=>
+                    item.classList.remove("active-size")
+                  )
+                  document.querySelectorAll(".size-box")[index].classList.add("active-size")
                 }}
+                className={`size-box`}
               >
                 {item.name}
               </div>
@@ -179,22 +188,6 @@ function ProductOption() {
             commerce.cart.add(`${product.id}`, quantity
             ).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
           }
-            // else if(colorop){
-            //   setIsLoading(true)
-            //   commerce.cart.add(`${product.id}`, quantity,{
-            //     [colorvr]: `${colorop}`,
-            //   }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
-            // }else if(sizeop){
-            //   setIsLoading(true)
-            //   commerce.cart.add(`${product.id}`, quantity,{
-            //     [sizevr]: `${sizeop}`,
-            //   }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
-            // }
-            // else{
-            //   setIsLoading(true)
-            //   commerce.cart.add(`${product.id}`, quantity
-            //   ).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
-            // }
           }}
           className="basket-btn"
         >
