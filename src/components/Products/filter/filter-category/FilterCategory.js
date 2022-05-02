@@ -25,11 +25,11 @@ const FilterCategory=(props)=> {
         />
       </div>
       <div className={!active ? "brend-text" : "brend-text active-brend"}>
-        <form>
+        <form onChange={(e)=> e.target.checked?dispatch(filterString(e.target.value)):dispatch(deleteString(e.target.value))}>
           {
             props.brendList.map((item, index)=>(
               <div key={index}>
-                <Checkbox onClick={(e) => e.target.checked?dispatch(filterString(item)):dispatch(deleteString(item)) } id={item} value={item.toLowerCase()}  color="success" />
+                <Checkbox id={item} value={item}  color="success" />
                 <label htmlFor={item}>{item}</label>
               </div>
             ))
