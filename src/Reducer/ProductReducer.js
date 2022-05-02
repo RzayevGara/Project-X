@@ -6,8 +6,13 @@ const initialState = {
     originalList: [],
     filterString:[],
     LocalList:[],
-    priceRange: [],
-    fetchStatus: true
+    priceRange: 
+    {
+      minPrice: 0,
+      maxPrice: 9999999
+    }
+  ,
+    fetchStatus: true,
 }
 
 
@@ -24,40 +29,49 @@ export const ProductReducer = createSlice({
       state.fetchStatus = false
     },
     sortArray:(state, action)=>{
-      action.payload?state.arrayList.sort((a,b) => a.price.raw - b.price.raw):state.arrayList.sort((a,b) =>b.price.raw - a.price.raw)
+      action.payload?state.originalList.sort((a,b) => a.price.raw - b.price.raw):state.originalList.sort((a,b) =>b.price.raw - a.price.raw)
+      let copy = state.originalList.filter((item)=>{
+        if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+          return (new RegExp(state.filterString.join('|')).test(item.name))
+        }
+      })
+      state.arrayList=copy
     },
     returnDefaultSort:(state)=>{
       state.arrayList.sort((a,b) => a.updated - b.updated)
     },
     filterString:(state,action)=>{
       state.filterString=[...state.filterString, action.payload]
-      
       let copy = state.originalList.filter((item)=>{
-        return (new RegExp(state.filterString.join('|')).test(item.name))
+        if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+          return (new RegExp(state.filterString.join('|')).test(item.name))
+        }
       })
       state.arrayList=copy
+      
     },
     filterPrice:(state, action)=>{
       state.priceRange=[]
       state.priceRange = action.payload
-      let copy =state.arrayList.filter((item)=>{
-        return(item.price.raw>state.priceRange.minPrice && item.price.raw<state.priceRange.maxPrice)
+      state.a=true
+      let copy = state.originalList.filter((item)=>{
+        if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+          return (new RegExp(state.filterString.join('|')).test(item.name))
+        }
       })
       state.arrayList=copy
-
-
     },
     deleteString:(state, action)=>{
       let filteredArray = state.filterString.filter(e => e !== action.payload)
       state.filterString=filteredArray
-      if(filteredArray.length>0){
-        let copy =state.originalList.filter((item)=>{
-          return (new RegExp(state.filterString.join('|')).test(item.name))
+
+        let copy = state.originalList.filter((item)=>{
+          if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+            return (new RegExp(state.filterString.join('|')).test(item.name))
+          }
         })
         state.arrayList=copy
-      }else{
-        state.arrayList=state.originalList
-      }
+      
     },
     localData: (state,action) => {
       state.LocalList = [...state.LocalList, action.payload]

@@ -30,13 +30,16 @@ const FilterCategory=(props)=> {
         <form 
         onSubmit={(e)=> {
             e.preventDefault()
-            let min = e.target[0].value
-            let max = e.target[1].value
+            let min = e.target[0].value===""?0:e.target[0].value
+            let max = e.target[1].value===""?9999999:e.target[1].value
+
             const obj = {
                 minPrice: min,
                 maxPrice: max
             }
             dispatch(filterPrice(obj))
+            console.log(min)
+            console.log(max)
         }} 
         className="price-form">
             <div>
