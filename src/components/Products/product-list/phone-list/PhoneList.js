@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
 import commerce from "../../../../lib/Commerce";
 import { useSelector, useDispatch } from "react-redux";
-import { SetArray } from "../../../../Reducer/ProductReducer";
+import { SetArray,setCategory } from "../../../../Reducer/ProductReducer";
 import PhoneItem from "./phoneItem/PhoneItem";
 import ReactPaginate from "react-paginate";
 import { TailSpin  } from 'react-loading-icons'
+import {useParams} from 'react-router-dom'
 
 function PhoneList() {
   // fetch data
-  const category = useSelector((state) => state.category.category);
+  // const category = useSelector((state) => state.category.category);
   let arrayList = useSelector((state) => state.category.arrayList);
   const dispatch = useDispatch();
   // console.log(arrayList);
   const [IsLoading, setIsLoading] = useState(false)
   const fetchStatus = useSelector((state) => state.category.fetchStatus)
-
+  let {id} = useParams()
+  console.log(id)
+  
   useEffect(() => {
+    dispatch(setCategory(id))
     if(fetchStatus){
       const fetchProductList = () => {
         setIsLoading(true)
         commerce.products
-          .list({ category_slug: ['butun-mehsullar'] })
+          .list({ category_slug: [id] })
           .then((products) => {
             dispatch(SetArray(products.data));
             setIsLoading(false)
@@ -31,7 +35,7 @@ function PhoneList() {
       };
       fetchProductList();
     }
-  }, [category, dispatch, fetchStatus]);
+  }, [dispatch, fetchStatus, id]);
 
   // react paginate state
   const [PageNumber, setPageNumber] = useState(0);

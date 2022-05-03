@@ -16,16 +16,20 @@ import { TailSpin  } from 'react-loading-icons'
 
 
 function ProductInside() {
-  let {id} = useParams();
+  let {productid} = useParams();
+  console.log(productid)
 
   const productName = useSelector((state) => state.setProductDetail.list);
-
+  
   const breadcrumbs = [
     <RouterLink key="1" to="/">
       Ana Sehife
     </RouterLink>,
-    <RouterLink key="2" to="/butun-mehsullar">
-      Bütün Məhsullar
+    // <RouterLink key="2" to="/butun-telefonlar">
+    //   Bütün Telefonlar
+    // </RouterLink>,
+    <RouterLink key="2" to={``}>
+      {productName.name && productName.name.split(' ')[0]}
     </RouterLink>,
     <Typography key="3" color="text.primary">
       {productName.name}
@@ -43,14 +47,14 @@ function ProductInside() {
   useEffect(() => {
     setIsLoading(true)
       const fetchProduct = () => {
-        commerce.products.retrieve([id]).then((product) =>{ dispatch(ProductInsideList(product)); setIsLoading(false)}).catch((error) => setErrorPage(true));
+        commerce.products.retrieve([productid]).then((product) =>{ dispatch(ProductInsideList(product)); setIsLoading(false)}).catch((error) => setErrorPage(true));
       }
       fetchProduct()
       const changePage = () => {
         window.scrollTo({top: 0});
       };
       changePage()
-  }, [id, dispatch]);
+  }, [productid, dispatch]);
 
 
 

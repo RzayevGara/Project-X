@@ -37,7 +37,7 @@ const Menu = (props) =>{
                 dispatch(HamburgerClick(false))
               }
             }
-            key={index} className="items">     <Link to={`/${item.slug}`}>{item.name}</Link>
+            key={index} className="items">     <Link to={`${item.slug}`}>{item.name}</Link>
               <div className={item.children.length===0? ".hide" : "sub-categories"}>
                 {
                   item.children.map((elem, indexx)=>(

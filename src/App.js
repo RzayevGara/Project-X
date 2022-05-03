@@ -4,7 +4,6 @@ import Products from './Pages/Products'
 import ProductInside from './Pages/ProductInside'
 import Layout from "./components/layout/main/Layout"
 import './assets/styles/index.sass'
-import Apple from "./Pages/child pages/Apple"
 import Card from "./Pages/Card"
 import commerce from './lib/Commerce';
 import React, {useEffect} from 'react'
@@ -27,10 +26,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
-          <Route path="/butun-mehsullar" element={<Products/>}/>
-          <Route path="/butun-mehsullar/:id" element={<ProductInside/>}/>
-          <Route path="/Apple" element={<Apple/>}/>
-          <Route path="/Sebet" element={<Card/>}/>
+          <Route path=":id" element={<Products/>}/>
+          {/* <Route path="butun-telefonlar/:id" element={<Products/>}/> */}
+          <Route path=":id/:productid" element={<ProductInside/>}/>
+          <Route path="Sebet" element={<Card/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Route>
       </Routes>

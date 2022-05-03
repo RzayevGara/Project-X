@@ -28,7 +28,7 @@ const ProductSwipe = React.memo((props) => {
         {!props.dataLoading &&
           props.BackData.map((item, index) => (
             <SwiperSlide key={index}>
-              <Link className="link" to={`/butun-mehsullar/${item.id}`}>
+              <Link className="link" to={`${item.name.split(' ')[0].toLowerCase()}/${item.id}`}>
                 <img src={item.image.url} alt="logo" />
                 <h4>{item.name}</h4>
                 <p className="product-price">

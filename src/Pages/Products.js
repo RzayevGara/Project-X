@@ -6,16 +6,30 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink , useParams} from 'react-router-dom';
 
 function Products() {
+  let {id} = useParams()
+  console.log(id)
   const breadcrumbs = [
-    <RouterLink key="1" to="/" >
+    id==="butun-telefonlar"?
+[    <RouterLink key="1" to="/" >
       Ana Sehife
     </RouterLink>,
     <Typography key="2" color="text.primary">
-      Bütün Məhsullar
-    </Typography>,
+      Bütün Telefonlar
+    </Typography>]
+    :
+    [    
+    <RouterLink key="1" to="/" >
+      Ana Sehife
+    </RouterLink>,
+    // <RouterLink key="2" to="/butun-telefonlar" >
+    //   Bütün Telefonlar
+    // </RouterLink>,
+    <Typography key="3" color="text.primary">
+      {id[0].toUpperCase() + id.slice(1)}
+    </Typography>]
   ]
   useEffect(()=>{
     const changePage = () => {

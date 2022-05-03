@@ -4,8 +4,12 @@ import MinusIcon from "../../../../assets/images/IconMinus.svg";
 import Checkbox from "@mui/material/Checkbox";
 import { useDispatch } from "react-redux";
 import { deleteString,filterString } from "../../../../Reducer/ProductReducer";
+import {useParams} from 'react-router-dom'
 
 const FilterCategory=(props)=> {
+let {id} = useParams()
+console.log(id)
+
   const dispatch = useDispatch();
 
   const [active, setActive] = useState(false);
@@ -17,7 +21,7 @@ const FilterCategory=(props)=> {
   return (
     <div className="brend">
       <div className="brend-title">
-        <h5>{props.brendTitle}</h5>
+        <h5>{id === "butun-telefonlar"? props.brendTitle:props.categoryTitle}</h5>
         <img
           onClick={plusBtn}
           src={!active ?PlusIcon : MinusIcon}
@@ -25,9 +29,17 @@ const FilterCategory=(props)=> {
         />
       </div>
       <div className={!active ? "brend-text" : "brend-text active-brend"}>
-        <form onChange={(e)=> e.target.checked?dispatch(filterString(e.target.value)):dispatch(deleteString(e.target.value))}>
-          {
+        <form>
+          {id === "butun-telefonlar" &&
             props.brendList.map((item, index)=>(
+              <div key={index}>
+                <Checkbox onClick={(e) => e.target.checked?dispatch(filterString(item)):dispatch(deleteString(item)) } id={item} value={item}  color="success" />
+                <label htmlFor={item}>{item}</label>
+              </div>
+            ))
+          }
+          {id !== "butun-telefonlar" &&
+            props.categoryList.map((item, index)=>(
               <div key={index}>
                 <Checkbox id={item} value={item}  color="success" />
                 <label htmlFor={item}>{item}</label>

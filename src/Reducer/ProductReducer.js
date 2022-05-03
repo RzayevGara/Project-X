@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = { 
-    category: "hamisi",
+    category: "",
     arrayList: [],
     originalList: [],
     filterString:[],
@@ -21,12 +21,17 @@ export const ProductReducer = createSlice({
   initialState,
   reducers: {
     setCategory: (state,action) => {
-      state.category = action.payload
+      if(state.category===action.payload){
+        state.fetchStatus = false
+      }else{
+        state.category = action.payload
+        state.fetchStatus = true
+      }
     },
     SetArray: (state, action)=>{
       state.arrayList= action.payload
       state.originalList= action.payload
-      state.fetchStatus = false
+      // state.fetchStatus = false
     },
     sortArray:(state, action)=>{
       action.payload?state.originalList.sort((a,b) => a.price.raw - b.price.raw):state.originalList.sort((a,b) =>b.price.raw - a.price.raw)
