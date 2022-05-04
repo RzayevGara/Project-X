@@ -62,6 +62,12 @@ export const ProductReducer = createSlice({
           }
         })
         state.arrayList=copy
+        let copyList = state.arrayList.filter((item)=>{
+          if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+            return (new RegExp(state.accessoryCategory.join('|')).test(item.categories.map((itemm)=>{return itemm.name})))
+          }
+        })
+        state.arrayList=copyList
       }
     },
     returnDefaultSort:(state)=>{
@@ -113,6 +119,12 @@ export const ProductReducer = createSlice({
           }
         })
         state.arrayList=copy
+        let copyList = state.arrayList.filter((item)=>{
+          if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+            return (new RegExp(state.accessoryCategory.join('|')).test(item.categories.map((itemm)=>{return itemm.name})))
+          }
+        })
+        state.arrayList=copyList
       }
     },
     localData: (state,action) => {
@@ -142,10 +154,18 @@ export const ProductReducer = createSlice({
       state.accessoryList = [...state.accessoryList, action.payload]
       let copy = state.originalList.filter((item)=>{
         if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
-          return (new RegExp(state.accessoryList.join('|')).test(item.name))
+          return (
+            new RegExp(state.accessoryList.join('|')).test(item.name)
+          )
         }
       })
       state.arrayList=copy
+      let copyList = state.arrayList.filter((item)=>{
+        if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+          return (new RegExp(state.accessoryCategory.join('|')).test(item.categories.map((itemm)=>{return itemm.name})))
+        }
+      })
+      state.arrayList=copyList
 
     },
     deleteAccessoryList: (state,action) => {
@@ -157,6 +177,12 @@ export const ProductReducer = createSlice({
         }
     })
     state.arrayList=copy
+    let copyList = state.arrayList.filter((item)=>{
+      if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+        return (new RegExp(state.accessoryCategory.join('|')).test(item.categories.map((itemm)=>{return itemm.name})))
+      }
+    })
+    state.arrayList=copyList
     },
     setAccessoryCategory: (state,action) => {
       state.accessoryCategory = [...state.accessoryCategory, action.payload]
@@ -166,6 +192,14 @@ export const ProductReducer = createSlice({
         }
       })
       state.arrayList=copy
+      let copyList = state.arrayList.filter((item)=>{
+        if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+          return (
+            new RegExp(state.accessoryList.join('|')).test(item.name)
+          )
+        }
+      })
+      state.arrayList=copyList
     },
     deleteAccessoryCategory: (state,action) => {
       let filteredArray = state.accessoryCategory.filter(e => e !== action.payload)
@@ -176,6 +210,14 @@ export const ProductReducer = createSlice({
         }
       })
       state.arrayList=copy
+      let copyList = state.arrayList.filter((item)=>{
+        if(state.priceRange.minPrice<item.price.raw && state.priceRange.maxPrice>item.price.raw){
+          return (
+            new RegExp(state.accessoryList.join('|')).test(item.name)
+          )
+        }
+      })
+      state.arrayList=copyList
     },
 
     setStringStatus:(state,action)=> {
