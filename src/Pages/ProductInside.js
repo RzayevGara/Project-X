@@ -25,10 +25,7 @@ function ProductInside() {
     <RouterLink key="1" to="/">
       Ana Sehife
     </RouterLink>,
-    // <RouterLink key="2" to="/butun-telefonlar">
-    //   Bütün Telefonlar
-    // </RouterLink>,
-    <RouterLink key="2" to={``}>
+    <RouterLink key="2" to={`/ ${productName.name && productName.name.split(' ')[0]}`}>
       {productName.name && productName.name.split(' ')[0]}
     </RouterLink>,
     <Typography key="3" color="text.primary">

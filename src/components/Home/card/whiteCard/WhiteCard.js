@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const WhiteCard = React.memo((props) =>{
   return (
@@ -15,7 +16,7 @@ const WhiteCard = React.memo((props) =>{
                 {props.price}
                 <span>{props.priceText}</span>
             </p>
-            <p className="buy-btn">Indi alın</p>
+              <Link to={`/ ${props.link}`} className="buy-btn">Indi alın</Link>
         </div>
         <img className="first-image" src={props.image} alt="logo"/>
         {props.imageSecond && 

@@ -26,7 +26,7 @@ function Footer() {
                 <p>Menu</p>
                 <li>Yeni</li>
                 <li>Endirimlər</li>
-                <li>Aksessuarlar</li>
+                <li>Aksesuarlar</li>
                 <li>Bütün brendlər</li>
             </ul>
             <ul>

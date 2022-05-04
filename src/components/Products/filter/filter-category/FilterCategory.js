@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PlusIcon from "../../../../assets/images/Iconplus.svg";
 import MinusIcon from "../../../../assets/images/IconMinus.svg";
 import Checkbox from "@mui/material/Checkbox";
-import { useDispatch , useSelector} from "react-redux";
+import { useDispatch} from "react-redux";
 import { deleteString,filterString , setCategoryList, deleteCategoryList, setStringStatus, setCategoryStatus, setAccessoryStatus, setAccessoryList, deleteAccessoryList, setAccessoryCategory, deleteAccessoryCategory} from "../../../../Reducer/ProductReducer";
 import {useParams} from 'react-router-dom'
 
@@ -15,7 +15,7 @@ useEffect(()=> {
     dispatch(setCategoryStatus(false))
     dispatch(setStringStatus(true))
     dispatch(setAccessoryStatus(false))
-  }else if(id==="aksessuarlar"){
+  }else if(id==="aksesuarlar"){
     dispatch(setCategoryStatus(false))
     dispatch(setStringStatus(false))
     dispatch(setAccessoryStatus(true))
@@ -41,7 +41,7 @@ console.log(props.categoryList)
   return (
     <div className="brend">
       <div className="brend-title">
-        <h5>{id === "butun-telefonlar"? props.brendTitle:id === "aksessuarlar"? props.brendTitle :   props.categoryTitle}{props.categoryAccessoryTitle && props.categoryAccessoryTitle}</h5>
+        <h5>{id === "butun-telefonlar"? props.brendTitle:id === "aksesuarlar"? props.brendTitle :   props.categoryTitle}{props.categoryAccessoryTitle && props.categoryAccessoryTitle}</h5>
         <img
           onClick={plusBtn}
           src={!active ?PlusIcon : MinusIcon}
@@ -58,7 +58,7 @@ console.log(props.categoryList)
                 <label htmlFor={item}>{item}</label>
               </div>
             )) :
-            id==="aksessuarlar"?
+            id==="aksesuarlar"?
            props.brendListAccessory &&
             props.brendListAccessory.map((item, index)=>(
               <div key={index}>
@@ -70,7 +70,7 @@ console.log(props.categoryList)
             props.categoryList &&
             props.categoryList.map((item, index)=>(
               <div key={index}>
-                <Checkbox onClick={(e) => e.target.checked?dispatch(setCategoryList(item==="Telefon"?"phone":"aksessuarlar")):dispatch(deleteCategoryList(item==="Telefon"?"phone":"aksessuarlar")) } id={item} value={item}  color="success" />
+                <Checkbox onClick={(e) => e.target.checked?dispatch(setCategoryList(item==="Telefon"?"butun-telefonlar":"aksesuarlar")):dispatch(deleteCategoryList(item==="Telefon"?"butun-telefonlar":"aksesuarlar")) } id={item} value={item}  color="success" />
                 <label htmlFor={item}>{item}</label>
               </div>
             )) 

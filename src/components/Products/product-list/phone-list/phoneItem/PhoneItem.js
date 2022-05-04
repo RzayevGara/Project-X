@@ -1,9 +1,7 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function PhoneItem(props) {
-  // console.log(props.array.name.trim(" "));
-  let {id} = useParams()
 
   return (
     <Link className="link" to={`${props.array.id}`}>

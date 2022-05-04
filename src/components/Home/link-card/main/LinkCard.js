@@ -7,9 +7,9 @@ import IphoneImg from "../../../../assets/images/iphone-card.png"
 function LinkCard(props) {
   return (
     <div className="link-card">
-        <Cards link={"/telefonlar"} count={props.countPhone} image={PhoneImg} title={"Telefon"} class={"phone-card cards"}/>
-        <Cards  link={"/telefonlar"} image={WatchImg} title={"Smart Saat"} class={"watch-card cards"}/>
-        <Cards  link={"/telefonlar"} image={IphoneImg} title={"Aksesuar"} class={"iphone-card cards"}/>
+        <Cards link={"/butun-telefonlar"} count={props.countPhone} image={PhoneImg} title={"Telefon"} class={"phone-card cards"}/>
+        <Cards  link={"/aksesuarlar"} count={props.countAccessory} image={WatchImg} title={"Smart Saat"} class={"watch-card cards"}/>
+        <Cards  link={"/aksesuarlar"} count={props.countAccessory} image={IphoneImg} title={"Aksesuar"} class={"iphone-card cards"}/>
     </div>
   )
 }

@@ -29,7 +29,7 @@ function Home() {
     changePage()
     if(fetchStatus===true){
       const fetchPhone = () => {
-        commerce.products.list({category_slug: ['phone'],})
+        commerce.products.list({category_slug: ['butun-telefonlar'],})
         .then((products) => {
           dispatch(setPhoneList(products.data))
         }).catch((error) => {
@@ -37,7 +37,7 @@ function Home() {
         });
       }
       const fetchAccessory = () => {
-        commerce.products.list({category_slug: ['aksessuarlar'],})
+        commerce.products.list({category_slug: ['aksesuarlar'],})
         .then((products) => {
           dispatch(setAccessoryList(products.data))
         }).catch((error) => {
@@ -58,8 +58,8 @@ function Home() {
         <ProductSwipe dataLoading={loadingPhone} BackData={phone} title={"Ən çox satılan məhsullar"}/>
         <ProductSwipe dataLoading={loadingPhone} BackData={phone} title={"Yeni gələn məhsullar"}/>
         <Card/>
-        <ProductSwipe dataLoading={loadingAccessory} BackData={accessory} title={"Yeni gələn aksessuarlar"}/>
-        <LinkCard countPhone={phone.length}/>
+        <ProductSwipe dataLoading={loadingAccessory} BackData={accessory} title={"Yeni gələn aksesuarlar"}/>
+        <LinkCard countPhone={phone.length} countAccessory={accessory.length}/>
         <About/>
       </div>
         <Brands/>

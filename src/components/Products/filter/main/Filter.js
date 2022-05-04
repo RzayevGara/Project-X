@@ -30,8 +30,8 @@ function Filter() {
         <h4>Filterləmələr</h4>
       </div>
       <div className="filter-category">
-        <FilterCategory brendTitle={"Brend"} brendList={["Apple", "Samsung", "Xiaomi", "Huawei"]}   brendListAccessory={["Apple", "Samsung", "Xiaomi"]}   categoryTitle={"Kateqoriya"} categoryList={["Telefon", "Aksessuar"]}/>
-        {id==="aksessuarlar"?<FilterCategory categoryAccessoryTitle={"Kateqoriya"} categoryAccessoryList={["Saatlar", "Qulaqlıqlar"]}/> : null}
+        <FilterCategory brendTitle={"Brend"} brendList={["Apple", "Samsung", "Xiaomi", "Huawei"]}   brendListAccessory={["Apple", "Samsung", "Xiaomi"]}   categoryTitle={"Kateqoriya"} categoryList={["Telefon", "Aksesuar"]}/>
+        {id==="aksesuarlar"?<FilterCategory categoryAccessoryTitle={"Kateqoriya"} categoryAccessoryList={["Saatlar", "Qulaqlıqlar"]}/> : null}
         
         <FilterPrice/>
 
