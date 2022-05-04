@@ -4,10 +4,13 @@ import FilterPrice from "../filter-price/FilterPrice"
 import Xbtn from "../../../../assets/images/X-btn.svg"
 import {useDispatch, useSelector} from "react-redux";
 import { setActive } from "../../../../Reducer/FilterReducer";
+import {useParams} from 'react-router-dom'
 
 function Filter() {
   const activeFilter = useSelector((state) => state.filter.filterActive);
   const dispatch = useDispatch();
+  let {id} = useParams()
+  console.log(id)
   
   useEffect(() => {
     let body = document.body
@@ -27,8 +30,9 @@ function Filter() {
         <h4>Filterləmələr</h4>
       </div>
       <div className="filter-category">
-        <FilterCategory brendTitle={"Brend"} brendList={["Apple", "Samsung", "Xiaomi", "Huawei"]}/>
-        <FilterCategory categoryTitle={"Kateqoriya"} categoryList={["Telefon", "Aksessuar"]}/>
+        <FilterCategory brendTitle={"Brend"} brendList={["Apple", "Samsung", "Xiaomi", "Huawei"]}   brendListAccessory={["Apple", "Samsung", "Xiaomi"]}   categoryTitle={"Kateqoriya"} categoryList={["Telefon", "Aksessuar"]}/>
+        {id==="aksessuarlar"?<FilterCategory categoryAccessoryTitle={"Kateqoriya"} categoryAccessoryList={["Saatlar", "Qulaqlıqlar"]}/> : null}
+        
         <FilterPrice/>
 
       </div>
