@@ -228,11 +228,17 @@ export const ProductReducer = createSlice({
     },
     setAccessoryStatus: (state,action) => {
       state.accessoryStatus = action.payload
+    },
+    resetList: (state, action)=>{
+      state.filterString = action.payload
+      state.categoryList = action.payload
+      state.accessoryList = action.payload
+      state.accessoryCategory = action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {setCategory, SetArray, sortArray, returnDefaultSort, deleteString, filterString,localData, filterPrice, setCategoryList, deleteCategoryList, setStringStatus, setCategoryStatus, setAccessoryStatus, setAccessoryList, deleteAccessoryList, setAccessoryCategory, deleteAccessoryCategory} = ProductReducer.actions
+export const {setCategory, SetArray, sortArray, returnDefaultSort, deleteString, filterString,localData, filterPrice, setCategoryList, deleteCategoryList, setStringStatus, setCategoryStatus, setAccessoryStatus, setAccessoryList, deleteAccessoryList, setAccessoryCategory, deleteAccessoryCategory, resetList} = ProductReducer.actions
 
 export default ProductReducer.reducer
