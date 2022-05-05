@@ -16,46 +16,25 @@
         margin-top: 20px
         height: 0
         transition: 0.5s
-        .MuiFormGroup-row
+        .form-category
             @include flex(column)
-    .active-brend
-        height: 170px
+            gap: 17px
+            .category-list
+                @include flex(row, flex-start, center)
+                gap: 15px
+                .myCheck
+                    @include size(20px, 20px)
+                label
+                    cursor: pointer
     @media (min-width: 1366px)
         position: relative
         @include size(auto, auto)
-        .brend-title
-            @include flex(row, space-between, center)
-            border-bottom: 1px solid black
-            padding:  10px 10px 15px 20px
-
-            h5
-                font-size: 16px
-                font-weight: 500
-            img
-                cursor: pointer
-        .brend-text
-            contain: content
-            padding: 0 20px
-            margin-top: 20px
-            height: 0
-            transition: 0.5s
-            display: flex
-            .form-category
-                @include flex(column)
-                gap: 17px
-                .category-list
-                    @include flex(row, flex-start, center)
-                    gap: 15px
-                    .myCheck
-                        @include size(20px, 20px)
-                    label
-                        cursor: pointer
-        .active-all
-            height: 150px
-        .active-brend
-            height: 80px
-        .active-accessory
-            height: 110px
+.active-all
+    height: 150px !important
+.active-brend
+    height: 80px !important
+.active-accessory
+    height: 110px !important
 
 
 .brend-text
