@@ -32,13 +32,17 @@ function ProductImages() {
         {product.assets &&
           product.assets.map((item, index) => {
             if (assetsID) {
-              if (assetsID === item.id) {
-                return (
-                  <SwiperSlide key={index}>
-                    <img src={item.url} alt="logo" />
-                  </SwiperSlide>
-                );
-              }
+              return (
+                assetsID.map((itemm)=>{
+                  if (itemm === item.id) {
+                    return (
+                      <SwiperSlide key={index}>
+                        <img src={item.url} alt="logo" />
+                      </SwiperSlide>
+                    );
+                  }
+                })
+              )
             } else {
               return (
                 <SwiperSlide key={index}>
@@ -61,13 +65,17 @@ function ProductImages() {
         {product.assets &&
           product.assets.map((item, indexx) => {
             if (assetsID) {
-              if (assetsID === item.id) {
-                return (
-                  <SwiperSlide key={indexx}>
-                    <img src={item.url} alt="logo" />
-                  </SwiperSlide>
-                );
-              }
+              return (
+                assetsID.map((itemm)=>{
+                  if (itemm === item.id) {
+                    return (
+                      <SwiperSlide key={indexx}>
+                        <img src={item.url} alt="logo" />
+                      </SwiperSlide>
+                    );
+                  }
+                })
+              )
             } else {
               return (
                 <SwiperSlide key={indexx}>
@@ -75,7 +83,8 @@ function ProductImages() {
                 </SwiperSlide>
               );
             }
-          })}
+          })
+          }
       </Swiper>
     </div>
   );

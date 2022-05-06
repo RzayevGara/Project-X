@@ -86,7 +86,7 @@ function ProductOption() {
                   setColorName(item.name);
                   dispatch(setVariantColor(product.variant_groups[0].id));
                   dispatch(setOptionColor(item.id));
-                  dispatch(setAssetID(item.assets[0]));
+                  dispatch(setAssetID(item.assets));
                   dispatch(setColorMsg(""));
                   document.querySelectorAll(".color-box").forEach((item)=>
                     item.classList.remove("active-color")
