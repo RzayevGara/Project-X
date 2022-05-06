@@ -55,10 +55,10 @@ function Home() {
     <div id="home">
       <div className="container">
         <Carousel/>
-        <ProductSwipe dataLoading={loadingPhone} BackData={phone} title={"Ən çox satılan məhsullar"}/>
-        <ProductSwipe dataLoading={loadingPhone} BackData={phone} title={"Yeni gələn məhsullar"}/>
+        <ProductSwipe link={"/butun-telefonlar"} dataLoading={loadingPhone} BackData={phone} title={"Ən çox satılan məhsullar"}/>
+        <ProductSwipe link={"/butun-telefonlar"} dataLoading={loadingPhone} BackData={phone} title={"Yeni gələn məhsullar"}/>
         <Card/>
-        <ProductSwipe dataLoading={loadingAccessory} BackData={accessory} title={"Yeni gələn aksesuarlar"}/>
+        <ProductSwipe link={"/aksesuarlar"} dataLoading={loadingAccessory} BackData={accessory} title={"Yeni gələn aksesuarlar"}/>
         <LinkCard countPhone={phone.length} countAccessory={accessory.length}/>
         <About/>
       </div>

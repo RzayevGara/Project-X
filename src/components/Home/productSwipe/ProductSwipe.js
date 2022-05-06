@@ -10,10 +10,12 @@ const ProductSwipe = React.memo((props) => {
     <div className="product-swipe">
       <div className="product-swipe_title">
         <h3>{props.title}</h3>
-        <p className="look-all-btn">
-          Hamısına bax
-          <FontAwesomeIcon icon={faAngleRight} />
-        </p>
+        <Link to={`${props.link}`}>
+          <p className="look-all-btn">
+            Hamısına bax
+            <FontAwesomeIcon icon={faAngleRight} />
+          </p>
+        </Link>
       </div>
       <Swiper slidesPerView={"auto"} spaceBetween={40} className="swiper-list">
         {props.dataLoading &&
