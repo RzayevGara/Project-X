@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlusIcon from "../../../../assets/images/Iconplus.svg";
 import MinusIcon from "../../../../assets/images/IconMinus.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { filterPrice } from "../../../../Reducer/ProductReducer";
 import ManatSymbol from "../../../../assets/images/manat.png"
+import {useParams} from 'react-router-dom'
 
 const FilterCategory=(props)=> {
   const dispatch = useDispatch();
@@ -15,6 +16,13 @@ const FilterCategory=(props)=> {
   function plusBtn() {
     !active ? setActive(true) : setActive(false);
   }
+
+  let {id} = useParams()
+  useEffect(()=>{
+    document.querySelectorAll(".price-input").forEach((item)=>{
+      item.value=""
+    })
+  },[id])
 
   return (
     <div className="brend">
@@ -43,11 +51,11 @@ const FilterCategory=(props)=> {
         }} 
         className="price-form">
             <div>
-                <input className="min-price" type="number" placeholder="Ən az"/>
+                <input className="min-price price-input" type="number" placeholder="Ən az"/>
                 <img src={ManatSymbol} alt="logo"/>
             </div>
             <div>
-                <input className="max-price" type="number" placeholder="Ən çox"/>
+                <input className="max-price price-input" type="number" placeholder="Ən çox"/>
                 <img src={ManatSymbol} alt="logo"/>
             </div>
             <button type="submit"></button>
