@@ -1,6 +1,6 @@
 .form-comment
     align-self: center
-    width: 50%
+    width: 100%
     margin: 50px 0
     .form-title
         @include font(30px, 500)
@@ -39,9 +39,14 @@
             margin-top: 40px
             align-self: flex-end
         .form-name
-            @include flex(row)
-            gap: 40px
+            @include flex(column)
             div
                 width: 100%
                 @include flex(column)
                 gap: 10px
+    @media (min-width: 1366px)
+        width: 50%
+        form
+            .form-name
+                @include flex(row)
+                gap: 40px
