@@ -1,0 +1,25 @@
+.comment
+    @include flex(row, $align: center)
+    gap: 30px
+    margin-top: 40px
+    border-bottom: 1px solid #BDBDBD
+    padding-bottom: 40px
+    .comment-rating
+        flex: 1
+        @include flex(column, center, center)
+        gap: 20px
+        p
+            @include font(100px, 400)
+    .comment-user
+        flex: 4
+        @include flex(column)
+        gap: 20px
+        border-left: 1px solid #BDBDBD
+
+        padding-left: 5%
+        .user-name
+            @include font(25px, 500)
+        .user-description
+            width: 75%
+            line-height: 24px
+            font-size: 20px

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector} from "react-redux";
+import ProductComment from '../Comment/ProductComment';
 
 function ParamsComment(props) {
   const product = useSelector((state) => state.setProductDetail.list);
@@ -39,7 +40,7 @@ function ParamsComment(props) {
         )
     }else{
         return (
-            <div>Comment</div>
+            <ProductComment/>
           )
     }
 }
