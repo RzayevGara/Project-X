@@ -10,6 +10,7 @@ import React, {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {setSimpleList} from "./Reducer/CardListReducer"
 import ErrorPage from './components/Error Page/ErrorPage'
+import Question from './Pages/Question'
 
 function App() {
   const dispatch = useDispatch()
@@ -27,10 +28,10 @@ function App() {
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
           <Route path=":id" element={<Products/>}/>
-          {/* <Route path="butun-telefonlar/:id" element={<Products/>}/> */}
           <Route path=":id/:productid" element={<ProductInside/>}/>
           <Route path="Sebet" element={<Card/>}/>
           <Route path="*" element={<ErrorPage/>}/>
+          <Route path="/sual-cavab" element={<Question/>}/>
         </Route>
       </Routes>
   );

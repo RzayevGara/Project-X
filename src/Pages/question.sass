@@ -1,0 +1,21 @@
+@import "../assets/styles/utils/_mixins"
+@import "../assets/styles/utils/_variables"
+@import "../assets/styles/utils/_reset"
+
+@import "../components/Question-page/questionComponent"
+
+
+.container
+    @include flex(column)    
+    .question-container
+        align-self: center
+        width: 100%
+        @include flex(column, center, center)
+        gap: 20px
+        padding: 60px 0
+        .question-title
+            @include font(26px, 500)
+            margin-bottom: 30px
+    @media(min-width: 1366px)
+        .question-container
+            width: 50%

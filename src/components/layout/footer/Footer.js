@@ -7,6 +7,8 @@ import Twitter from "../../../assets/images/twitter.svg"
 import Location from "../../../assets/images/location.svg"
 import Email from "../../../assets/images/email.svg"
 import Phone from "../../../assets/images/phone.svg"
+import { Link } from "react-router-dom";
+
 
 
 function Footer() {
@@ -31,7 +33,9 @@ function Footer() {
             </ul>
             <ul>
                 <p>Kömək</p>
+                <Link to='/sual-cavab' className="link-white">
                 <li>Tez-tez soruşulan suallar</li>
+                </Link>
                 <li>Çatdırılma xidməti</li>
                 <li>Geri qaytarılma şərtləri</li>
             </ul>
