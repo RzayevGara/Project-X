@@ -2,6 +2,8 @@
 @import "../assets/styles/utils/_variables"
 @import "../assets/styles/utils/_reset"
 
+@import '../components/Sign/createAccount'
+
 
 .signup
     .container
@@ -21,6 +23,10 @@
                 border-radius: 8px
                 &:focus
                     outline: none
+            input[type=number]::-webkit-outer-spin-button,
+            input[type=number]::-webkit-inner-spin-button 
+                -webkit-appearance: none
+                margin: 0
             button
                 @include size(300px, 50px)
                 background-color: $hoverText
@@ -32,9 +38,23 @@
             label
                 &:not(:nth-child(0))
                     margin-top: 15px
+            div
+                @include flex (row, $align: center)
+                margin-top: 15px
+                gap: 20px
+                input
+                    @include size(20px, 20px)
+                label
+                    margin-top: 0 !important
+                    font-size: 14px
                     
 
         .login-image
-            @include flex(row, flex-end)
+            @include flex(column, $align: flex-end)
+            gap: 30px
             img
                 width: 85%
+            p
+                align-self: center
+                a
+                    color: #2D9CDB

@@ -14,6 +14,7 @@ import Question from './Pages/Question'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import GenerateToken from './components/Login/GenerateToken'
+import CreateAccount from './components/Sign/CreateAccount'
 
 function App() {
   const dispatch = useDispatch()
@@ -37,6 +38,7 @@ function App() {
           <Route path="/sual-cavab" element={<Question/>}/>
           <Route path="/daxil-ol" element={<Login/>}/>
           <Route path="/qeydiyyatdan-kec" element={<Signup/>}/>
+          <Route path="qeydiyyatdan-kec/hesab-yaradilir" element={<CreateAccount/>}/>
         </Route>
         <Route path="daxil-ol/:token" element={<GenerateToken/>}/>
       </Routes>
