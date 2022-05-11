@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = { 
     token: "",
     email: "",
-    customer: {}
+    // customer: {}
 }
 
 
@@ -17,13 +17,13 @@ export const LoginReducer = createSlice({
     setEmail: (state,action) => {
         state.email = action.payload
     },
-    setCustomer: (state,action) => {
-        state.customer = action.payload
-    }
+    // setCustomer: (state,action) => {
+    //     state.customer = action.payload
+    // }
 }
 })
 
 // Action creators are generated for each case reducer function
-export const {setToken, setEmail, setCustomer} = LoginReducer.actions
+export const {setToken, setEmail} = LoginReducer.actions
 
 export default LoginReducer.reducer
