@@ -58,7 +58,7 @@ function ProductInside() {
   if (!ErrorPage){
     return (
       <div id="product-inside">
-         {IsLoading && 
+      {IsLoading && 
       <div className="black-page">
         <TailSpin  stroke="#00D68F" className="loading"/>
         <p>Məhsullar yüklənir</p>
