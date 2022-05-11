@@ -11,6 +11,8 @@ import {useDispatch} from 'react-redux'
 import {setSimpleList} from "./Reducer/CardListReducer"
 import ErrorPage from './components/Error Page/ErrorPage'
 import Question from './Pages/Question'
+import Login from './Pages/Login'
+import GenerateToken from './components/Login/GenerateToken'
 
 function App() {
   const dispatch = useDispatch()
@@ -32,7 +34,9 @@ function App() {
           <Route path="Sebet" element={<Card/>}/>
           <Route path="*" element={<ErrorPage/>}/>
           <Route path="/sual-cavab" element={<Question/>}/>
+          <Route path="/daxil-ol" element={<Login/>}/>
         </Route>
+        <Route path="daxil-ol/:token" element={<GenerateToken/>}/>
       </Routes>
   );
 }

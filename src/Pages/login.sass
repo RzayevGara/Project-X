@@ -1,0 +1,33 @@
+@import "../assets/styles/utils/_mixins"
+@import "../assets/styles/utils/_variables"
+@import "../assets/styles/utils/_reset"
+@import '../components/Login/generateToken'
+
+.login
+    .container
+        @include flex(row, space-evenly, center)
+        padding: 5% 0
+        form
+            @include flex(column)
+            gap: 10px
+            input
+                @include size(300px, 45px)
+                background-color: #F2F2F2
+                border: none
+                padding: 0 20px
+                border-radius: 8px
+                &:focus
+                    outline: none
+            button
+                @include size(300px, 50px)
+                background-color: $hoverText
+                color: white
+                border: none
+                border-radius: 8px
+                cursor: pointer
+                margin-top: 30px
+
+        .login-image
+            @include flex(row, flex-end)
+            img
+                width: 85%

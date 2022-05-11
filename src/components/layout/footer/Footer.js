@@ -53,7 +53,7 @@ function Footer() {
             </ul>
         </div>
         <div className="second-section">
-            <p className="right">PeojectX 2021. Bütün hüquqlar qorunur.</p>
+            <p className="right">ProjectX 2022. Bütün hüquqlar qorunur.</p>
             <div className="rules">
                 <p>Qaydalar və şərtlər</p>
                 <p>Məxfilik siyasəti</p>
