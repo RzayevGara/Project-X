@@ -10,6 +10,7 @@ function Login() {
     const myForm = (e)=>{
         e.preventDefault()
         dispatch(setEmail(e.target[0].value))
+        alert("asdasdasd")
     }
     const email = useSelector((state) => state.login.email)
     
