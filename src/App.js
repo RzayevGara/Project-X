@@ -12,7 +12,6 @@ import {setSimpleList} from "./Reducer/CardListReducer"
 import ErrorPage from './components/Error Page/ErrorPage'
 import Question from './Pages/Question'
 import Login from './Pages/Login'
-import Signup from './Pages/Signup'
 import GenerateToken from './components/Login/GenerateToken'
 
 function App() {
@@ -36,7 +35,6 @@ function App() {
           <Route path="*" element={<ErrorPage/>}/>
           <Route path="/sual-cavab" element={<Question/>}/>
           <Route path="/daxil-ol" element={<Login/>}/>
-          <Route path="/qeydiyyatdan-kec" element={<Signup/>}/>
         </Route>
         <Route path="daxil-ol/:token" element={<GenerateToken/>}/>
       </Routes>
