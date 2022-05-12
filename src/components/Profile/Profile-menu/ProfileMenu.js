@@ -7,7 +7,7 @@ import LocationImage from '../../../assets/images/profile-location.svg'
 import LogoutImage from '../../../assets/images/profile-logout.svg'
 
 
-function ProfileMenu() {
+function ProfileMenu(props) {
   return (
     <div className="profile-menu">
         <p className="profile-title">Profilim</p>
@@ -27,10 +27,10 @@ function ProfileMenu() {
             <img src={LocationImage} alt="logo"/>
             <p>Çatdırılma ünvanı</p>
         </Link>
-        <Link to="">
+        <div className="log-out" onClick={props.logOut}>
             <img src={LogoutImage} alt="logo"/>
             <p>Çıxış</p>
-        </Link>
+        </div>
     </div>
   )
 }

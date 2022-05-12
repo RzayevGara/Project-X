@@ -11,7 +11,7 @@
         border-radius: 8px
         form
             @include flex(column, center, center)
-            gap: 20px
+            gap: 30px
             .profile-info_name_surname
                 @include flex(row, space-around)
                 width: 100%
@@ -25,3 +25,16 @@
                         border-radius: 8px
                         padding: 0 30px
                         font-size: 18px
+            button
+                @include flex(row, center, center)
+                border: none
+                background-color: $hoverText
+                @include size(310px, 50px)
+                color: white
+                border-radius: 8px
+                font-size: 16px
+                gap: 10px
+                cursor: pointer
+                margin-top: 30px
+            .btn-save
+                display: none
