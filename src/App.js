@@ -15,6 +15,7 @@ import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import GenerateToken from './components/Login/GenerateToken'
 import CreateAccount from './components/Sign/CreateAccount'
+import SendEmail from './components/Login/SendEmail'
 
 function App() {
   const dispatch = useDispatch()
@@ -37,6 +38,7 @@ function App() {
           <Route path="*" element={<ErrorPage/>}/>
           <Route path="/sual-cavab" element={<Question/>}/>
           <Route path="/daxil-ol" element={<Login/>}/>
+          <Route path="/daxil-ol/hesabiniza-daxil-olunur" element={<SendEmail/>}/>
           <Route path="/qeydiyyatdan-kec" element={<Signup/>}/>
           <Route path="qeydiyyatdan-kec/hesab-yaradilir" element={<CreateAccount/>}/>
         </Route>

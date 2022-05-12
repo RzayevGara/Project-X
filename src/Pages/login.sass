@@ -2,14 +2,18 @@
 @import "../assets/styles/utils/_variables"
 @import "../assets/styles/utils/_reset"
 @import '../components/Login/generateToken'
+@import '../components/Login/sendEmail'
 
 .login
     .container
-        @include flex(row, space-evenly, center)
-        padding: 5% 0
+        @include flex(column, space-evenly, center)
+        padding: 20% 0
         form
             @include flex(column)
             gap: 10px
+            p
+                @include font(30px, 500)
+                margin-bottom: 20px
             input
                 @include size(300px, 45px)
                 background-color: #F2F2F2
@@ -30,9 +34,19 @@
         .login-image
             @include flex(column,$align: flex-end)
             gap: 30px
+            margin-top: 50px
             img
                 width: 85%
+                display: none
             p
                 align-self: center
                 a
                     color: #2D9CDB
+    @media (min-width: 1366px)
+        .container
+            @include flex(row, space-evenly, center)
+            padding: 5% 0
+            .login-image
+                margin-top: 0
+                img
+                    display: block

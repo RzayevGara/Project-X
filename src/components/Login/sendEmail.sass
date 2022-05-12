@@ -1,0 +1,47 @@
+.check-login-account
+    @include size(100%, 100%)
+    @include flex(column, center, center)
+    position: absolute
+    top: 0
+    left: 0
+    background-color: white
+    z-index: 99999
+    .loading
+        @include size(20%, auto)
+    p
+        @include font(20px, 500, $height: 25px, $align: center)
+        margin-top: 40px
+    @media (min-width: 1366px)
+        .loading
+            @include size(10%, auto)
+        p
+            @include font(24px, 500)
+            margin-top: 40px
+
+
+.success-login
+    .container
+        @include flex(column, center, center)
+        padding: 25% 5%
+        img
+            width: 35%
+        p
+            @include font(20px, $height: 30px,  $align: center)
+            margin-top: 60px
+        .btn-login
+            @include flex(column, center, center)
+            @include size(300px, 60px)
+            background-color: $hoverText
+            color: white
+            border: none
+            border-radius: 8px
+            cursor: pointer
+            margin-top: 30px
+    @media (min-width: 1366px)
+        .container
+            padding: 5% 0
+            img
+                width: 15%
+            p
+                @include font(22px, $height: 30px,  $align: center)
+        
