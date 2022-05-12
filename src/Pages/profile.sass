@@ -12,3 +12,30 @@
     .container
         @include flex (row)
         gap: 50px
+    .logout-modal
+        background-color: #0000009a
+        position: fixed
+        top: 0
+        @include size(100%, 100%)
+        z-index: 9999999
+        @include flex(row, center, center)
+        display: none
+        .modal-windows
+            background-color: white
+            @include size(25%)
+            @include flex(column, center, center)
+            padding: 30px 0
+            gap: 40px
+            border-radius: 8px
+            .modal-btns
+                @include flex(row, center, center)
+                gap: 40px
+                button
+                    @include size(100px, 40px)
+                    background-color: $hoverText
+                    border: none
+                    border-radius: 8px
+                    cursor: pointer
+                    &:nth-child(1)
+                        background-color: #d6d5d5
+                        

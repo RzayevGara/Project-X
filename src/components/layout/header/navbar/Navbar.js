@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {useSelector, useDispatch} from "react-redux";
 import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
+import React, {useEffect, useState} from 'react'
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -21,7 +22,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const Navbar = (props)=> {
+const Navbar = ()=> {
   const dispatch = useDispatch()
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
   console.log(HamburgerStatus)
@@ -32,8 +33,12 @@ const Navbar = (props)=> {
     !HamburgerStatus?dispatch(HamburgerClick(true)):dispatch(HamburgerClick(false))
   }
 
-  const token  = localStorage.getItem('commercejs_customer_token')
-  console.log(token)
+  const [token, setToken] = useState()
+  
+  
+  useEffect(() => {
+    setToken(localStorage.getItem('commercejs_customer_token'))
+  },[])
 
   return (
     <div className="navbar">
