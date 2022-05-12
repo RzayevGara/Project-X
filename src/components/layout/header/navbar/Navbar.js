@@ -53,7 +53,9 @@ const Navbar = (props)=> {
       </div>
       <div className="right-section">
         <div className="header-icon">
+          <Link className="user-icon" to="/daxil-ol">
           <FontAwesomeIcon className="icon" icon={faUser}/>
+          </Link>
           <FontAwesomeIcon className="icon" icon={faHeart}/>
           <Link to={`/sebet`}>
             <IconButton className="icon" aria-label="cart">

@@ -5,7 +5,11 @@
     top: 0
     left: 0
     .loading
-        @include size(10%, auto)
+        @include size(20%, auto)
     p
         @include font(20px, 500)
         margin-top: 40px
+    @media (min-width: 1366px)
+        .loading
+            @include size(10%, auto)
+

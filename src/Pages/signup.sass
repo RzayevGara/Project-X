@@ -7,8 +7,8 @@
 
 .signup
     .container
-        @include flex(row, space-evenly, flex-start)
-        padding: 5% 0
+        @include flex(column, space-evenly, center)
+        padding: 20% 5%
         form
             @include flex(column)
             gap: 10px
@@ -47,14 +47,22 @@
                 label
                     margin-top: 0 !important
                     font-size: 14px
-                    
-
         .login-image
             @include flex(column, $align: flex-end)
             gap: 30px
             img
                 width: 85%
+                display: none
             p
                 align-self: center
+                margin-top: 30px
                 a
                     color: #2D9CDB
+    @media (min-width: 1366px)
+        .container
+            @include flex(row, space-evenly, flex-start)
+            padding: 5% 0
+            .login-image
+                img
+                    width: 85%
+                    display: block
