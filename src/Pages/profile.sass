@@ -1,0 +1,14 @@
+@import "../assets/styles/utils/_mixins"
+@import "../assets/styles/utils/_variables"
+@import "../assets/styles/utils/_reset"
+
+@import '../components/Profile/Profile-menu/profileMenu'
+@import '../components/Profile/Order/profileOrder'
+@import '../components/Profile/Favorites/profileFavorite'
+@import '../components/Profile/User-Info/profileInfo'
+
+.profile
+    background-color: #faf9f9
+    .container
+        @include flex (row)
+        gap: 50px

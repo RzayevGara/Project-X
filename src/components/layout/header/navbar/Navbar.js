@@ -32,6 +32,8 @@ const Navbar = (props)=> {
     !HamburgerStatus?dispatch(HamburgerClick(true)):dispatch(HamburgerClick(false))
   }
 
+  const token  = localStorage.getItem('commercejs_customer_token')
+  console.log(token)
 
   return (
     <div className="navbar">
@@ -53,7 +55,7 @@ const Navbar = (props)=> {
       </div>
       <div className="right-section">
         <div className="header-icon">
-          <Link className="user-icon" to="/daxil-ol">
+          <Link className="user-icon" to={token?"/profil/sifarislerim":"daxil-ol"}>
           <FontAwesomeIcon className="icon" icon={faUser}/>
           </Link>
           <FontAwesomeIcon className="icon" icon={faHeart}/>

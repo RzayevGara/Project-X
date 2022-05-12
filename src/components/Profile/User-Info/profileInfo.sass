@@ -1,0 +1,27 @@
+.profile-info
+    @include flex(column)
+    flex: 4
+    gap: 30px
+    .profile-info_title
+        @include font(24px, 500)
+    .profile-info_div
+        width: 70%
+        background-color: white
+        padding: 50px 30px
+        border-radius: 8px
+        form
+            @include flex(column, center, center)
+            gap: 20px
+            .profile-info_name_surname
+                @include flex(row, space-around)
+                width: 100%
+                div
+                    @include flex(column)
+                    gap: 10px
+                    input
+                        @include size(310px, 50px)
+                        background-color: #F2F2F2
+                        border: none
+                        border-radius: 8px
+                        padding: 0 30px
+                        font-size: 18px

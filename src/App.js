@@ -16,6 +16,10 @@ import Signup from './Pages/Signup'
 import GenerateToken from './components/Login/GenerateToken'
 import CreateAccount from './components/Sign/CreateAccount'
 import SendEmail from './components/Login/SendEmail'
+import Profile from './Pages/Profile' 
+import ProfileOrder from './components/Profile/Order/ProfileOrder'
+import ProfileFavorite from './components/Profile/Favorites/ProfileFavorite'
+import ProfileInfo from './components/Profile/User-Info/ProfileInfo'
 
 function App() {
   const dispatch = useDispatch()
@@ -41,6 +45,11 @@ function App() {
           <Route path="/daxil-ol/hesabiniza-daxil-olunur" element={<SendEmail/>}/>
           <Route path="/qeydiyyatdan-kec" element={<Signup/>}/>
           <Route path="qeydiyyatdan-kec/hesab-yaradilir" element={<CreateAccount/>}/>
+          <Route path="profil" element={<Profile/>}>
+            <Route path="/profil/sifarislerim"  element={<ProfileOrder/>}/>
+            <Route path="/profil/favorilerim"  element={<ProfileFavorite/>}/>
+            <Route path="/profil/melumatlarim"  element={<ProfileInfo/>}/>
+          </Route>
         </Route>
         <Route path="daxil-ol/:token" element={<GenerateToken/>}/>
       </Routes>
