@@ -4,18 +4,20 @@ import './login.sass'
 import {setToken, setEmail} from '../Reducer/LoginReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import commerce from '../lib/Commerce';
+import {Link} from 'react-router-dom'
 
 function Login() {
     const dispatch = useDispatch()
     const myForm = (e)=>{
         e.preventDefault()
         dispatch(setEmail(e.target[0].value))
-        alert("asdasdasd")
     }
     const email = useSelector((state) => state.login.email)
     
     useEffect(() =>{
-        commerce.customer.login(`${email}`, 'http://localhost:3000/daxil-ol').then((token) => console.log(token));
+        if(email!==""){
+            commerce.customer.login(`${email}`, 'http://localhost:3000/daxil-ol').then((token) => console.log(token));
+        }
     }, [email])
 
   return (
@@ -28,6 +30,7 @@ function Login() {
             </form>
             <div className="login-image">
                 <img src={Image} alt="logo"/>
+                <p>Hesabınız yoxdur? <Link to="/qeydiyyatdan-kec">Qeydiyyatdan keçin</Link></p>
             </div>
         </div>
     </div>

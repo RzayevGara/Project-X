@@ -1,0 +1,52 @@
+.create-account
+    @include size(100%, 100%)
+    @include flex(column, center, center)
+    position: absolute
+    top: 0
+    left: 0
+    background-color: white
+    z-index: 99999
+    .loading
+        @include size(10%, auto)
+    p
+        @include font(20px, 500)
+        margin-top: 40px
+
+.success-sign
+    .container
+        @include flex(column, center, center)
+        padding: 5% 0
+        img
+            width: 20%
+        p
+            @include font(18x, 500)
+            margin-top: 30px
+        .btn-login
+            @include flex(column, center, center)
+            @include size(300px, 60px)
+            background-color: $hoverText
+            color: white
+            border: none
+            border-radius: 8px
+            cursor: pointer
+            margin-top: 30px
+
+
+.error-sign
+    .container
+        @include flex(column, center, center)
+        padding: 5% 0
+        img
+            width: 20%
+        p
+            @include font(18x, 500)
+            margin-top: 30px
+        .btn-login
+            @include flex(column, center, center)
+            @include size(300px, 60px)
+            background-color: $hoverText
+            color: white
+            border: none
+            border-radius: 8px
+            cursor: pointer
+            margin-top: 30px

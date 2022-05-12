@@ -1,45 +1,43 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './signup.sass'
 import Image from '../assets/images/login-new-img.svg'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
+import {setSignStatus} from '../Reducer/LoginReducer'
+import {useDispatch} from 'react-redux'
 
 function Signup() {
-
+    let navigate = useNavigate();
+    const dispatch = useDispatch();
     
-    const url = new URL("https://api.chec.io/v1/customers")
-    
-    
-    let headers = {
-        "X-Authorization": "sk_4218961a06ff33e7f869402a4745e5483bcf12e3295fa",
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-    };
-
-    // const checAPIKey = process.env.REACT_APP_CHECK_SECRET_API_KEY
-    const signForm = async (e)=>{
-        e.preventDefault();
+    const addCustomer = async (e)=>{
+        const url = new URL("https://api.chec.io/v1/customers")
         
-
+        const checAPIKey = process.env.REACT_APP_CHECK_SECRET_API_KEY
+        let headers = {
+            "X-Authorization": checAPIKey,
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        };
         let body = {
-            "email": `${e.target[2].value}`,
-            "phone": "+1 987 654 3210",
+            "email": `${e.target[3].value}`,
+            "phone": `${e.target[2].value}`?`${e.target[2].value}`:null,
             "firstname": `${e.target[0].value}`,
             "lastname": `${e.target[1].value}`,
-            "external_id": "MY_CRM_USER_123"
-            // "email": "qaraaaaa@example.com",
-            // "phone": "+1 987 654 3210",
-            // "firstname": "Leslie",
-            // "lastname": "Lawless",
-            // "external_id": "MY_CRM_USER_123"
+            "external_id": null
         }
-
-        
-        let a = await axios.post(url, body, {
+        let customer = await axios.post(url, body, {
             headers: headers
         })
+        dispatch(setSignStatus(customer.status))
+    }
 
-        console.log(a)
-        console.log(body)
+    const signForm = (e)=>{
+        e.preventDefault();
+        addCustomer(e)
+        navigate("/qeydiyyatdan-kec/hesab-yaradilir", { replace: true })
+
     }
     
 
@@ -49,15 +47,22 @@ function Signup() {
             <form onSubmit={signForm}>
                 <p>Qeydiyyat</p>
                 <label htmlFor="fname">Ad</label>
-                <input placeholder="Adınızı daxil edin" id="fname" type="text"/>
+                <input placeholder="Adınızı daxil edin" id="fname" type="text" required/>
                 <label htmlFor="lname">Soyad</label>
-                <input placeholder="Soyadınızı daxil edin" id="lname" type="text"/>
+                <input placeholder="Soyadınızı daxil edin" id="lname" type="text" required/>
+                <label htmlFor="phone">Mobil nömrə</label>
+                <input placeholder="Mobil nömrənizi daxil edin" id="phone" type="number"/>
                 <label htmlFor="email">E-mail</label>
-                <input type="email" id="email" placeholder="nümunə@gmail.com"/>
+                <input type="email" id="email" placeholder="nümunə@gmail.com" required/>
+                <div>
+                    <input id="terms" type="checkbox" required/>
+                    <label htmlFor="terms">İstifadəçi şərtləri ilə razıyam</label>
+                </div>
                 <button type="submit">Daxil ol</button>
             </form>
             <div className="login-image">
                 <img src={Image} alt="logo"/>
+                <p>Artıq hesabınız var? <Link to="/daxil-ol">Daxil olun </Link></p>
             </div>
         </div>
     </div>

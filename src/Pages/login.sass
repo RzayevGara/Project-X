@@ -28,6 +28,11 @@
                 margin-top: 30px
 
         .login-image
-            @include flex(row, flex-end)
+            @include flex(column,$align: flex-end)
+            gap: 30px
             img
                 width: 85%
+            p
+                align-self: center
+                a
+                    color: #2D9CDB
