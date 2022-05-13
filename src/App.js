@@ -31,6 +31,7 @@ function App() {
     console.log("isledi");
     fetcha()
   }, [dispatch]);
+  
 
   return (
       <Routes>

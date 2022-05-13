@@ -23,6 +23,13 @@ function Login() {
         }
     }, [email, dispatch, navigate])
 
+    const token  = useSelector((state) => state.login.customerToken)
+    useEffect(()=>{
+        if(token){
+            navigate ("/profil/sifarislerim", { replace: true })
+        }
+    },[navigate, token])
+
   return (
     <div className="login">
         <div className="container">

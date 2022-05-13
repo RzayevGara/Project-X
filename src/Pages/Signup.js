@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './signup.sass'
 import Image from '../assets/images/login-new-img.svg'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {useNavigate } from 'react-router-dom'
 import {setSignStatus} from '../Reducer/LoginReducer'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 function Signup() {
     let navigate = useNavigate();
@@ -39,6 +39,12 @@ function Signup() {
         navigate("/qeydiyyatdan-kec/hesab-yaradilir", { replace: true })
 
     }
+    const token  = useSelector((state) => state.login.customerToken)
+    useEffect(()=>{
+        if(token){
+            navigate ("/profil/sifarislerim", { replace: true })
+        }
+    },[navigate, token])
     
 
   return (

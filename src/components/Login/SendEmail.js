@@ -5,9 +5,9 @@ import MailImage from "../../assets/images/undraw_Mail_sent_re_0ofv (1) 1.svg"
 
 
 function CreateAccount() {
-    const signStatus  = useSelector((state) => state.login.loginStatus)
-    console.log(signStatus)
-    if(signStatus===""){
+    const loginStatus  = useSelector((state) => state.login.loginStatus)
+    console.log(loginStatus)
+    if(loginStatus===""){
         return (
           <div className="check-login-account">
               <TailSpin stroke="#00D68F" className="loading" />
@@ -16,7 +16,7 @@ function CreateAccount() {
                   Məlumat yoxlanılır!</p>
           </div>
         )
-    }else if(signStatus===true){
+    }else if(loginStatus===true){
         return (
             <div className="success-login">
                 <div className="container">
