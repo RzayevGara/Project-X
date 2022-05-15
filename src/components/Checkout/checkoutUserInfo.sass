@@ -1,0 +1,20 @@
+.checkout-user-info
+    margin-top: 30px
+    @include flex(column)
+    form
+        @include flex(column)
+        gap: 30px
+        margin-bottom: 30px
+        .checkout-user-info_name_surname
+            @include flex(row)
+            gap: 50px            
+            div
+                @include flex(column)
+                gap: 10px
+                input
+                    @include size(310px, 50px)
+                    background-color: #F2F2F2
+                    border: none
+                    border-radius: 8px
+                    padding: 0 30px
+                    font-size: 16px

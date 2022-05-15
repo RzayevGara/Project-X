@@ -9,7 +9,7 @@ function Full() {
   return (
     <div className="full-card">
         <BasketProducts list={BasketList}/>
-        <BasketPrice list={BasketList}/>
+        <BasketPrice checkoutBtn/>
     </div>
   )
 }

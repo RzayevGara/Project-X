@@ -1,6 +1,7 @@
 {
   "name": "project-app",
   "version": "0.1.0",
+  "proxy": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "@chec/commerce.js": "^2.8.0",
@@ -13,6 +14,8 @@
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.2",
     "@reduxjs/toolkit": "^1.8.1",
+    "@stripe/react-stripe-js": "^1.8.0-0",
+    "@stripe/stripe-js": "^1.29.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
@@ -28,6 +31,7 @@
     "react-scripts": "^5.0.1",
     "redux-persist": "^6.0.0",
     "sass": "^1.50.0",
+    "stripe": "^9.1.0",
     "swiper": "^8.1.0",
     "web-vitals": "^2.1.4"
   },
@@ -37,6 +41,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -1,0 +1,14 @@
+@import "../assets/styles/utils/_mixins"
+@import "../assets/styles/utils/_variables"
+@import "../assets/styles/utils/_reset"
+
+@import '../components/Checkout/checkoutUserInfo'
+@import '../components/Checkout/checkoutUserAddress'
+@import '../components/Checkout/checkoutForm'
+
+.checkout
+    .container
+        @include flex(row)
+        gap: 50px
+        .checkout-box
+            flex: 5
