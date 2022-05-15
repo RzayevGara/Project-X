@@ -7,6 +7,7 @@ import CardListReducer from "./CardListReducer"
 import HamburgerReducer from './HamburgerReducer'
 import HomePageReducer from './HomePageReducer'
 import LoginReducer from './LoginReducer'
+import CheckoutReducer from './CheckoutReducer'
 // export const store = configureStore({
 //   reducer: {
 //       category: ProductReducer,
@@ -28,7 +29,8 @@ const reducers = combineReducers({
       listOrder: CardListReducer,
       setHamburger: HamburgerReducer,
       homeList: HomePageReducer,
-      login: LoginReducer
+      login: LoginReducer,
+      checkout: CheckoutReducer
 });
 
 const persistConfig = {

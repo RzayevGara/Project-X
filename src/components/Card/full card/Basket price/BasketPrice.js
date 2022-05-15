@@ -1,13 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 function BasketPrice(props) {
+  const BasketList = useSelector((state) => state.listOrder.SimpleList);
+
   return (
     <div className="basket-price">
       <div className="price-detail">
         <h6>Ümumi</h6>
         <p>
           Məbləğ
-          <span>{props.list && props.list.subtotal.formatted_with_symbol}</span>
+          <span>{BasketList && BasketList.subtotal.formatted_with_symbol}</span>
         </p>
         <p>
           Çatdırılma
@@ -23,12 +26,14 @@ function BasketPrice(props) {
         </p>
         <h5>
           Cəmi
-          <span>{props.list && props.list.subtotal.formatted_with_symbol}</span>
+          <span>{BasketList && BasketList.subtotal.formatted_with_symbol}</span>
         </h5>
       </div>
-      <div className="confirm-orders">
-        Sifarişləri təsdiqlə
-      </div>
+      {props.checkoutBtn && 
+        <div className="confirm-orders">
+          Sifarişləri təsdiqlə
+        </div>
+      }
     </div>
   );
 }

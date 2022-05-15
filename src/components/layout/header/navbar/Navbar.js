@@ -25,7 +25,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Navbar = ()=> {
   const dispatch = useDispatch()
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
-  console.log(HamburgerStatus)
+  // console.log(HamburgerStatus)
   
   const basketCount = useSelector((state) => state.listOrder.SimpleList);
 
@@ -38,7 +38,7 @@ const Navbar = ()=> {
   },[dispatch, tokenLocal])
 
   const token = useSelector((state) => state.login.customerToken)
-  console.log(token)
+  // console.log(token)
 
   return (
     <div className="navbar">
