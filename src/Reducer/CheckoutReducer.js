@@ -11,7 +11,10 @@ const initialState = {
     shippingAddress: "",
     shippingCountry: "",
     shippingCity: "",
-    shippingMethod: ""
+    shippingMethod: "",
+    disable: true,
+    country: "",
+    loading: false
 }
 
 
@@ -54,11 +57,22 @@ export const CheckoutReducer = createSlice({
     },
     setShippingMethod: (state,action)=>{
       state.shippingMethod = action.payload
+    },
+
+    setDisable: (state,action) => {
+      state.disable = action.payload
+    },
+    setCountrySelect: (state,action) => {
+      state.country = action.payload
+    },
+    setLoading: (state,action) => {
+      state.loading = action.payload
     }
+
 }
 })
 
 // Action creators are generated for each case reducer function
-export const {setCartToken, setCartID, setName, setLastName, setEmail, setPhone, setShippingName,setShippingAddress, setShippingCountry, setShippingCity, setShippingMethod} = CheckoutReducer.actions
+export const {setCartToken, setCartID, setName, setLastName, setEmail, setPhone, setShippingName,setShippingAddress, setShippingCountry, setShippingCity, setShippingMethod, setDisable, setCountrySelect, setLoading} = CheckoutReducer.actions
 
 export default CheckoutReducer.reducer

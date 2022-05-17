@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useEffect} from "react";
 import "./checkout.sass";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -14,7 +14,8 @@ import CheckoutUserAddress from '../components/Checkout/CheckoutUserAddress'
 import CheckoutPayment from '../components/Checkout/CheckoutPayment'
 import commerce from '../lib/Commerce'
 import {useDispatch, useSelector} from "react-redux";
-import {setCartID, setName, setLastName, setEmail, setPhone} from '../Reducer/CheckoutReducer'
+import {setCartID} from '../Reducer/CheckoutReducer'
+import { TailSpin  } from 'react-loading-icons'
 
 
 
@@ -25,54 +26,21 @@ function Checkout() {
 
   const dispatch = useDispatch()
 
-  const [disabled, setdisabled] = useState(true)
+  const disabled = useSelector((state) => state.checkout.disable)
 
   useEffect(() => {
     commerce.cart.retrieve().then((cart) =>dispatch(setCartID(cart.id)));
   })
   const [activeStep, setActiveStep] = React.useState(0);
 
-
-  const fname = useSelector((state) => state.checkout.fname)
-  const lname = useSelector((state) => state.checkout.lname)
-  const email  = useSelector((state) => state.checkout.email)
-  const phone  = useSelector((state) => state.checkout.phone)
-  console.log(fname)
-
-  const shippingName = useSelector((state) => state.checkout.shippingName)
-  const shippingAddress = useSelector((state) => state.checkout.shippingAddress)
-  const shippingCountry  = useSelector((state) => state.checkout.shippingCountry)
-  const shippingCity  = useSelector((state) => state.checkout.shippingCity)
-
-  console.log(shippingCountry)
-
-  useEffect(() =>{
-    if(fname!=="" && lname!=="" && email!=="" && phone!==""){
-      setdisabled(false)
-    }else{
-      setdisabled(true)
-    }
-  }, [fname, email,lname,phone])
-
-
 const handleSubmit = (e) => {
   e.preventDefault();
   setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  // console.log(e.target.checkValidity())
-  // dispatch(setName(e.target[0].value))
-  // dispatch(setLastName(e.target[1].value))
-  // dispatch(setEmail(e.target[2].value))
-  // dispatch(setPhone(e.target[3].value))
 }
 
 const handleSubmitSecond = (e) => {
   e.preventDefault();
   setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  // console.log(e.target.checkValidity())
-  // dispatch(setName(e.target[0].value))
-  // dispatch(setLastName(e.target[1].value))
-  // dispatch(setEmail(e.target[2].value))
-  // dispatch(setPhone(e.target[3].value))
 }
 
   const steps = [
@@ -99,12 +67,20 @@ const handleSubmitSecond = (e) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  const loading = useSelector((state) => state.checkout.loading)
 
   return (
     <div className="checkout">
+
+
+      {loading && 
+      <div className="black-page">
+        <TailSpin  stroke="#00D68F" className="loading"/>
+        <p>Zəhmət olmasa gözləyin</p>
+      </div>
+      }
+
+
       <div className="container">
         <Box className="checkout-box">
           <Stepper activeStep={activeStep} orientation="vertical">
@@ -113,7 +89,7 @@ const handleSubmitSecond = (e) => {
                 <StepLabel
                   optional={
                     index === 2 ? (
-                      <Typography variant="caption">Last step</Typography>
+                      <Typography variant="caption">Son addım</Typography>
                     ) : null
                   }
                 >
@@ -126,9 +102,8 @@ const handleSubmitSecond = (e) => {
                       <Button
                         variant="contained"
                         onClick={handleNext}
-                        sx={{ mt: 1, mr: 1, }}
+                        sx={{ mt: 1, mr: 1, display: index===2?"none":"inline-flex"}}
                         disabled={disabled}
-
                       >
                         {index === steps.length - 1 ? "Tamamla" : "Davam"}
                       </Button>
@@ -148,11 +123,8 @@ const handleSubmitSecond = (e) => {
           {activeStep === steps.length && (
             <Paper square elevation={0} sx={{ p: 3 }}>
               <Typography>
-                All steps completed - you&apos;re finished
+                Sifarişiniz Tamamlandı!
               </Typography>
-              <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-                Reset
-              </Button>
             </Paper>
           )}
         </Box>
