@@ -4,8 +4,10 @@ import {
   setShippingAddress,
   setShippingCountry,
   setShippingCity,
+  setDisable,
+  setCountrySelect,
 } from "../../Reducer/CheckoutReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,23 +19,47 @@ function CheckoutUserAddress(props) {
 
   const [country, setCountry] = useState([]);
 
+  const shippingName = useSelector((state) => state.checkout.shippingName);
+  const shippingAddress = useSelector(
+    (state) => state.checkout.shippingAddress
+  );
+  const shippingCountry = useSelector(
+    (state) => state.checkout.shippingCountry
+  );
+  const shippingCity = useSelector((state) => state.checkout.shippingCity);
+
+  useEffect(() => {
+    if (
+      shippingName !== "" &&
+      shippingAddress !== "" &&
+      shippingCountry !== "" &&
+      shippingCity !== ""
+    ) {
+      dispatch(setDisable(false));
+    } else {
+      dispatch(setDisable(true));
+    }
+  }, [dispatch, shippingName, shippingAddress, shippingCountry, shippingCity]);
+
   useEffect(() => {
     fetch("https://countriesnow.space/api/v0.1/countries/iso")
       .then((data) => data.json())
       .then((response) => setCountry(response.data));
-  });
-
-  const [age, setAge] = React.useState("");
+  },[]);
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    dispatch(setCountrySelect(event.target.value));
   };
 
+  const countrySelect = useSelector((state) => state.checkout.country);
 
   useEffect(() => {
-    country.forEach((item, index) => {if(age===index){dispatch(setShippingCountry(item.Iso2))}})
-  }, [age, country, dispatch])
-
+    country.forEach((item, index) => {
+      if (countrySelect === index) {
+        dispatch(setShippingCountry(item.Iso2));
+      }
+    });
+  }, [countrySelect, country, dispatch]);
 
   return (
     <div className="checkout-user-address">
@@ -47,6 +73,7 @@ function CheckoutUserAddress(props) {
               }}
               placeholder="Adınızı və soyadınızı daxil edin"
               type="text"
+              value={shippingName}
               required
             />
           </div>
@@ -59,6 +86,7 @@ function CheckoutUserAddress(props) {
               placeholder="Ünvanınızı daxil edin"
               type="text"
               required
+              value={shippingAddress}
             />
           </div>
         </div>
@@ -70,15 +98,17 @@ function CheckoutUserAddress(props) {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={age}
+                value={countrySelect}
                 label="Age"
                 onChange={handleChange}
+                required
               >
-                {country && 
-                country.map((item, index)=>(
-                  <MenuItem key={index} value={index}>{item.name}</MenuItem>
-                ))
-                }
+                {country &&
+                  country.map((item, index) => (
+                    <MenuItem key={index} value={index}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
           </div>
@@ -89,8 +119,9 @@ function CheckoutUserAddress(props) {
                 dispatch(setShippingCity(e.target.value));
               }}
               placeholder="Şəhərinizi qeyd edin"
-              type="email"
+              type="text"
               required
+              value={shippingCity}
             />
           </div>
         </div>

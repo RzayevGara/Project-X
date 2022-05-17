@@ -4,7 +4,7 @@ import { PaymentInputsWrapper, usePaymentInputs } from "react-payment-inputs";
 import images from "react-payment-inputs/images";
 import Button from "@mui/material/Button";
 import commerce from "../../lib/Commerce";
-import { setCartToken,setCartID, setShippingMethod } from "../../Reducer/CheckoutReducer";
+import { setCartToken,setCartID, setShippingMethod ,setLoading} from "../../Reducer/CheckoutReducer";
 import { useDispatch, useSelector } from "react-redux";
 import {setSimpleList} from "../../Reducer/CardListReducer"
 
@@ -18,18 +18,13 @@ function CheckoutPayment(props) {
   const shippingCountry  = useSelector((state) => state.checkout.shippingCountry)
   
   const shippingMethod  = useSelector((state) => state.checkout.shippingMethod)
+
   useEffect(() => {
     commerce.checkout
     .generateToken(`${CartID}`, { type: "cart" })
     .then((checkout) => dispatch(setCartToken(checkout.id)));
-    
-    // commerce.checkout.getShippingOptions(cartToken, {
-    //   country: 'US',
-    // }).then((response) => console.log(response));
-
   }, [dispatch, CartID]);
 
-  // const [shipping, setShipping] = useState("")
 
   useEffect(() => {
     if(shippingCountry!==""){
@@ -39,7 +34,6 @@ function CheckoutPayment(props) {
     }
   },[cartToken, dispatch, shippingCountry])
 
-  console.log(shippingMethod)
 
   const {
     meta,
@@ -67,7 +61,8 @@ function CheckoutPayment(props) {
       }}
       onSubmit={(data) => {
         if (data) {
-          props.setActiveStep((prevActiveStep) => prevActiveStep + 1);
+          dispatch(setLoading(true))
+          
           let number = data.cardNumber
           let date = data.expiryDate
           let cvc = data.cvc
@@ -83,8 +78,6 @@ function CheckoutPayment(props) {
                 name: `${shippingName}`,
                 street: `${shippingAddress}`,
                 town_city:`${shippingCity}`,
-                // county_state: "US-CA",
-                // postal_zip_code: "94103",
                 country: `${shippingCountry}`,
               },
               fulfillment: {
@@ -101,7 +94,7 @@ function CheckoutPayment(props) {
                 },
               },
             })
-            .then((response) => {console.log(response); commerce.cart.refresh().then((cart) => dispatch(setSimpleList(cart)))});
+            .then((response) => {console.log(response);dispatch(setLoading(false));props.setActiveStep((prevActiveStep) => prevActiveStep + 1); commerce.cart.refresh().then((cart) => dispatch(setSimpleList(cart)))});
         }
       }}
       validate={() => {

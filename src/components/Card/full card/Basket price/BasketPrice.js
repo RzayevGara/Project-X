@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 
 function BasketPrice(props) {
   const BasketList = useSelector((state) => state.listOrder.SimpleList);
@@ -30,9 +31,11 @@ function BasketPrice(props) {
         </h5>
       </div>
       {props.checkoutBtn && 
+      <Link to="/sifarisleri-tesdiqle">
         <div className="confirm-orders">
           Sifarişləri təsdiqlə
         </div>
+      </Link>
       }
     </div>
   );

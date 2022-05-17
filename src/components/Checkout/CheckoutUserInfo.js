@@ -1,5 +1,5 @@
-import React from "react";
-import {setName, setLastName, setEmail, setPhone} from '../../Reducer/CheckoutReducer'
+import React,{ useEffect} from "react";
+import {setName, setLastName, setEmail, setPhone, setDisable} from '../../Reducer/CheckoutReducer'
 import {useDispatch, useSelector} from "react-redux";
 
 function CheckoutUserInfo(props) {
@@ -8,7 +8,16 @@ function CheckoutUserInfo(props) {
   const lname = useSelector((state) => state.checkout.lname)
   const email  = useSelector((state) => state.checkout.email)
   const phone  = useSelector((state) => state.checkout.phone)
-  
+
+
+  useEffect(()=>{
+    if(fname!=="" && lname!=="" && email!=="" && phone!==""){
+      dispatch(setDisable(false))
+    }else{
+      dispatch(setDisable(true))
+    }
+  }, [dispatch, fname, email,lname,phone])
+
   return (
     <div className="checkout-user-info">
       <form onSubmit={props.submit}>
