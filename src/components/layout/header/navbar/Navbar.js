@@ -10,8 +10,9 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {useSelector, useDispatch} from "react-redux";
 import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
-import React, {useEffect, useState} from 'react'
-import {setCustomerToken} from '../../../../Reducer/LoginReducer'
+import React, {useEffect} from 'react'
+import {setCustomerToken, setCustomerInfo} from '../../../../Reducer/LoginReducer'
+import commerce from '../../../../lib/Commerce'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -25,7 +26,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Navbar = ()=> {
   const dispatch = useDispatch()
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
-  // console.log(HamburgerStatus)
   
   const basketCount = useSelector((state) => state.listOrder.SimpleList);
 
@@ -35,10 +35,13 @@ const Navbar = ()=> {
   let tokenLocal = localStorage.getItem('commercejs_customer_token')
   useEffect(() =>{
     dispatch(setCustomerToken(tokenLocal))
+    if(tokenLocal){
+      commerce.customer.about().then((customer) => dispatch(setCustomerInfo(customer)))
+    }
   },[dispatch, tokenLocal])
 
   const token = useSelector((state) => state.login.customerToken)
-  // console.log(token)
+  const customerInfo = useSelector((state) => state.login.customerInfo)
 
   return (
     <div className="navbar">
@@ -61,9 +64,10 @@ const Navbar = ()=> {
       <div className="right-section">
         <div className="header-icon">
           <Link className="user-icon" to={token?"/profil/sifarislerim":"daxil-ol"}>
+          {customerInfo && customerInfo.firstname}
           <FontAwesomeIcon className="icon" icon={faUser}/>
           </Link>
-          <FontAwesomeIcon className="icon" icon={faHeart}/>
+          {/* <FontAwesomeIcon className="icon" icon={faHeart}/> */}
           <Link to={`/sebet`}>
             <IconButton className="icon" aria-label="cart">
               <StyledBadge badgeContent={basketCount && basketCount.line_items.length} color="secondary">

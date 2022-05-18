@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
 
 
-const Menu = (props) =>{
+const Menu = () =>{
   const [products, setProducts] = useState([]);
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
-  // console.log(HamburgerStatus)
 
   const dispatch = useDispatch()
 
@@ -20,6 +19,8 @@ const Menu = (props) =>{
       console.log('There was an error fetching the products', error)
     });
   }
+
+  const token = useSelector((state) => state.login.customerToken)
 
   useEffect(() => {
     fetchProducts()
@@ -55,9 +56,13 @@ const Menu = (props) =>{
           ))
         }
       </ul>
-      <div className='menu-buttons'>
-        <p className='log-btn'>Daxil ol</p>
-        <p className='sign-btn'>Qeydiyyat</p>
+      <div className='menu-buttons' style={{display: token?"none":"flex"}}>
+        <Link to="/daxil-ol">
+          <p onClick={()=>{dispatch(HamburgerClick(false))}} className='log-btn'>Daxil ol</p>
+        </Link>
+        <Link to="/qeydiyyatdan-kec">
+          <p onClick={()=>{dispatch(HamburgerClick(false))}}  className='sign-btn'>Qeydiyyat</p>
+        </Link>
       </div>
     </div>
   )

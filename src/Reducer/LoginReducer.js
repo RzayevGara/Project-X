@@ -5,7 +5,8 @@ const initialState = {
     email: "",
     signStatus: "",
     loginStatus: "",
-    customerToken: ""
+    customerToken: "",
+    customerInfo: ""
 }
 
 
@@ -28,10 +29,13 @@ export const LoginReducer = createSlice({
     setCustomerToken: (state,action) => {
       state.customerToken = action.payload
     },
+    setCustomerInfo: (state,action) => {
+      state.customerInfo = action.payload
+    }
 }
 })
 
 // Action creators are generated for each case reducer function
-export const {setToken, setEmail, setSignStatus, setLoginStatus, setCustomerToken} = LoginReducer.actions
+export const {setToken, setEmail, setSignStatus, setLoginStatus, setCustomerToken, setCustomerInfo} = LoginReducer.actions
 
 export default LoginReducer.reducer
