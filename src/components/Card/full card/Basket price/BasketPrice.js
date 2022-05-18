@@ -31,7 +31,7 @@ function BasketPrice(props) {
         </h5>
       </div>
       {props.checkoutBtn && 
-      <Link to="/sifarisleri-tesdiqle">
+      <Link className="btn-confirm"to="/sifarisleri-tesdiqle">
         <div className="confirm-orders">
           Sifarişləri təsdiqlə
         </div>

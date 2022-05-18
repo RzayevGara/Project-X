@@ -157,7 +157,7 @@ function ProductOption() {
                 commerce.cart.add(`${product.id}`, quantity,{
                   [colorvr]: `${colorop}`,
                   [sizevr]: `${sizeop}`,
-                }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}))
+                }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false); document.querySelector("#alert-success").style.display="block"; setTimeout(() =>{document.querySelector("#alert-success").style.display="none"}, 3000)}))
                 .catch((error) => {console.log("error"); setIsLoading(false)})
               }else{
                 if(!colorop){
@@ -172,14 +172,14 @@ function ProductOption() {
               setIsLoading(true)
               commerce.cart.add(`${product.id}`, quantity,{
                 [colorvr]: `${colorop}`,
-              }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
+              }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false); document.querySelector("#alert-success").style.display="block"; setTimeout(() =>{document.querySelector("#alert-success").style.display="none"}, 3000)}));
             }else{
               dispatch(setColorMsg("Zəhmət olmasa rəng seçin"))
             }
           }else if(product.variant_groups.length===0){
             setIsLoading(true)
             commerce.cart.add(`${product.id}`, quantity
-            ).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false)}));
+            ).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false); document.querySelector("#alert-success").style.display="block"; setTimeout(() =>{document.querySelector("#alert-success").style.display="none"}, 3000)}));
           }
           }}
           className="basket-btn"

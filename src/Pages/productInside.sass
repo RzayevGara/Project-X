@@ -40,6 +40,19 @@
                     text-decoration: underline
                 &:active
                     color: black
+    #alert-success
+        width: 100% 
+        position: fixed
+        bottom: 70px
+        left: 0
+        display: none
+        padding: 0
+        @media (min-width: 1366px)
+            width: 20% 
+            position: fixed
+            bottom: 0
+            left: 0
+            display: flex
     .container
         .product-detail
             @include flex(column, $align: center)

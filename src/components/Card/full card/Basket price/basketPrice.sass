@@ -28,7 +28,7 @@
             @include flex(column, $align: center)
             span
                 color: #DB2C66
-    a
+    .btn-confirm
         display: contents
         .confirm-orders
             @include size(50%, 50px)
@@ -58,7 +58,9 @@
                 @include flex(row, space-between, center)
             h5
                 @include flex(row, space-between, center)
-        .confirm-orders
-            @include size(100%, 50px)
-            position: static
+        .btn-confirm
+            display: flex
+            .confirm-orders
+                @include size(100%, 50px)
+                position: static
 
