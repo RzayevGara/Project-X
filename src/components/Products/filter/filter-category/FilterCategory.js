@@ -9,7 +9,6 @@ const FilterCategory=(props)=> {
   const dispatch = useDispatch();
 
 let {id} = useParams()
-console.log(id)
 
 useEffect(()=> {
   if(id==="butun-telefonlar"){
@@ -35,10 +34,6 @@ useEffect(()=>{
     item.checked=false
   })
 },[id, dispatch])
-
-
-
-console.log(props.categoryList)
 
 
   const [active, setActive] = useState(false);

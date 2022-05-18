@@ -6,12 +6,10 @@ import { filterPrice } from "../../../../Reducer/ProductReducer";
 import ManatSymbol from "../../../../assets/images/manat.png"
 import {useParams} from 'react-router-dom'
 
-const FilterCategory=(props)=> {
+const FilterCategory=()=> {
   const dispatch = useDispatch();
 
   const [active, setActive] = useState(false);
-  const category = useSelector((state) => state.category.priceRange.minPrice);
-  console.log(category);
 
   function plusBtn() {
     !active ? setActive(true) : setActive(false);
@@ -46,8 +44,6 @@ const FilterCategory=(props)=> {
                 maxPrice: max
             }
             dispatch(filterPrice(obj))
-            console.log(min)
-            console.log(max)
         }} 
         className="price-form">
             <div>

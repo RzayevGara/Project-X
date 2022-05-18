@@ -16,7 +16,6 @@ import {setPhoneList, setAccessoryList, setFetchStatus} from '../Reducer/HomePag
 function Home() {
   const dispatch = useDispatch()
   const fetchStatus = useSelector((state) => state.homeList.fetchProduct)
-  console.log(fetchStatus);
   const phone = useSelector((state) => state.homeList.phoneList)
   const accessory = useSelector((state) => state.homeList.accessoryList)
   const loadingPhone  = useSelector((state) => state.homeList.loadingPhone)

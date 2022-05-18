@@ -14,24 +14,48 @@ import CheckoutUserAddress from '../components/Checkout/CheckoutUserAddress'
 import CheckoutPayment from '../components/Checkout/CheckoutPayment'
 import commerce from '../lib/Commerce'
 import {useDispatch, useSelector} from "react-redux";
-import {setCartID} from '../Reducer/CheckoutReducer'
+import {setCartID, setCartToken, setShippingMethod} from '../Reducer/CheckoutReducer'
 import { TailSpin  } from 'react-loading-icons'
+import {useNavigate} from 'react-router-dom'
 
 
 
 
 function Checkout() {
-
-
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
   const disabled = useSelector((state) => state.checkout.disable)
 
+  const cartToken = useSelector((state) => state.checkout.cartToken);
+
+  const shippingCountry  = useSelector((state) => state.checkout.shippingCountry)
+
+
   useEffect(() => {
-    commerce.cart.retrieve().then((cart) =>dispatch(setCartID(cart.id)));
-  })
-  const [activeStep, setActiveStep] = React.useState(0);
+    commerce.cart.retrieve().then((cart) =>{dispatch(setCartID(cart.id)); console.log(cart);
+      if(cart.line_items.length>0){
+        commerce.checkout
+        .generateToken( cart.id, { type: "cart" })
+        .then((checkout) => {dispatch(setCartToken(checkout.id))});
+      }else{
+      navigate("/sebet", { replace: true })
+
+      }
+    })
+  }, [])
+
+  useEffect(() => {
+    if(shippingCountry!==""){
+      commerce.checkout.getShippingOptions(cartToken, {
+      country: `${shippingCountry}`,
+    }).then((response) => dispatch(setShippingMethod(response[0].id)));
+    }
+  },[shippingCountry, cartToken,dispatch ])
+
+
+const [activeStep, setActiveStep] = React.useState(0);
 
 const handleSubmit = (e) => {
   e.preventDefault();

@@ -10,7 +10,6 @@ function Filter() {
   const activeFilter = useSelector((state) => state.filter.filterActive);
   const dispatch = useDispatch();
   let {id} = useParams()
-  console.log(id)
   
   useEffect(() => {
     let body = document.body

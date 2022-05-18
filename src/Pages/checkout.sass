@@ -5,6 +5,7 @@
 @import '../components/Checkout/checkoutUserInfo'
 @import '../components/Checkout/checkoutUserAddress'
 @import '../components/Checkout/checkoutForm'
+@import '../components/Checkout/checkoutPayment'
 
 .checkout
     .container
@@ -12,6 +13,26 @@
         gap: 50px
         .checkout-box
             flex: 5
+        .price-detail
+            background-color: white
+            gap: 20px
+            @include flex(column, center)
+            position: static
+            h5
+                @include font(22px, 500)
+                @include flex(row, center)
+                gap: 10px
+                span
+                    color: #DB2C66
+            @media (min-width: 1366px)
+                @include size(100%, auto)
+                box-shadow: 0px 4px 8px rgba(164, 164, 164, 0.50)
+                border-radius: 8px
+                padding: 50px
+                position: static
+                h5
+                    @include font(20px)
+                    @include flex(row, space-between, center)
     .black-page
         position: fixed
         background-color: #0000006e
