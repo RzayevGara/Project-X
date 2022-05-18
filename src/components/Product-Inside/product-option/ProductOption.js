@@ -23,17 +23,11 @@ import { TailSpin  } from 'react-loading-icons'
 
 function ProductOption() {
   const product = useSelector((state) => state.setProductDetail.list);
-  console.log(product);
   const colorvr = useSelector((state) => state.AddToCard.VariantColor);
-  console.log(colorvr);
   const colorop = useSelector((state) => state.AddToCard.OptionColor);
-  console.log(colorop);
   const sizevr = useSelector((state) => state.AddToCard.VariantSize);
-  console.log(sizevr);
   const sizeop = useSelector((state) => state.AddToCard.OptionSize);
-  console.log(sizeop);
   const quantity = useSelector((state) => state.AddToCard.ItemCount);
-  console.log(quantity);
 
   const [IsLoading, setIsLoading] = useState(false)
   
@@ -49,7 +43,6 @@ function ProductOption() {
   
   const dispatch = useDispatch();
   
-  // let { id } = useParams();
   useEffect(() => {
     dispatch(setItemID(product.id))
   }, [dispatch, product])

@@ -8,15 +8,11 @@ import { TailSpin  } from 'react-loading-icons'
 import {useParams} from 'react-router-dom'
 
 function PhoneList() {
-  // fetch data
-  // const category = useSelector((state) => state.category.category);
   let arrayList = useSelector((state) => state.category.arrayList);
   const dispatch = useDispatch();
-  // console.log(arrayList);
   const [IsLoading, setIsLoading] = useState(false)
   const fetchStatus = useSelector((state) => state.category.fetchStatus)
   let {id} = useParams()
-  console.log(id)
   
   useEffect(() => {
     dispatch(setCategory(id))

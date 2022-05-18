@@ -13,7 +13,6 @@ function ProductImages() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const product = useSelector((state) => state.setProductDetail.list);
   const assetsID = useSelector((state) => state.AddToCard.assetID);
-  console.log(assetsID);
 
   return (
     <div className="product-images">

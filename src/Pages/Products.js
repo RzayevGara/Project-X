@@ -10,7 +10,6 @@ import { Link as RouterLink , useParams} from 'react-router-dom';
 
 function Products() {
   let {id} = useParams()
-  console.log(id)
   const breadcrumbs = [
     id==="butun-telefonlar"?
 [    <RouterLink key="1" to="/" >
@@ -24,9 +23,6 @@ function Products() {
     <RouterLink key="1" to="/" >
       Ana Sehife
     </RouterLink>,
-    // <RouterLink key="2" to="/butun-telefonlar" >
-    //   Bütün Telefonlar
-    // </RouterLink>,
     <Typography key="3" color="text.primary">
       {id[0].toUpperCase() + id.slice(1)}
     </Typography>]

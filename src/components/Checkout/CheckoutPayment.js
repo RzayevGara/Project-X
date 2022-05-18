@@ -4,35 +4,36 @@ import { PaymentInputsWrapper, usePaymentInputs } from "react-payment-inputs";
 import images from "react-payment-inputs/images";
 import Button from "@mui/material/Button";
 import commerce from "../../lib/Commerce";
-import { setCartToken,setCartID, setShippingMethod ,setLoading} from "../../Reducer/CheckoutReducer";
+import { setCartToken,setCartID, setShippingMethod ,setLoading, setReset} from "../../Reducer/CheckoutReducer";
 import { useDispatch, useSelector } from "react-redux";
 import {setSimpleList} from "../../Reducer/CardListReducer"
 
 function CheckoutPayment(props) {
   const dispatch = useDispatch();
 
-  const CartID = useSelector((state) => state.checkout.cartID)
+  // const CartID = useSelector((state) => state.checkout.cartID)
 
   const cartToken = useSelector((state) => state.checkout.cartToken);
 
   const shippingCountry  = useSelector((state) => state.checkout.shippingCountry)
   
   const shippingMethod  = useSelector((state) => state.checkout.shippingMethod)
+  
 
-  useEffect(() => {
-    commerce.checkout
-    .generateToken(`${CartID}`, { type: "cart" })
-    .then((checkout) => dispatch(setCartToken(checkout.id)));
-  }, [dispatch, CartID]);
+  // useEffect(() => {
+  //   commerce.checkout
+  //   .generateToken(`${CartID}`, { type: "cart" })
+  //   .then((checkout) => dispatch(setCartToken(checkout.id)));
+  // }, [dispatch, CartID]);
 
 
-  useEffect(() => {
-    if(shippingCountry!==""){
-      commerce.checkout.getShippingOptions(cartToken, {
-      country: `${shippingCountry}`,
-    }).then((response) => dispatch(setShippingMethod(response[0].id)));
-    }
-  },[cartToken, dispatch, shippingCountry])
+  // useEffect(() => {
+  //   if(shippingCountry!==""){
+  //     commerce.checkout.getShippingOptions(cartToken, {
+  //     country: `${shippingCountry}`,
+  //   }).then((response) => dispatch(setShippingMethod(response[0].id)));
+  //   }
+  // },[cartToken, dispatch, shippingCountry])
 
 
   const {
@@ -94,7 +95,7 @@ function CheckoutPayment(props) {
                 },
               },
             })
-            .then((response) => {console.log(response);dispatch(setLoading(false));props.setActiveStep((prevActiveStep) => prevActiveStep + 1); commerce.cart.refresh().then((cart) => dispatch(setSimpleList(cart)))});
+            .then((response) => {console.log(response);dispatch(setLoading(false));props.setActiveStep((prevActiveStep) => prevActiveStep + 1); commerce.cart.refresh().then((cart) => dispatch(setSimpleList(cart))); dispatch(setReset())});
         }
       }}
       validate={() => {
@@ -112,7 +113,7 @@ function CheckoutPayment(props) {
       }}
     >
       {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+        <form className="card-info_payment" onSubmit={handleSubmit}>
           <div>
             <PaymentInputsWrapper {...wrapperProps}>
               <svg {...getCardImageProps({ images })} />

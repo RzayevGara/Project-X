@@ -17,7 +17,6 @@ import { TailSpin  } from 'react-loading-icons'
 
 function ProductInside() {
   let {productid} = useParams();
-  console.log(productid)
 
   const productName = useSelector((state) => state.setProductDetail.list);
   
@@ -37,8 +36,6 @@ function ProductInside() {
 
   const [Switch, setSwitch] = useState(false)
   const [ErrorPage, setErrorPage] = useState(false)
-  console.log(ErrorPage)
-
   const [IsLoading, setIsLoading] = useState(false)
 
   useEffect(() => {

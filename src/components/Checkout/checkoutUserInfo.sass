@@ -3,18 +3,28 @@
     @include flex(column)
     form
         @include flex(column)
-        gap: 30px
+        gap: 20px
         margin-bottom: 30px
         .checkout-user-info_name_surname
-            @include flex(row)
-            gap: 50px            
+            @include flex(column)
+            gap: 20px            
             div
                 @include flex(column)
                 gap: 10px
                 input
-                    @include size(310px, 50px)
+                    @include size(280px, 50px)
                     background-color: #F2F2F2
                     border: none
                     border-radius: 8px
                     padding: 0 30px
-                    font-size: 16px
+                    font-size: 14px
+    @media (min-width: 1366px)
+        form
+            gap: 30px
+            .checkout-user-info_name_surname
+                @include flex(row)
+                gap: 50px            
+                div
+                    input
+                        @include size(310px, 50px)
+                        font-size: 16px

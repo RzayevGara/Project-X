@@ -4,7 +4,6 @@ import ProductComment from '../Comment/ProductComment';
 
 function ParamsComment(props) {
   const product = useSelector((state) => state.setProductDetail.list);
-  console.log(product);
 
     if(props.switch===false){
         return (

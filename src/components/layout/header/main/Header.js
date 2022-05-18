@@ -5,7 +5,6 @@ import {useSelector} from "react-redux";
 
 function Header() {
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
-  console.log(HamburgerStatus)
 
   useEffect(() => {
     let body = document.body

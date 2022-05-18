@@ -11,10 +11,8 @@ import { TailSpin  } from 'react-loading-icons'
 function BasketProducts(props) {
 
   const [IsLoading, setIsLoading] = useState(false)
-  console.log(IsLoading)
 
   const dispatch = useDispatch()
-  console.log(props.list);
   return (
     <div className="basket-products">
       {IsLoading && 
