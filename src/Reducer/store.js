@@ -8,6 +8,7 @@ import HamburgerReducer from './HamburgerReducer'
 import HomePageReducer from './HomePageReducer'
 import LoginReducer from './LoginReducer'
 import CheckoutReducer from './CheckoutReducer'
+import AlertReducer from './AlertReducer'
 // export const store = configureStore({
 //   reducer: {
 //       category: ProductReducer,
@@ -30,7 +31,8 @@ const reducers = combineReducers({
       setHamburger: HamburgerReducer,
       homeList: HomePageReducer,
       login: LoginReducer,
-      checkout: CheckoutReducer
+      checkout: CheckoutReducer,
+      alertReducer: AlertReducer
 });
 
 const persistConfig = {

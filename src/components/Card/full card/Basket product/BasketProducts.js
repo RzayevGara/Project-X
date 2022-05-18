@@ -6,6 +6,7 @@ import commerce from '../../../../lib/Commerce'
 import {setSimpleList} from "../../../../Reducer/CardListReducer"
 import { useDispatch } from "react-redux";
 import { TailSpin  } from 'react-loading-icons'
+import {setIncrease, setDecrease, setDelete} from '../../../../Reducer/AlertReducer'
 
 
 function BasketProducts(props) {
@@ -45,15 +46,22 @@ function BasketProducts(props) {
               </div>
             </div>
             <div className="item-quantity-basket">
-              <div onClick={() =>{setIsLoading(true) ;commerce.cart.update(`${item.id}`, { quantity: item.quantity-1 }).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false)})}} className="icon">
+              <div onClick={() =>{setIsLoading(true) ;commerce.cart.update(`${item.id}`, { quantity: item.quantity-1 }).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false); dispatch(setDecrease(true)); setTimeout(() =>{dispatch(setDecrease(false))}, 3000)    })}} className="icon">
                 <img src={MinusIcon} alt="logo" />
               </div>
               <p>{item.quantity}</p>
-              <div onClick={() =>{setIsLoading(true); commerce.cart.update(`${item.id}`, { quantity: item.quantity+1 }).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false)})}} className="icon">
+              <div onClick={() =>{setIsLoading(true); commerce.cart.update(`${item.id}`, { quantity: item.quantity+1 }).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false); dispatch(setIncrease(true)); setTimeout(() =>{dispatch(setIncrease(false))}, 3000)  })}} className="icon">
                 <img src={PlusIcon} alt="logo" />
               </div>
             </div>
-            <img onClick={()=>{setIsLoading(true);commerce.cart.remove(`${item.id}`).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false)})}} className="delete-icon" src={DeleteIcon} alt="logo" />
+            <img onClick={()=>{setIsLoading(true);commerce.cart.remove(`${item.id}`).then((response) => {
+              dispatch(setSimpleList(response.cart)); 
+              setIsLoading(false); 
+              dispatch(setDelete(true)); setTimeout(() =>{dispatch(setDelete(false))}, 3000) 
+            }
+              )
+            }} 
+              className="delete-icon" src={DeleteIcon} alt="logo" />
           </li>
         ))}
       </ul>

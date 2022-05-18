@@ -29,7 +29,6 @@
                 @include size(10%, auto)
             p
                 @include font(20px, 500)
-
     .css-1p5q5e5-MuiStack-root
         display: none
         @media (min-width: 1366px)
@@ -40,19 +39,6 @@
                     text-decoration: underline
                 &:active
                     color: black
-    #alert-success
-        width: 100% 
-        position: fixed
-        bottom: 70px
-        left: 0
-        display: none
-        padding: 0
-        @media (min-width: 1366px)
-            width: 20% 
-            position: fixed
-            bottom: 0
-            left: 0
-            display: flex
     .container
         .product-detail
             @include flex(column, $align: center)
@@ -89,3 +75,18 @@
     @media (min-width: 1366px)
         color: black
         border-bottom: none
+
+.alert-success_add
+    width: 100% 
+    position: fixed
+    bottom: 70px
+    left: 0
+    display: none
+    padding: 0
+    @media (min-width: 1366px)
+        width: 20% 
+        position: fixed
+        bottom: 0
+        left: 0
+        display: none
+        padding: 0 !important

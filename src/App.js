@@ -23,7 +23,6 @@ import ProfileInfo from './components/Profile/User-Info/ProfileInfo'
 import Checkout from './Pages/Checkout'
 
 
-
 function App() {
   const dispatch = useDispatch()
 
@@ -36,6 +35,7 @@ function App() {
   
 
   return (
+    <>
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
@@ -57,6 +57,7 @@ function App() {
         </Route>
         <Route path="daxil-ol/:token" element={<GenerateToken/>}/>
       </Routes>
+    </>
   );
 }
 
