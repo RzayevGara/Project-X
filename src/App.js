@@ -18,9 +18,9 @@ import CreateAccount from './components/Sign/CreateAccount'
 import SendEmail from './components/Login/SendEmail'
 import Profile from './Pages/Profile' 
 import ProfileOrder from './components/Profile/Order/ProfileOrder'
-import ProfileFavorite from './components/Profile/Favorites/ProfileFavorite'
 import ProfileInfo from './components/Profile/User-Info/ProfileInfo'
 import Checkout from './Pages/Checkout'
+import OrderDetail from './components/Profile/Order-detail/OrderDetail'
 
 
 function App() {
@@ -50,8 +50,8 @@ function App() {
           <Route path="qeydiyyatdan-kec/hesab-yaradilir" element={<CreateAccount/>}/>
           <Route path="profil" element={<Profile/>}>
             <Route path="/profil/sifarislerim"  element={<ProfileOrder/>}/>
-            <Route path="/profil/favorilerim"  element={<ProfileFavorite/>}/>
             <Route path="/profil/melumatlarim"  element={<ProfileInfo/>}/>
+            <Route path="/profil/sifarislerim/:id"  element={<OrderDetail/>}/>
           </Route>
         <Route path="sifarisleri-tesdiqle" element={<Checkout/>}/>
         </Route>
