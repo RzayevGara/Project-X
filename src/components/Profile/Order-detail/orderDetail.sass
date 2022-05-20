@@ -1,2 +1,67 @@
 .order-detail
     flex: 4
+    @include flex(column)
+    gap: 20px
+    .profile-detail_title
+        @include font(24px, 500)
+        @include flex(row, $align: center)
+        gap: 20px
+    .order-detail_div
+        background-color: white
+        width: 100%
+        @include flex(column)
+        padding: 5%
+        gap: 70px
+        .order-detail-div_specs
+            @include flex(row)
+            gap: 10%
+            img
+                width: 15%
+            .order-detail-div-specs_info
+                @include flex(column)
+                gap: 25px
+                width: 100%
+                .order-detail-div-specs_name
+                    @include font(18px, 500)
+                div
+                    @include flex(row)
+                    gap: 20%
+                    p
+                        @include flex(column)
+                        gap: 7px
+                        color: #828282
+                        span
+                            color: black
+        .order-detail-div_info
+            @include flex(row, space-between)
+            gap: 10%
+            border-top: 2px solid #BDBDBD
+            padding-top: 70px
+            div
+                .order-detail-div-info_title
+                    @include font(18px, 500)
+                    margin-bottom: 20px
+                ul
+                    @include flex(column)
+                    gap: 10px
+                    padding-left: 20px
+                    li
+                        input
+                            border: none
+                            background-color: transparent
+                            font-size: 16px
+                            padding: 5px
+                            border-radius: 8px
+                            width: 300px
+                            &::placeholder
+                                color: black
+                                font-size: 16px
+            .order-detail-div-info-BTN
+                color: #3366FF
+                cursor: pointer
+                border: none
+                height: fit-content
+                background-color: transparent
+                font-size: 16px
+            .order-detail_saveBtn
+                display: none

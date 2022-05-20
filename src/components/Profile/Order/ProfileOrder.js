@@ -41,7 +41,7 @@ function ProfileOrder() {
                     <p className="profile-order-detail_price">
                       Ümumi məbləğ:
                       <br/>
-                      <span>{lineItem.price.formatted_with_symbol}</span>
+                      <span>{lineItem.line_total.formatted_with_symbol}</span>
                     </p>
                     <button onClick={() =>{navigate(`/profil/sifarislerim/${item.id}`, { replace: true }); dispatch(setLineItems(lineItem.id))}} type="button">Sifarişin detalları</button>
                 </div>
