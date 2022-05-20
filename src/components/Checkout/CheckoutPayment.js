@@ -1,10 +1,10 @@
-import React, { useEffect , useState} from "react";
+import React from "react";
 import { Formik, Field } from "formik";
 import { PaymentInputsWrapper, usePaymentInputs } from "react-payment-inputs";
 import images from "react-payment-inputs/images";
 import Button from "@mui/material/Button";
 import commerce from "../../lib/Commerce";
-import { setCartToken,setCartID, setShippingMethod ,setLoading, setReset} from "../../Reducer/CheckoutReducer";
+import {setLoading, setReset} from "../../Reducer/CheckoutReducer";
 import { useDispatch, useSelector } from "react-redux";
 import {setSimpleList} from "../../Reducer/CardListReducer"
 
@@ -19,23 +19,6 @@ function CheckoutPayment(props) {
   
   const shippingMethod  = useSelector((state) => state.checkout.shippingMethod)
   
-
-  // useEffect(() => {
-  //   commerce.checkout
-  //   .generateToken(`${CartID}`, { type: "cart" })
-  //   .then((checkout) => dispatch(setCartToken(checkout.id)));
-  // }, [dispatch, CartID]);
-
-
-  // useEffect(() => {
-  //   if(shippingCountry!==""){
-  //     commerce.checkout.getShippingOptions(cartToken, {
-  //     country: `${shippingCountry}`,
-  //   }).then((response) => dispatch(setShippingMethod(response[0].id)));
-  //   }
-  // },[cartToken, dispatch, shippingCountry])
-
-
   const {
     meta,
     getCardImageProps,

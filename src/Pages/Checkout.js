@@ -46,6 +46,8 @@ function Checkout() {
     })
   }, [])
 
+  console.log(cartToken)
+
   useEffect(() => {
     if(shippingCountry!==""){
       commerce.checkout.getShippingOptions(cartToken, {
