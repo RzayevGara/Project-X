@@ -6,6 +6,7 @@ import { setOrderDetail } from "../../../Reducer/CustomerOrder";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import ArrowIcon from '../../../assets/images/arrow-icon-order.svg'
+import CardIcon from '../../../assets/images/card.svg'
 
 function OrderDetail() {
   let { id } = useParams();
@@ -141,9 +142,6 @@ const saveBtn =(e)=>{
                     <li>
                       <input className="order-detail_input-control" type="email" disabled placeholder={order.customer.email}/>
                     </li>
-                    {/* <li>{order.customer.lastname}</li>
-                    <li>{order.customer.phone}</li>
-                    <li>{order.customer.email}</li> */}
                   </ul>
                 </div>
                 <div>
@@ -158,16 +156,37 @@ const saveBtn =(e)=>{
                     <li>
                       <input className="order-detail_input-control" type="text" disabled placeholder={order.shipping.street}/>
                     </li>
-                    {/* <li>{order.shipping.country}</li>
-                    <li>{order.shipping.town_city}</li>
-                    <li>{order.shipping.street}</li> */}
                   </ul>
                 </div>
                 <button type="button" className="order-detail-div-info-BTN order-detail_editBtn" onClick={editBtn}>Düzəliş et</button>
                 <button type="submit" className="order-detail-div-info-BTN order-detail_saveBtn">Yadda saxla</button>
               </form>
-              {/* <div className="order-detail-div_payment"></div> */}
-              
+              <div className="order-detail-div_payment">
+                <p className="order-detail-div-payment_title">Ödəmə detalları</p>
+                <div>
+                  <p className="order-detail-div-payment_info">
+                  Ödəmə metodu
+                  <span> <img src={CardIcon} alt="logo"/> Kart ilə</span>
+                  </p>
+                  <p className="order-detail-div-payment_info">
+                  Toplam məbləğ
+                  <span> {lineItem.line_total.formatted_with_symbol}</span>
+                  </p>
+                  <p className="order-detail-div-payment_info">
+                  Təcili çatdırılma
+                  <span> ₼0</span>
+                  </p>
+                  <p className="order-detail-div-payment_info">
+                  Promo kod
+                  <span> ₼0</span>
+                  </p>
+                </div>
+                <p className="order-detail-div-payment-info_total">
+                  Cəmi
+                  <span> {lineItem.line_total.formatted_with_symbol}</span>
+                  </p>
+                
+              </div>
             </div>;
           }
         })}

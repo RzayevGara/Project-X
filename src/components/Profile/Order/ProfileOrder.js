@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import commerce from '../../../lib/Commerce'
 import {useSelector, useDispatch} from "react-redux";
-import {setOrder, setLineItems} from '../../../Reducer/CustomerOrder'
+import {setOrder, setLineItems, setOrderCount} from '../../../Reducer/CustomerOrder'
 import {useNavigate} from 'react-router-dom'
 
 
@@ -12,6 +12,13 @@ function ProfileOrder() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    const order = document.querySelector(".profile-order_div").childElementCount
+      dispatch(setOrderCount(order.childElementCount))
+  },[dispatch])
+
+  const orderCount2 = useSelector((state) => state.customer.orderCount)
+
+  useEffect(() => {
     commerce.customer.getOrders(`${localStorage.getItem('commercejs_customer_id')}`).then((orders) => dispatch(setOrder(orders.data)));
   }, [dispatch])
 
@@ -20,7 +27,7 @@ function ProfileOrder() {
   console.log(orders)
   return (
     <div className="profile-order">
-         <p className="profile-order_title">Sifarişlərim (4 məhsul)</p>
+         <p className="profile-order_title">Sifarişlərim ({orderCount2 && orderCount2} məhsul)</p>
          <ul className="profile-order_div">
            {orders &&
            orders.map((item)=>(

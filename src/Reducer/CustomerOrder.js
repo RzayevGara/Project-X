@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = { 
     orders: "",
     lineItems: "item_RyWOwmPOMAlnEa",
-    orderDetail: ""
+    orderDetail: "",
+    orderCount: ""
 }
 
 
@@ -19,12 +20,14 @@ export const CustomerOrder = createSlice({
     },
     setOrderDetail: (state,action) => {
       state.orderDetail = action.payload
-
+    },
+    setOrderCount: (state,action) => {
+      state.orderCount = action.payload
     }
 }
 })
 
 // Action creators are generated for each case reducer function
-export const {setOrder, setLineItems, setOrderDetail} = CustomerOrder.actions
+export const {setOrder, setLineItems, setOrderDetail, setOrderCount} = CustomerOrder.actions
 
 export default CustomerOrder.reducer

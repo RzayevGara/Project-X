@@ -12,6 +12,7 @@
         @include flex(column)
         padding: 5%
         gap: 70px
+        border-radius: 8px
         .order-detail-div_specs
             @include flex(row)
             gap: 10%
@@ -65,3 +66,33 @@
                 font-size: 16px
             .order-detail_saveBtn
                 display: none
+        .order-detail-div_payment
+            @include flex(column)
+            border-top: 2px solid #BDBDBD
+            padding-top: 70px
+            .order-detail-div-payment_title
+                @include font(18px, 500)
+                margin-bottom: 30px
+            div
+                @include flex(column)
+                gap: 15px
+                border-bottom: 1px solid #BDBDBD
+                padding-bottom: 20px
+                .order-detail-div-payment_info
+                    @include flex(row, space-between, center)
+                    padding-left: 20px
+                    color: #828282
+                    span
+                        color: black
+                        @include font(18px, 500)
+            .order-detail-div-payment-info_total
+                @include flex(row, space-between, center)
+                @include font(20px, 600)
+                padding-left: 20px
+                padding-top: 20px
+                span
+                    color: #DB2C66
+                    font-size: 22px
+
+
+
