@@ -21,7 +21,6 @@ function Profile() {
         }
     },[navigate, token])
 
-
   return (
     <div className="profile">
        <div className="container">

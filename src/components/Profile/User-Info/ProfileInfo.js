@@ -2,16 +2,23 @@ import React, {useState, useEffect} from 'react'
 import commerce from '../../../lib/Commerce'
 import EditBtn from '../../../assets/images/edit.svg'
 import SaveBtn from '../../../assets/images/saveIcon.svg'
+import {useSelector, useDispatch} from "react-redux";
+import {setCustomerInfo} from '../../../Reducer/CustomerOrder'
 
 
 function ProfileInfo() {
+    const dispatch = useDispatch()
     let customerID  = localStorage.getItem('commercejs_customer_id')
-    // console.log(customerID)
-    const [customerInfo, setCustomerInfo] = useState()
+    
     useEffect(()=>{
-        commerce.customer.about().then((customer) => setCustomerInfo(customer));
+        const changePage = () => {
+            window.scrollTo({top: 0});
+          };
+          changePage()
+        commerce.customer.about().then((customer) => dispatch(setCustomerInfo(customer)));
     }, [])
-    // console.log(customerInfo)
+
+    const customerInfo = useSelector((state) => state.customer.customerInfo)
 
     const infoSubmit =(e)=>{
         e.preventDefault();

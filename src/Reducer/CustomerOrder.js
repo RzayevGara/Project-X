@@ -4,7 +4,8 @@ const initialState = {
     orders: "",
     lineItems: "item_RyWOwmPOMAlnEa",
     orderDetail: "",
-    orderCount: ""
+    orderCount: "",
+    customerInfo: ""
 }
 
 
@@ -23,11 +24,15 @@ export const CustomerOrder = createSlice({
     },
     setOrderCount: (state,action) => {
       state.orderCount = action.payload
+    },
+    setCustomerInfo: (state,action) => {
+      state.customerInfo = action.payload
+
     }
 }
 })
 
 // Action creators are generated for each case reducer function
-export const {setOrder, setLineItems, setOrderDetail, setOrderCount} = CustomerOrder.actions
+export const {setOrder, setLineItems, setOrderDetail, setOrderCount, setCustomerInfo} = CustomerOrder.actions
 
 export default CustomerOrder.reducer

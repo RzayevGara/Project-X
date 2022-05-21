@@ -52,7 +52,7 @@ function OrderDetail() {
     ).innerText;
 
     e.preventDefault();
-    console.log(e.target[2].value);
+    console.log(e.target[6].value);
     updateInfo(e, countryName);
     document.querySelectorAll(".order-detail_input-control").forEach((item) => {
       item.disabled = true;
@@ -87,7 +87,7 @@ function OrderDetail() {
       },
       shipping: {
         street: `${e.target[6].value}`,
-        town_city: `${e.target[5].value}`,
+        town_city: `${e.target[7].value}`,
         country: `${countryIso}`,
       },
     };
@@ -100,6 +100,10 @@ function OrderDetail() {
 
   const [age, setAge] = React.useState("");
   useEffect(() => {
+    const changePage = () => {
+      window.scrollTo({top: 0});
+    };
+    changePage()
     commerce.customer
       .getOrder(`${id}`)
       .then((order) => {
