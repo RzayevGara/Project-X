@@ -4,14 +4,17 @@
 
 @import '../components/Profile/Profile-menu/profileMenu'
 @import '../components/Profile/Order/profileOrder'
+@import '../components/Profile/Order/profileOrderEmpty'
 @import '../components/Profile/User-Info/profileInfo'
 @import '../components/Profile/Order-detail/orderDetail'
+
 
 .profile
     background-color: #faf9f9
     .container
-        @include flex (row)
+        @include flex (column)
         gap: 50px
+        padding: 0
     .logout-modal
         background-color: #0000009a
         position: fixed
@@ -22,11 +25,13 @@
         display: none
         .modal-windows
             background-color: white
-            @include size(25%)
+            @include size(80%)
             @include flex(column, center, center)
-            padding: 30px 0
-            gap: 40px
+            gap: 20px
             border-radius: 8px
+            padding: 30px 10px
+            p
+                @include font($align: center, $height: 26px)
             .modal-btns
                 @include flex(row, center, center)
                 gap: 40px
@@ -38,4 +43,12 @@
                     cursor: pointer
                     &:nth-child(1)
                         background-color: #d6d5d5
-                        
+    @media (min-width: 1366px)
+        .container
+            @include flex (row)
+            padding: 2% 5%
+        .logout-modal
+            .modal-windows
+                @include size(25%)
+                padding: 30px 0
+                gap: 40px

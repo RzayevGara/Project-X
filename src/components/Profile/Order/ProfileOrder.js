@@ -7,9 +7,9 @@ import {
   setOrderCount,
 } from "../../../Reducer/CustomerOrder";
 import { useNavigate } from "react-router-dom";
+import ProfileOrderEmpty from './ProfileOrderEmpty'
 
 function ProfileOrder() {
-  const customerToken = useSelector((state) => state.login.customerToken);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -26,28 +26,28 @@ function ProfileOrder() {
       .getOrders(`${localStorage.getItem("commercejs_customer_id")}`)
       .then((orders) => dispatch(setOrder(orders.data)))
       .then(() => {
-        if(document.querySelector(".profile-order_div")){
-
+        if (document.querySelector(".profile-order_div")) {
           const order =
             document.querySelector(".profile-order_div").childElementCount;
-  
+
           dispatch(setOrderCount(order));
         }
       });
   }, [dispatch]);
 
   const orders = useSelector((state) => state.customer.orders);
+  console.log(orders);
 
   const orderCount2 = useSelector((state) => state.customer.orderCount);
 
   return (
     <div className="profile-order">
       <p className="profile-order_title">
-        Sifarişlərim ({orderCount2 && orderCount2} məhsul)
+        Sifarişlərim ({orderCount2? orderCount2: 0} məhsul)
       </p>
-      <ul className="profile-order_div">
-        {orders &&
-          orders.map((item) =>
+      {orders? (
+        <ul className="profile-order_div">
+          {orders.map((item) =>
             item.order.line_items.map((lineItem, index) => (
               <li className="profile-order_list" key={index}>
                 <img src={lineItem.image.url} alt="logo" />
@@ -82,7 +82,10 @@ function ProfileOrder() {
               </li>
             ))
           )}
-      </ul>
+        </ul>
+      ): 
+      <ProfileOrderEmpty/>
+    }
     </div>
   );
 }

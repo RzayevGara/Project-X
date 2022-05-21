@@ -2,7 +2,6 @@ import LogoProject from '../../../../assets/images/Project X.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import {faUser} from '@fortawesome/free-regular-svg-icons'
-import {faHeart} from '@fortawesome/free-regular-svg-icons'
 import { Link} from "react-router-dom";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
@@ -67,7 +66,6 @@ const Navbar = ()=> {
           {customerInfo && customerInfo.firstname}
           <FontAwesomeIcon className="icon" icon={faUser}/>
           </Link>
-          {/* <FontAwesomeIcon className="icon" icon={faHeart}/> */}
           <Link to={`/sebet`}>
             <IconButton className="icon" aria-label="cart">
               <StyledBadge badgeContent={basketCount && basketCount.line_items.length} color="secondary">

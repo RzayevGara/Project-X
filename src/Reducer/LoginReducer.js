@@ -6,7 +6,7 @@ const initialState = {
     signStatus: "",
     loginStatus: "",
     customerToken: "",
-    customerInfo: ""
+    customerInfo: "",
 }
 
 

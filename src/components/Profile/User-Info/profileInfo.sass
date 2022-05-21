@@ -3,9 +3,10 @@
     flex: 4
     gap: 30px
     .profile-info_title
+        padding: 0 5%
         @include font(24px, 500)
     .profile-info_div
-        width: 70%
+        width: 100%
         background-color: white
         padding: 50px 30px
         border-radius: 8px
@@ -13,13 +14,14 @@
             @include flex(column, center, center)
             gap: 30px
             .profile-info_name_surname
-                @include flex(row, space-around)
+                @include flex(column, space-around)
                 width: 100%
+                gap: 25px
                 div
                     @include flex(column)
-                    gap: 10px
+                    gap: 25px
                     input
-                        @include size(310px, 50px)
+                        @include size(100%, 50px)
                         background-color: #F2F2F2
                         border: none
                         border-radius: 8px
@@ -38,3 +40,18 @@
                 margin-top: 30px
             .btn-save
                 display: none
+    @media(min-width: 1366px)
+        .profile-info_title
+            padding: 0
+        .profile-info_div
+            width: 70%
+            form
+                .profile-info_name_surname
+                    @include flex(row, space-around)
+                    gap: 0
+                    div
+                        gap: 10px
+                        input
+                            @include size(310px, 50px)
+                .btn-save
+                    display: none

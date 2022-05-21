@@ -1,0 +1,20 @@
+.profile-order-empty
+    background-color: white
+    @include flex(column, center, center)
+    border-radius: 8px
+    @include size(100%)
+    padding: 40% 0
+    gap: 40px
+    img
+        width: 45%
+    p
+        color: #BDBDBD
+        @include font(20px, $height: 30px, $align: center)
+        width: 60%
+    @media(min-width: 1366px)
+        padding: 10% 0
+        img
+            width: 15%
+        p
+            width: auto
+

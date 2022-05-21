@@ -1,23 +1,53 @@
 .profile-menu
     flex: 1
-    background-color: white
-    padding: 40px 30px
-    @include flex(column)
-    gap: 40px
+    @include flex(row, $align: center)
     border-radius: 8px
-    @include size(auto, 300px)
-    position: sticky
-    top: 160px
+    position: relative
+    top: 0
+    overflow: scroll
+    left: 0
+    width: 100%
+    gap: 30px
+    padding: 20px 5%
     .profile-title
         @include font(20px, 500)
+        display: none
     a
+        background-color: white
         @include flex(row)
+        padding: 30px
         gap: 20px
+        border-radius: 20px
+        border: 1px solid #E0E0E0
         p
             @include font(16px, 400)
+            white-space: nowrap
     .log-out
+        background-color: white
         @include flex(row)
-        gap: 20px
         cursor: pointer
+        padding: 30px
+        gap: 20px
+        border-radius: 20px
+        border: 1px solid #E0E0E0
         p
             @include font(16px, 400)
+    @media (min-width: 1366px)
+        background-color: white
+        padding: 40px 30px
+        @include flex(column, flex-start, flex-start)
+        gap: 40px
+        @include size(auto, 300px)
+        position: sticky
+        top: 160px
+        overflow: visible
+        .profile-title
+            display: block
+        a
+            padding: 0
+            border: none
+            background-color: transparent
+        .log-out
+            padding: 0
+            border: none
+            background-color: transparent

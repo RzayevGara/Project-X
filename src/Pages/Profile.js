@@ -3,7 +3,7 @@ import {Outlet, useNavigate} from 'react-router-dom'
 import ProfileMenu from '../components/Profile/Profile-menu/ProfileMenu'
 import './profile.sass'
 import commerce from '../lib/Commerce' 
-import {setCustomerToken} from '../Reducer/LoginReducer'
+import {setCustomerToken, setCustomerInfo} from '../Reducer/LoginReducer'
 import {useDispatch, useSelector} from 'react-redux'
  
 
@@ -35,6 +35,7 @@ function Profile() {
                     <button onClick={()=>{
                         commerce.customer.logout()
                         dispatch(setCustomerToken(null))
+                        dispatch(setCustomerInfo(null))
                         navigate ("/", { replace: true })
                     }}>Bəli</button>
                 </div>
