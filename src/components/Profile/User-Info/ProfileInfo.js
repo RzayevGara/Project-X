@@ -27,7 +27,7 @@ function ProfileInfo() {
             firstname: `${e.target[0].value}`,
             lastname: `${e.target[1].value}`,
             phone: `${e.target[3].value}`,
-          }, customerID).then((customer) => console.log(customer));
+          }, customerID)
     }
     const editBtn =()=>{
         document.querySelectorAll(".input-control").forEach((item)=>{

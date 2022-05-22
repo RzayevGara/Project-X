@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 function BasketPrice(props) {
   const BasketList = useSelector((state) => state.listOrder.SimpleList);
-console.log(BasketList)
   return (
     <div className="basket-price">
       <div className="price-detail">

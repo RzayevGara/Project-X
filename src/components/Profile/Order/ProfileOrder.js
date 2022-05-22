@@ -36,7 +36,6 @@ function ProfileOrder() {
   }, [dispatch]);
 
   const orders = useSelector((state) => state.customer.orders);
-  console.log(orders);
 
   const orderCount2 = useSelector((state) => state.customer.orderCount);
 

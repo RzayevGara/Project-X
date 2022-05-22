@@ -78,7 +78,7 @@ function CheckoutPayment(props) {
                 },
               },
             })
-            .then((response) => {console.log(response);dispatch(setLoading(false));props.setActiveStep((prevActiveStep) => prevActiveStep + 1); commerce.cart.refresh().then((cart) => dispatch(setSimpleList(cart))); dispatch(setReset())});
+            .then((response) => {dispatch(setLoading(false));props.setActiveStep((prevActiveStep) => prevActiveStep + 1); commerce.cart.refresh().then((cart) => dispatch(setSimpleList(cart))); dispatch(setReset())});
         }
       }}
       validate={() => {

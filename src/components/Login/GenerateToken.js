@@ -8,7 +8,7 @@ function GenerateToken() {
     let {token}  = useParams()
 
     useEffect(() => {
-        commerce.customer.getToken(`${token}`, 'save= true' ).then((jwt) => {navigate("/", { replace: true }); console.log(jwt)});
+        commerce.customer.getToken(`${token}`, 'save= true' ).then((jwt) => {navigate("/", { replace: true })});
     }, [token, navigate])
 
   return (

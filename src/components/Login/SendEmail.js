@@ -6,7 +6,6 @@ import MailImage from "../../assets/images/undraw_Mail_sent_re_0ofv (1) 1.svg"
 
 function CreateAccount() {
     const loginStatus  = useSelector((state) => state.login.loginStatus)
-    console.log(loginStatus)
     if(loginStatus===""){
         return (
           <div className="check-login-account">

@@ -34,7 +34,7 @@ function Checkout() {
 
 
   useEffect(() => {
-    commerce.cart.retrieve().then((cart) =>{dispatch(setCartID(cart.id)); console.log(cart);
+    commerce.cart.retrieve().then((cart) =>{dispatch(setCartID(cart.id))
       if(cart.line_items.length>0){
         commerce.checkout
         .generateToken( cart.id, { type: "cart" })
@@ -45,8 +45,6 @@ function Checkout() {
       }
     })
   }, [])
-
-  console.log(cartToken)
 
   useEffect(() => {
     if(shippingCountry!==""){

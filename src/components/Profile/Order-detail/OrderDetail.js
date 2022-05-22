@@ -19,8 +19,6 @@ function OrderDetail() {
   const order = useSelector((state) => state.customer.orderDetail);
   const lineItemsID = useSelector((state) => state.customer.lineItems);
 
-  console.log(order);
-
   const [selectStatus, setSelectStatus] = useState(true);
 
   const editBtn = () => {
@@ -39,20 +37,17 @@ function OrderDetail() {
           item.focus();
         }
       });
-    // console.log( document.querySelector(".css-yf8vq0-MuiSelect-nativeInput"))
     document.querySelector(".order-detail_editBtn").style.display = "none";
     document.querySelector(".order-detail_saveBtn").style.display = "flex";
   };
 
   const saveBtn = (e) => {
     setSelectStatus(true);
-    // console.log( document.querySelector(".css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input").innerText)
     const countryName = document.querySelector(
       ".css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
     ).innerText;
 
     e.preventDefault();
-    console.log(e.target[6].value);
     updateInfo(e, countryName);
     document.querySelectorAll(".order-detail_input-control").forEach((item) => {
       item.disabled = true;
@@ -91,10 +86,9 @@ function OrderDetail() {
         country: `${countryIso}`,
       },
     };
-    let customer = await axios.put(url, body, {
+    await axios.put(url, body, {
       headers: headers,
     });
-    console.log(customer);
   };
   const [country, setCountry] = useState([]);
 
