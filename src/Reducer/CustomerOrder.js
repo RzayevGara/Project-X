@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = { 
     orders: "",
-    lineItems: "item_RyWOwmPOMAlnEa",
+    lineItems: "item_aZWNoyaj19o80J",
     orderDetail: "",
     orderCount: "",
     customerInfo: ""

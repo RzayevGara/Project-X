@@ -6,18 +6,21 @@
         @include font(24px, 500)
         @include flex(row, $align: center)
         gap: 20px
+        padding-left: 5%
     .order-detail_div
         background-color: white
         width: 100%
         @include flex(column)
         padding: 5%
-        gap: 70px
+        gap: 50px
         border-radius: 8px
         .order-detail-div_specs
-            @include flex(row)
-            gap: 10%
+            @include flex(column)
+            gap: 50px
+            margin-top: 30px
             img
-                width: 15%
+                width: 50%
+                align-self: center
             .order-detail-div-specs_info
                 @include flex(column)
                 gap: 25px
@@ -34,10 +37,11 @@
                         span
                             color: black
         .order-detail-div_info
-            @include flex(row, space-between)
-            gap: 10%
+            @include flex(column)
+            gap: 50px
             border-top: 2px solid #BDBDBD
-            padding-top: 70px
+            padding-top: 50px
+            position: relative
             div
                 .order-detail-div-info_title
                     @include font(18px, 500)
@@ -60,10 +64,6 @@
                         .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled
                             -webkit-text-fill-color: black
                             padding: 0
-                        // fieldset
-                        //     border: none
-                        // path
-                        //     display: none
             .order-detail-div-info-BTN
                 color: #3366FF
                 cursor: pointer
@@ -71,12 +71,15 @@
                 height: fit-content
                 background-color: transparent
                 font-size: 16px
+                position: absolute
+                right: 5%
+                margin: 4px 0
             .order-detail_saveBtn
                 display: none
         .order-detail-div_payment
             @include flex(column)
             border-top: 2px solid #BDBDBD
-            padding-top: 70px
+            padding-top: 50px
             .order-detail-div-payment_title
                 @include font(18px, 500)
                 margin-bottom: 30px
@@ -100,6 +103,22 @@
                 span
                     color: #DB2C66
                     font-size: 22px
-
-
-
+    @media (min-width: 1366px)
+        .profile-detail_title
+            padding: 0
+        .order-detail_div
+            gap: 70px
+            .order-detail-div_specs
+                @include flex(row)
+                gap: 10%
+                margin: 0
+                img
+                    width: 15%
+            .order-detail-div_info
+                @include flex(row, space-between)
+                gap: 10%
+                padding-top: 70px
+                position: static
+                .order-detail-div-info-BTN
+                    position: static
+                    margin: 0
