@@ -6,10 +6,39 @@ import commerce from '../../../../lib/Commerce'
 import {setSimpleList} from "../../../../Reducer/CardListReducer"
 import { useDispatch } from "react-redux";
 import { TailSpin  } from 'react-loading-icons'
-import {setIncrease, setDecrease, setDelete} from '../../../../Reducer/AlertReducer'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function BasketProducts(props) {
+
+  const increase = () =>   toast.success('Məhsul sayı artırıldı!', {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  const decrease = () =>   toast.success('Məhsul sayı azaldıldı!', {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  const deleteItem = () =>   
+  toast.error('Məhsul səbətdən silindi!', {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
 
   const [IsLoading, setIsLoading] = useState(false)
 
@@ -46,18 +75,18 @@ function BasketProducts(props) {
               </div>
             </div>
             <div className="item-quantity-basket">
-              <div onClick={() =>{setIsLoading(true) ;commerce.cart.update(`${item.id}`, { quantity: item.quantity-1 }).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false); dispatch(setDecrease(true)); setTimeout(() =>{dispatch(setDecrease(false))}, 3000)    })}} className="icon">
+              <div onClick={() =>{setIsLoading(true) ;commerce.cart.update(`${item.id}`, { quantity: item.quantity-1 }).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false);decrease()})}} className="icon">
                 <img src={MinusIcon} alt="logo" />
               </div>
               <p>{item.quantity}</p>
-              <div onClick={() =>{setIsLoading(true); commerce.cart.update(`${item.id}`, { quantity: item.quantity+1 }).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false); dispatch(setIncrease(true)); setTimeout(() =>{dispatch(setIncrease(false))}, 3000)  })}} className="icon">
+              <div onClick={() =>{setIsLoading(true); commerce.cart.update(`${item.id}`, { quantity: item.quantity+1 }).then((response) => {dispatch(setSimpleList(response.cart)); setIsLoading(false); increase()})}} className="icon">
                 <img src={PlusIcon} alt="logo" />
               </div>
             </div>
             <img onClick={()=>{setIsLoading(true);commerce.cart.remove(`${item.id}`).then((response) => {
               dispatch(setSimpleList(response.cart)); 
               setIsLoading(false); 
-              dispatch(setDelete(true)); setTimeout(() =>{dispatch(setDelete(false))}, 3000) 
+              deleteItem()
             }
               )
             }} 
@@ -65,6 +94,17 @@ function BasketProducts(props) {
           </li>
         ))}
       </ul>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

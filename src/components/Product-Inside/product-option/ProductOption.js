@@ -19,8 +19,8 @@ import {
 import commerce from "../../../lib/Commerce";
 import {setSimpleList} from "../../../Reducer/CardListReducer"
 import { TailSpin  } from 'react-loading-icons'
-import {setBasket} from '../../../Reducer/AlertReducer'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProductOption() {
   const product = useSelector((state) => state.setProductDetail.list);
@@ -48,6 +48,15 @@ function ProductOption() {
     dispatch(setItemID(product.id))
   }, [dispatch, product])
 
+  const addBasket = () =>   toast.success('Məhsul səbətə əlavə olundu!', {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 
   return (
     <div className="product-option">
@@ -158,7 +167,7 @@ function ProductOption() {
                 commerce.cart.add(`${product.id}`, quantity,{
                   [colorvr]: `${colorop}`,
                   [sizevr]: `${sizeop}`,
-                }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false); dispatch(setBasket(true)); setTimeout(() =>{dispatch(setBasket(false))}, 3000)}))
+                }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false);addBasket()}))
                 .catch((error) => {console.log("error"); setIsLoading(false)})
               }else{
                 if(!colorop){
@@ -173,14 +182,14 @@ function ProductOption() {
               setIsLoading(true)
               commerce.cart.add(`${product.id}`, quantity,{
                 [colorvr]: `${colorop}`,
-              }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false); dispatch(setBasket(true)); setTimeout(() =>{dispatch(setBasket(false))}, 3000)}));
+              }).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false);addBasket()}));
             }else{
               dispatch(setColorMsg("Zəhmət olmasa rəng seçin"))
             }
           }else if(product.variant_groups.length===0){
             setIsLoading(true)
             commerce.cart.add(`${product.id}`, quantity
-            ).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false); dispatch(setBasket(true)); setTimeout(() =>{dispatch(setBasket(false))}, 3000)}));
+            ).then(() => commerce.cart.retrieve().then((items) => {dispatch(setSimpleList(items)); setIsLoading(false);addBasket()}));
           }
           }}
           className="basket-btn"
@@ -193,6 +202,17 @@ function ProductOption() {
         <h4>Məhsul haqqında</h4>
         <p>{product.description}</p>
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

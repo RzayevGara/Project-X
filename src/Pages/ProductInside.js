@@ -13,7 +13,6 @@ import ProductOption from "../components/Product-Inside/product-option/ProductOp
 import ParamsComment from "../components/Product-Inside/Params-Comment/ParamsComment"
 import ErrorPageComp from '../components/Error Page/ErrorPage'
 import { TailSpin  } from 'react-loading-icons'
-import Alert from '@mui/material/Alert';
 
 function ProductInside() {
   let {productid} = useParams();
@@ -50,8 +49,6 @@ function ProductInside() {
       changePage()
   }, [productid, dispatch]);
 
-  const addBasketStatus = useSelector((state) => state.alertReducer.addBasket)
-
   if (!ErrorPage){
     return (
       <div id="product-inside">
@@ -80,12 +77,6 @@ function ProductInside() {
             </div>
             <ParamsComment switch={Switch}/>
         </div>
-        <Stack 
-        style={{display: addBasketStatus?"flex":"none"}} 
-        className="alert-success_add" spacing={2}
-        >
-          <Alert  sx={{ height: '60px',display: "flex", alignItems: "center"}} onClose={() => {document.querySelector(".alert-success_add").style.display="none"}}>Məhsul səbətə əlavə olundu!</Alert>
-        </Stack>
       </div>
     )
   }else{
