@@ -3,7 +3,6 @@ import commerce from "../../../lib/Commerce";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setOrder,
-  setLineItems,
   setOrderCount,
 } from "../../../Reducer/CustomerOrder";
 import { useNavigate } from "react-router-dom";
@@ -37,12 +36,12 @@ function ProfileOrder() {
 
   const orders = useSelector((state) => state.customer.orders);
 
-  const orderCount2 = useSelector((state) => state.customer.orderCount);
+  const orderCount = useSelector((state) => state.customer.orderCount);
 
   return (
     <div className="profile-order">
       <p className="profile-order_title">
-        Sifarişlərim ({orderCount2? orderCount2: 0} məhsul)
+        Sifarişlərim ({orderCount? orderCount: 0} məhsul)
       </p>
       {orders? (
         <ul className="profile-order_div">
@@ -68,10 +67,9 @@ function ProfileOrder() {
                   </p>
                   <button
                     onClick={() => {
-                      navigate(`/profil/sifarislerim/${item.id}`, {
+                      navigate(`/profil/sifarislerim/${item.id} ${lineItem.id}`, {
                         replace: true,
                       });
-                      dispatch(setLineItems(lineItem.id));
                     }}
                     type="button"
                   >

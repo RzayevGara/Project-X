@@ -11,8 +11,6 @@ import {setSimpleList} from "../../Reducer/CardListReducer"
 function CheckoutPayment(props) {
   const dispatch = useDispatch();
 
-  // const CartID = useSelector((state) => state.checkout.cartID)
-
   const cartToken = useSelector((state) => state.checkout.cartToken);
 
   const shippingCountry  = useSelector((state) => state.checkout.shippingCountry)

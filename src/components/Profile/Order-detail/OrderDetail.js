@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ArrowIcon from "../../../assets/images/arrow-icon-order.svg";
 import CardIcon from "../../../assets/images/card.svg";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -17,7 +16,8 @@ function OrderDetail() {
   const dispatch = useDispatch();
 
   const order = useSelector((state) => state.customer.orderDetail);
-  const lineItemsID = useSelector((state) => state.customer.lineItems);
+
+  const [orderID, lineItemsID] = id.split(' ');
 
   const [selectStatus, setSelectStatus] = useState(true);
 
@@ -99,7 +99,7 @@ function OrderDetail() {
     };
     changePage()
     commerce.customer
-      .getOrder(`${id}`)
+      .getOrder(`${orderID}`)
       .then((order) => {
         dispatch(setOrderDetail(order));
         return order;
