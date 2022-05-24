@@ -4,7 +4,8 @@ const initialState = {
     orders: "",
     orderDetail: "",
     orderCount: "",
-    customerInfo: ""
+    customerInfo: "",
+    profileMenuActive: ""
 }
 
 
@@ -23,12 +24,14 @@ export const CustomerOrder = createSlice({
     },
     setCustomerInfo: (state,action) => {
       state.customerInfo = action.payload
-
+    },
+    setProfileMenuActive: (state,action) => {
+      state.profileMenuActive = action.payload
     }
 }
 })
 
 // Action creators are generated for each case reducer function
-export const {setOrder, setOrderDetail, setOrderCount, setCustomerInfo} = CustomerOrder.actions
+export const {setOrder, setOrderDetail, setOrderCount, setCustomerInfo, setProfileMenuActive} = CustomerOrder.actions
 
 export default CustomerOrder.reducer

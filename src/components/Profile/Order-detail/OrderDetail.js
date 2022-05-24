@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import commerce from "../../../lib/Commerce";
 import { useSelector, useDispatch } from "react-redux";
-import { setOrderDetail } from "../../../Reducer/CustomerOrder";
+import { setOrderDetail, setProfileMenuActive } from "../../../Reducer/CustomerOrder";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ArrowIcon from "../../../assets/images/arrow-icon-order.svg";
@@ -93,7 +93,9 @@ function OrderDetail() {
   const [country, setCountry] = useState([]);
 
   const [age, setAge] = React.useState("");
+
   useEffect(() => {
+    dispatch(setProfileMenuActive("order"))
     const changePage = () => {
       window.scrollTo({top: 0});
     };

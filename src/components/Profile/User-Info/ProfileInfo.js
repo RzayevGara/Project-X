@@ -3,7 +3,7 @@ import commerce from '../../../lib/Commerce'
 import EditBtn from '../../../assets/images/edit.svg'
 import SaveBtn from '../../../assets/images/saveIcon.svg'
 import {useSelector, useDispatch} from "react-redux";
-import {setCustomerInfo} from '../../../Reducer/CustomerOrder'
+import {setCustomerInfo, setProfileMenuActive} from '../../../Reducer/CustomerOrder'
 
 
 function ProfileInfo() {
@@ -11,6 +11,7 @@ function ProfileInfo() {
     let customerID  = localStorage.getItem('commercejs_customer_id')
     
     useEffect(()=>{
+        dispatch(setProfileMenuActive("info"))
         const changePage = () => {
             window.scrollTo({top: 0});
           };

@@ -1,11 +1,34 @@
-import React from "react";
+import React,{ useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import {Link} from "react-router-dom";
 
 function BasketPrice(props) {
   const BasketList = useSelector((state) => state.listOrder.SimpleList);
+
+  const [show, setShow] = useState(false)
+  const controlNavbar = () => {
+    let maxY = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    let scrollPercent = (maxY*21)/100
+    let scrollPercentRounded = Math.round(scrollPercent);
+    let final = maxY - scrollPercentRounded
+    console.log(final)
+    console.log(window.scrollY)
+    if (window.scrollY > final ) {
+        setShow(true)
+    }else{
+      setShow(false)
+    }
+  }
+
+  useEffect(() => {
+      window.addEventListener('scroll', controlNavbar)
+      return () => {
+          window.removeEventListener('scroll', controlNavbar)
+      }
+  }, [])
+
   return (
-    <div className="basket-price">
+    <div className={show?"basket-price hideBox":"basket-price"}>
       <div className="price-detail">
         <h6>Ümumi</h6>
         <p>

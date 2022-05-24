@@ -58,6 +58,29 @@ function ProductOption() {
     progress: undefined,
   });
 
+
+  const [show, setShow] = useState(false)
+  const controlNavbar = () => {
+    let maxY = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    let scrollPercent = (maxY*35)/100
+    let scrollPercentRounded = Math.round(scrollPercent);
+    let final = maxY - scrollPercentRounded
+    console.log(final)
+    console.log(window.scrollY)
+    if (window.scrollY > final ) {
+        setShow(true)
+    }else{
+      setShow(false)
+    }
+  }
+
+  useEffect(() => {
+      window.addEventListener('scroll', controlNavbar)
+      return () => {
+          window.removeEventListener('scroll', controlNavbar)
+      }
+  }, [])
+
   return (
     <div className="product-option">
       {IsLoading && 
@@ -153,7 +176,7 @@ function ProductOption() {
           <img src={PlusIcon} alt="logo" />
         </div>
       </div>
-      <div className="fixed-box">
+      <div className={show?"fixed-box hideBox":"fixed-box"}>
         <p className="price-box">
           {product.price &&
             (product.price.raw + ColorPrice + SizePrice) * Count}{" "}

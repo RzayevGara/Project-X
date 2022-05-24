@@ -3,23 +3,23 @@ import {Link, useParams} from "react-router-dom"
 import BasketImage from '../../../assets/images/profile-basket.svg'
 import UserImage from '../../../assets/images/profile-user.svg'
 import LogoutImage from '../../../assets/images/profile-logout.svg'
+import {useSelector} from "react-redux";
 
 
 function ProfileMenu(props) {
-  let { id } = useParams();
-  console.log(id)
 
+  const profileActive = useSelector((state) => state.customer.profileMenuActive)
 
   return (
     <div className="profile-menu">
         <p className="profile-title">Profilim</p>
         <Link to="/profil/sifarislerim">
             <img src={BasketImage} alt="logo"/>
-            <p>Sifarişlərim</p>
+            <p className={profileActive==="order"?"activeProfile":null}>Sifarişlərim</p>
         </Link>
         <Link to="/profil/melumatlarim">
             <img src={UserImage} alt="logo"/>
-            <p>Şəxsi məlumatlar</p>
+            <p className={profileActive==="info"?"activeProfile":null}>Şəxsi məlumatlar</p>
         </Link>
         <div className="log-out" onClick={props.logOut}>
             <img src={LogoutImage} alt="logo"/>

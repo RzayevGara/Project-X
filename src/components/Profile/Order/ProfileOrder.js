@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setOrder,
   setOrderCount,
+  setProfileMenuActive
 } from "../../../Reducer/CustomerOrder";
 import { useNavigate } from "react-router-dom";
 import ProfileOrderEmpty from './ProfileOrderEmpty'
@@ -14,6 +15,7 @@ function ProfileOrder() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(setProfileMenuActive("order"))
     const changePage = () => {
       window.scrollTo({ top: 0 });
     };
