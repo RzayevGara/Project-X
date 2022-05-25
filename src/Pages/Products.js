@@ -10,6 +10,7 @@ import { Link as RouterLink , useParams} from 'react-router-dom';
 
 function Products() {
   let {id} = useParams()
+
   const breadcrumbs = [
     id==="butun-telefonlar"?
 [    <RouterLink key="1" to="/" >

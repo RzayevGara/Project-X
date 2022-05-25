@@ -18,7 +18,7 @@ const initialState = {
     accessoryCategory: [],
     stringStatus: false,
     categoryStatus: false,
-    accessoryStatus: false
+    accessoryStatus: false,
 }
 
 
@@ -234,7 +234,7 @@ export const ProductReducer = createSlice({
       state.categoryList = action.payload
       state.accessoryList = action.payload
       state.accessoryCategory = action.payload
-    }
+    },
   },
 })
 

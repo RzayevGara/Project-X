@@ -2,11 +2,15 @@ import React, {useState, useEffect} from 'react'
 import commerce from '../../../../lib/Commerce';
 import {useDispatch, useSelector } from 'react-redux'
 import { setCategory} from '../../../../Reducer/ProductReducer'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
 
 
 const Menu = () =>{
+  let {id} = useParams()
+  const activeMenu = id
+  
+
   const [products, setProducts] = useState([]);
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
 
@@ -38,7 +42,8 @@ const Menu = () =>{
                 dispatch(HamburgerClick(false))
               }
             }
-            key={index} className="items">     <Link to={`${item.slug}`}>{item.name}</Link>
+            key={index} className="items">     
+            <Link className={activeMenu===item.slug?"actimeMenuProduct":null} to={`${item.slug}`}>{item.name}</Link>
               <div className={item.children.length===0? ".hide" : "sub-categories"}>
                 {
                   item.children.map((elem, indexx)=>(

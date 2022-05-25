@@ -11,8 +11,6 @@ function BasketPrice(props) {
     let scrollPercent = (maxY*21)/100
     let scrollPercentRounded = Math.round(scrollPercent);
     let final = maxY - scrollPercentRounded
-    console.log(final)
-    console.log(window.scrollY)
     if (window.scrollY > final ) {
         setShow(true)
     }else{
