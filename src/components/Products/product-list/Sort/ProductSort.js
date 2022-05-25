@@ -1,46 +1,52 @@
-import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import {sortArray,returnDefaultSort,} from "../../../../Reducer/ProductReducer";
 import { setActive } from "../../../../Reducer/FilterReducer";
 import FilterBtn from "../../../../assets/images/filter.svg";
 import Swap from "../../../../assets/images/swap.svg"
+import { useLocation  } from 'react-router-dom'
 
 function ProductSort() {
   const activeFilter = useSelector((state) => state.filter.filterActive);
   const count = useSelector((state) => state.category.arrayList.length);
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    document.querySelector('.product-select').selectedIndex=0
+  }, [location]);
 
   return (
     <div className="product-sort">
       <p>{count} məhsul tapıldı</p>
       <div className="product-btns">
-        <Box className="box-sort" sx={{ minWidth: 220 }} size="small">
+        <div className="box-sort">
           <img src={Swap} alt="logo"/>
-          <FormControl fullWidth>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              defaultValue={10}
+            <select
+              className="product-select"
+              defaultValue={1}
+              onChange={(e)=>{
+                if(e.target.value==1){
+                  dispatch(returnDefaultSort())
+                }else if(e.target.value==2){
+                  dispatch(sortArray(true))
+
+                }else if(e.target.value==3){
+                  dispatch(sortArray(false))
+                }
+              }}
             >
-              <MenuItem
-                onClick={() => dispatch(returnDefaultSort())}
-                default
-                value={10}
-              >
+              <option value={1}>
                 Ən Yenilər
-              </MenuItem>
-              <MenuItem onClick={() => dispatch(sortArray(true))} value={20}>
+              </option>
+              <option value={2}>
                 Qiymət - Artan sıra
-              </MenuItem>
-              <MenuItem onClick={() => dispatch(sortArray(false))} value={30}>
+              </option>
+              <option  value={3}>
                 Qiymət - Azalan sıra
-              </MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
+              </option>
+            </select>
+        </div>
         <div
           onClick={() => {
             !activeFilter

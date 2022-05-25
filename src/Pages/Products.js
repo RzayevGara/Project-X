@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Link as RouterLink , useParams} from 'react-router-dom';
 
+
 function Products() {
   let {id} = useParams()
 

@@ -4,17 +4,20 @@ import {useDispatch, useSelector } from 'react-redux'
 import { setCategory} from '../../../../Reducer/ProductReducer'
 import { Link, useParams } from "react-router-dom";
 import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
-
+import {setMenuActiveText} from '../../../../Reducer/ProductReducer'
 
 const Menu = () =>{
   let {id} = useParams()
-  const activeMenu = id
-  
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    dispatch(setMenuActiveText(id))
+  }, [dispatch, id])
+  const activeMenu = useSelector((state) => state.category.menuActiveText)
+  
   const [products, setProducts] = useState([]);
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
 
-  const dispatch = useDispatch()
 
   const fetchProducts = () => {
     commerce.categories.retrieve('products', { type: 'slug', depth:'3' }).then((products) => {

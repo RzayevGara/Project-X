@@ -17,14 +17,16 @@ import { TailSpin  } from 'react-loading-icons'
 function ProductInside() {
   let {productid} = useParams();
 
+  const breadCrumbsTwo = useSelector((state) => state.category.menuActiveText)
+
   const productName = useSelector((state) => state.setProductDetail.list);
   
   const breadcrumbs = [
     <RouterLink key="1" to="/">
       Ana Sehife
     </RouterLink>,
-    <RouterLink key="2" to={`/ ${productName.name && productName.name.split(' ')[0]}`}>
-      {productName.name && productName.name.split(' ')[0]}
+    <RouterLink key="2" to={`/${breadCrumbsTwo}`}>
+      {breadCrumbsTwo==="butun-telefonlar"?"Bütün Telefonlar":breadCrumbsTwo.charAt(0).toUpperCase() + breadCrumbsTwo.slice(1)}
     </RouterLink>,
     <Typography key="3" color="text.primary">
       {productName.name}

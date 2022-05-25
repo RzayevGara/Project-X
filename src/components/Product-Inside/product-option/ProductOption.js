@@ -65,8 +65,6 @@ function ProductOption() {
     let scrollPercent = (maxY*35)/100
     let scrollPercentRounded = Math.round(scrollPercent);
     let final = maxY - scrollPercentRounded
-    console.log(final)
-    console.log(window.scrollY)
     if (window.scrollY > final ) {
         setShow(true)
     }else{

@@ -5,15 +5,26 @@
     .product-btns
         @include flex(row, space-between, center)
         padding: 0 40px 30px
-        .css-htbx1d
-            min-width: 100px
-            .css-1d3z3hw-MuiOutlinedInput-notchedOutline
-                border-radius: 16px
+        .box-sort
+            width: 130px
+            @include flex(row, center, center)
+            .product-select
+                padding: 10px
                 border: none
+                overflow: hidden
+                width: 100%
+                @include font(16px, 500)
+                -webkit-appearance: none
+                -moz-appearance: none
+                white-space: nowrap
+                text-overflow: ellipsis
+                &:focus
+                    outline: none
         .filter-btn
             @include flex(row, center, center)
             gap: 10px
             @include font(16px, 500)
+            width: 130px
     @media (min-width: 1366px)
         @include flex(row, space-between, center)
         p
@@ -21,31 +32,23 @@
         .product-btns
             @include flex(row, space-between, center)
             padding: 0
-            .css-htbx1d
-                min-width: 220px
-                .css-1d3z3hw-MuiOutlinedInput-notchedOutline
-                    border-radius: 16px
-                    border: 1px solid #BDBDBD
+            .box-sort
+                img
+                    display: none
+                .product-select
+                    cursor: pointer
+                    border-radius: 8px
+                    border: 1px solid black
+                    -webkit-appearance: menulist
+                    -moz-appearance: menulist
             .filter-btn
                 display: none
 
-.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon
-    display: none !important
-    @media (min-width: 1300px)
-        display: inline-block !important
-.css-bpeome-MuiSvgIcon-root-MuiSelect-icon
-    display: none !important
-    @media (min-width: 1300px)
-        display: inline-block !important
-
-
-.box-sort
-    @include flex(row, center, center)
-    gap: 10px
-    .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input
-        padding: 0
-    @media (min-width: 1366px)
-        img
-            display: none
-        .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input
-            padding: 16.5px 14px
+// .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon
+//     display: none !important
+//     @media (min-width: 1300px)
+//         display: inline-block !important
+// .css-bpeome-MuiSvgIcon-root-MuiSelect-icon
+//     display: none !important
+//     @media (min-width: 1300px)
+//         display: inline-block !important

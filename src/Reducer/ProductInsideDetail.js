@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = { 
     list: "",
+    breadCrumbs: ""
 }
 
 
@@ -11,7 +12,7 @@ export const ProductInsideDetail = createSlice({
   reducers: {
     ProductInsideList:(state, action)=>{
         state.list = action.payload
-    }
+    },
   },
 })
 
