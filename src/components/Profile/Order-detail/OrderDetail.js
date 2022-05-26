@@ -42,12 +42,12 @@ function OrderDetail() {
   };
 
   const saveBtn = (e) => {
+    e.preventDefault();
     setSelectStatus(true);
     const countryName = document.querySelector(
       ".css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
     ).innerText;
 
-    e.preventDefault();
     updateInfo(e, countryName);
     document.querySelectorAll(".order-detail_input-control").forEach((item) => {
       item.disabled = true;
