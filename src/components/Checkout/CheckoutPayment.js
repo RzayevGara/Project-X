@@ -34,6 +34,7 @@ function CheckoutPayment(props) {
   const shippingAddress = useSelector((state) => state.checkout.shippingAddress)
   const shippingCity  = useSelector((state) => state.checkout.shippingCity)
 
+
   return (
     <Formik
       initialValues={{
