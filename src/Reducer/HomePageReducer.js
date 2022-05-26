@@ -5,7 +5,8 @@ const initialState = {
     loadingPhone: true,
     accessoryList: [],
     loadingAccessory: true,
-    fetchProduct: true
+    fetchProduct: true,
+    menuCategories: ""
 }
 
 
@@ -23,11 +24,15 @@ export const HomePageReducer = createSlice({
     },
     setFetchStatus: (state,action)=>{
       state.fetchProduct = action.payload
-    }
+    },
+    setMenuCategories: (state,action)=>{
+      state.menuCategories = action.payload
+    },
+
 }
 })
 
 // Action creators are generated for each case reducer function
-export const {setPhoneList, setAccessoryList, setFetchStatus} = HomePageReducer.actions
+export const {setPhoneList, setAccessoryList, setFetchStatus, setMenuCategories} = HomePageReducer.actions
 
 export default HomePageReducer.reducer

@@ -8,10 +8,12 @@ import Location from "../../../assets/images/location.svg"
 import Email from "../../../assets/images/email.svg"
 import Phone from "../../../assets/images/phone.svg"
 import { Link } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 
 
 function Footer() {
+    const menuItems = useSelector((state) => state.homeList.menuCategories)
   return (
     <footer className="footer">
         <div className="first-section">
@@ -26,10 +28,14 @@ function Footer() {
             </div>
             <ul>
                 <p>Menu</p>
-                <li>Yeni</li>
-                <li>Endirimlər</li>
-                <li>Aksesuarlar</li>
-                <li>Bütün brendlər</li>
+                {
+                    menuItems && 
+                    menuItems.map((menuItem, menuItemIndex) =>(
+                        <Link key={menuItemIndex} to={menuItem.name==="Bütün Telefonlar"?"/butun-telefonlar":`/${menuItem.name.toLowerCase()}`}>
+                            <li>{menuItem.name}</li>
+                        </Link>
+                    ))
+                }
             </ul>
             <ul>
                 <p>Kömək</p>

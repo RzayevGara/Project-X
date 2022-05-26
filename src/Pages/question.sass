@@ -8,7 +8,7 @@
     @include flex(column)    
     .question-container
         align-self: center
-        width: 100%
+        width: 100% !important
         @include flex(column, center, center)
         gap: 20px
         padding: 60px 0
@@ -17,4 +17,4 @@
             margin-bottom: 30px
     @media(min-width: 1366px)
         .question-container
-            width: 50%
+            width: 50% !important

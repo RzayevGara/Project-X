@@ -5,6 +5,7 @@ import { setCategory} from '../../../../Reducer/ProductReducer'
 import { Link, useParams } from "react-router-dom";
 import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
 import {setMenuActiveText} from '../../../../Reducer/ProductReducer'
+import {setMenuCategories} from '../../../../Reducer/HomePageReducer'
 
 const Menu = () =>{
   let {id} = useParams()
@@ -15,13 +16,13 @@ const Menu = () =>{
   }, [dispatch, id])
   const activeMenu = useSelector((state) => state.category.menuActiveText)
   
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state) => state.homeList.menuCategories)
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
 
 
   const fetchProducts = () => {
     commerce.categories.retrieve('products', { type: 'slug', depth:'3' }).then((products) => {
-      setProducts(products.children);
+      dispatch(setMenuCategories(products.children))
     }).catch((error) => {
       console.log('There was an error fetching the products', error)
     });
@@ -36,7 +37,7 @@ const Menu = () =>{
   return (
     <div className={HamburgerStatus ? "menu active" : "menu"}>
       <ul className="categories">
-        {
+        {products &&
           products.map((item, index)=>(
             <li
             onClick={() =>

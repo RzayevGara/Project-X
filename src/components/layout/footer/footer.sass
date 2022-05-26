@@ -20,12 +20,14 @@
         ul
             @include flex(column, $align: center)
             gap: 15px
+            opacity: 0.8
             p
                 @include font(24px, 500)
                 margin-bottom: 15px
-            li
-                @include font(16px, 400)
-                opacity: 0.8
+            a
+                color: #FFFFFF
+                li
+                    @include font(16px, 400)
             &:nth-child(4)
                 @include flex(column, $align: flex-start)
                 p
@@ -33,9 +35,6 @@
                 li
                     @include flex(row, $align: center)
                     gap: 15px
-                    &:nth-child(2)
-                        color: $hoverText
-                        
     .second-section
         @include flex(column, center, center)
         opacity: 0.8
@@ -58,6 +57,11 @@
             gap: 0
             ul
                 @include flex(column, $align: flex-start)
+                li
+                    cursor: pointer
+                    &:hover
+                        color: $hoverText
+                        transition: 0.3s
                 &:nth-child(4)
                     p
                         align-self: flex-start                
