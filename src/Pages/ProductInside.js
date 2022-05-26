@@ -70,7 +70,7 @@ function ProductInside() {
         <p>Məhsullar yüklənir</p>
       </div>
       }
-        <Stack spacing={2}>
+        <Stack className="product-inside-breadcrumbs" spacing={2}>
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"

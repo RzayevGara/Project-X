@@ -19,7 +19,7 @@ function Login() {
     useEffect(() =>{
         if(email!==""){
             navigate("/daxil-ol/hesabiniza-daxil-olunur", { replace: true })
-            commerce.customer.login(`${email}`, 'http://localhost:3000/daxil-ol').then((token) => {dispatch(setLoginStatus(token.success))});
+            commerce.customer.login(`${email}`, 'https://rzayevgara-projectx.netlify.app/daxil-ol').then((token) => {dispatch(setLoginStatus(token.success))});
         }
     }, [email, dispatch, navigate])
 

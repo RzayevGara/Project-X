@@ -38,7 +38,7 @@ function Products() {
 
   return (
     <div id="products">
-      <Stack spacing={2}>
+      <Stack className="product-breadcrumbs" spacing={2}>
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"
