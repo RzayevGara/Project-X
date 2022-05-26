@@ -29,8 +29,10 @@ function Checkout() {
   const disabled = useSelector((state) => state.checkout.disable)
 
   const cartToken = useSelector((state) => state.checkout.cartToken);
+  console.log(cartToken)
 
   const shippingCountry  = useSelector((state) => state.checkout.shippingCountry)
+  console.log(shippingCountry)
 
 
   useEffect(() => {
@@ -41,7 +43,6 @@ function Checkout() {
         .then((checkout) => {dispatch(setCartToken(checkout.id))});
       }else{
       navigate("/sebet", { replace: true })
-
       }
     })
   }, [])
@@ -50,7 +51,7 @@ function Checkout() {
     if(shippingCountry!==""){
       commerce.checkout.getShippingOptions(cartToken, {
       country: `${shippingCountry}`,
-    }).then((response) => dispatch(setShippingMethod(response[0].id)));
+    }).then((response) =>{ console.log(response);dispatch(setShippingMethod(response[0].id))});
     }
   },[shippingCountry, cartToken,dispatch ])
 

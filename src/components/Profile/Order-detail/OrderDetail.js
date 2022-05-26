@@ -66,7 +66,7 @@ function OrderDetail() {
       })
       .join("");
 
-    const url = new URL(`https://api.chec.io/v1/orders/${id}`);
+    const url = new URL(`https://api.chec.io/v1/orders/${orderID}`);
 
     const checAPIKey = process.env.REACT_APP_CHECK_SECRET_API_KEY;
     let headers = {
