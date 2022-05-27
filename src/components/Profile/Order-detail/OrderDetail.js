@@ -45,7 +45,7 @@ function OrderDetail() {
     e.preventDefault();
     setSelectStatus(true);
     const countryName = document.querySelector(
-      ".css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+      ".MuiSelect-select"
     ).innerText;
 
     updateInfo(e, countryName);
