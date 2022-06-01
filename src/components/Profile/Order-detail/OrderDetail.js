@@ -37,6 +37,11 @@ function OrderDetail() {
           item.focus();
         }
       });
+    document.querySelectorAll(".hide-label").forEach((item) => {
+        item.style.display="block"
+      });
+    document.querySelector(".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon").style.display= "flex"
+    document.querySelector(".css-1d3z3hw-MuiOutlinedInput-notchedOutline").style.border= "1px solid rgb(130, 130, 130)"
     document.querySelector(".order-detail_editBtn").style.display = "none";
     document.querySelector(".order-detail_saveBtn").style.display = "flex";
   };
@@ -46,13 +51,18 @@ function OrderDetail() {
     setSelectStatus(true);
     const countryName = document.querySelector(
       ".MuiSelect-select"
-    ).innerText;
-
+      ).innerText;
+      
     updateInfo(e, countryName);
     document.querySelectorAll(".order-detail_input-control").forEach((item) => {
       item.disabled = true;
       item.style.border = "none";
     });
+    document.querySelectorAll(".hide-label").forEach((item) => {
+      item.style.display="none"
+    });
+    document.querySelector(".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon").style.display= "none"
+    document.querySelector(".css-1d3z3hw-MuiOutlinedInput-notchedOutline").style.border= "none"
     document.querySelector(".order-detail_editBtn").style.display = "flex";
     document.querySelector(".order-detail_saveBtn").style.display = "none";
   };
@@ -182,6 +192,7 @@ function OrderDetail() {
                     </p>
                     <ul>
                       <li>
+                        <p className="hide-label">Ad:</p>
                         <input
                           className="order-detail_input-control"
                           type="text"
@@ -190,6 +201,7 @@ function OrderDetail() {
                         />
                       </li>
                       <li>
+                        <p className="hide-label">Soyad:</p>
                         <input
                           className="order-detail_input-control"
                           type="text"
@@ -198,6 +210,7 @@ function OrderDetail() {
                         />
                       </li>
                       <li>
+                      <p className="hide-label">Telefon:</p>
                         <input
                           className="order-detail_input-control"
                           type="number"
@@ -206,6 +219,7 @@ function OrderDetail() {
                         />
                       </li>
                       <li>
+                        <p className="hide-label">Email:</p>
                         <input
                           className="order-detail_input-control"
                           type="email"
@@ -221,6 +235,7 @@ function OrderDetail() {
                     </p>
                     <ul>
                       <li>
+                      <p className="hide-label">Ölkə:</p>
                         <FormControl sx={{ width: "300px" }}>
                           <Select
                             labelId="demo-simple-select-label"
@@ -239,6 +254,7 @@ function OrderDetail() {
                         </FormControl>
                       </li>
                       <li>
+                      <p className="hide-label">Şəhər:</p>
                         <input
                           className="order-detail_input-control"
                           type="text"
@@ -247,6 +263,7 @@ function OrderDetail() {
                         />
                       </li>
                       <li>
+                      <p className="hide-label">Ünvan:</p>
                         <input
                           className="order-detail_input-control"
                           type="text"

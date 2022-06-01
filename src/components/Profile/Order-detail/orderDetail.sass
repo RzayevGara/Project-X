@@ -29,8 +29,9 @@
                     @include font(22px, 500)
                 div
                     @include flex(row)
-                    gap: 20%
+                    gap: 30px
                     p
+                        width: 100px
                         @include flex(column)
                         gap: 7px
                         color: #828282
@@ -51,6 +52,8 @@
                     gap: 10px
                     padding-left: 20px
                     li
+                        .hide-label
+                            display: none
                         input
                             border: none
                             background-color: transparent
@@ -58,12 +61,18 @@
                             padding: 5px
                             border-radius: 8px
                             width: 300px
+                            color: black
                             &::placeholder
                                 color: black
                                 font-size: 16px
-                        .MuiSelect-select
-                            -webkit-text-fill-color: black
-                            padding: 0
+                        .MuiFormControl-root
+                            .MuiSelect-select
+                                -webkit-text-fill-color: black
+                                padding: 5px
+                            svg
+                                display: none
+                            fieldset
+                                border: none
             .order-detail-div-info-BTN
                 color: #3366FF
                 cursor: pointer
@@ -114,6 +123,11 @@
                 margin: 0
                 img
                     width: 15%
+                .order-detail-div-specs_info
+                    div
+                        gap: 20%
+                        p
+                            width: 110px
             .order-detail-div_info
                 @include flex(row, space-between)
                 gap: 10%
