@@ -1,4 +1,4 @@
-import React,{ useEffect, useRef} from "react";
+import React,{ useEffect} from "react";
 import {setName, setLastName, setEmail, setPhone, setDisable} from '../../Reducer/CheckoutReducer'
 import {useDispatch, useSelector} from "react-redux";
 

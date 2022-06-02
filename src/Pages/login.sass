@@ -6,15 +6,21 @@
 .login
     .container
         @include flex(column, space-evenly, center)
-        padding: 20% 0
+        padding: 20% 10%
         form
             @include flex(column)
             gap: 10px
-            p
+            @include size(100%)
+            .login-title
                 @include font(30px, 500)
                 margin-bottom: 20px
+            .error-message
+                color: #bf1650
+                &:before
+                    display: inline
+                    content: "⚠ "
             input
-                @include size(300px, 45px)
+                @include size(100%, 45px)
                 background-color: #F2F2F2
                 border: none
                 padding: 0 20px
@@ -22,7 +28,7 @@
                 &:focus
                     outline: none
             button
-                @include size(300px, 50px)
+                @include size(100%, 50px)
                 background-color: $hoverText
                 color: white
                 border: none
@@ -45,6 +51,10 @@
         .container
             @include flex(row, space-evenly, center)
             padding: 5% 0
+            form
+                @include size(17%)
+                input
+                    height: 50px
             .login-image
                 margin-top: 0
                 img

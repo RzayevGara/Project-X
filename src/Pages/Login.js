@@ -6,13 +6,14 @@ import {useDispatch, useSelector} from 'react-redux'
 import commerce from '../lib/Commerce';
 import {Link, useNavigate} from 'react-router-dom'
 
+import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
 function Login() {
     const dispatch = useDispatch()
     let navigate = useNavigate();
 
-    const myForm = async (e)=>{
-        e.preventDefault()
-        dispatch(setEmail(e.target[0].value))
+    const myForm = async (data)=>{
+        dispatch(setEmail(data.emailInput))
     }
     const email = useSelector((state) => state.login.email)
     
@@ -30,13 +31,45 @@ function Login() {
         }
     },[navigate, token])
 
+    const {
+        register,
+        formState: { errors },
+        handleSubmit
+      } = useForm({
+        criteriaMode: "all",
+      });
+      const onSubmit = (data) =>{
+          myForm(data)
+      }
+
   return (
     <div className="login">
         <div className="container">
-            <form onSubmit={myForm}>
-                <p>Daxil Ol</p>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <p className="login-title">Daxil Ol</p>
                 <label>E-mail</label>
-                <input type="email" placeholder="nümunə@gmail.com"/>
+                <input
+                    placeholder="nümunə@gmail.com"
+                    {...register("emailInput", {
+                        required: "Email ünvanınızı daxil edin.",
+                        pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: "Yanlış email ünvanı"
+                        }
+                    })}
+                />
+                <ErrorMessage
+                    errors={errors}
+                    name="emailInput"
+                    render={({ messages }) => {
+                    return messages
+                        ? Object.entries(messages).map(([type, message]) => (
+                            <p className="error-message" key={type}>{message}</p>
+                        ))
+                        : null;
+                    }}
+                />
+                {/* <input type="email" placeholder="nümunə@gmail.com"/> */}
                 <button type="submit">Daxil ol</button>
             </form>
             <div className="login-image">
