@@ -52,6 +52,7 @@ function CheckoutUserAddress(props) {
   };
 
   const countrySelect = useSelector((state) => state.checkout.country);
+  console.log(countrySelect)
 
   useEffect(() => {
     country.forEach((item, index) => {
