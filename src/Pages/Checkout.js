@@ -26,13 +26,9 @@ function Checkout() {
 
   const dispatch = useDispatch()
 
-  const disabled = useSelector((state) => state.checkout.disable)
-
   const cartToken = useSelector((state) => state.checkout.cartToken);
 
   const shippingCountry  = useSelector((state) => state.checkout.shippingCountry)
-
-
 
   useEffect(() => {
     commerce.cart.retrieve().then((cart) =>{
@@ -55,7 +51,6 @@ function Checkout() {
     }).then((response) =>{
       console.log("shipping", response)
       if(response.length>0){
-
         dispatch(setShippingMethod(response[0].id))}
       }
       );
@@ -65,35 +60,20 @@ function Checkout() {
 
 const [activeStep, setActiveStep] = React.useState(0);
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  setActiveStep((prevActiveStep) => prevActiveStep + 1);
-}
-
-const handleSubmitSecond = (e) => {
-  e.preventDefault();
-  setActiveStep((prevActiveStep) => prevActiveStep + 1);
-}
-
   const steps = [
     {
       label: "Şəxsi məlumatlar",
-      description: <CheckoutUserInfo submit={handleSubmit}/>,
+      description: <CheckoutUserInfo setActiveStep={setActiveStep}/>,
     },
     {
       label: "Çatdırılma",
-      description: <CheckoutUserAddress submit={handleSubmitSecond}/>,
+      description: <CheckoutUserAddress setActiveStep={setActiveStep}/>,
     },
     {
       label: "Ödəniş",
       description: <CheckoutPayment setActiveStep={setActiveStep}/>,
     },
   ];
-
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-};
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -131,14 +111,6 @@ const handleSubmitSecond = (e) => {
                   {step.description}
                   <Box sx={{ mb: 2 }}>
                     <div>
-                      <Button
-                        variant="contained"
-                        onClick={handleNext}
-                        sx={{ mt: 1, mr: 1, display: index===2?"none":"inline-flex"}}
-                        disabled={disabled}
-                      >
-                        {index === steps.length - 1 ? "Tamamla" : "Davam"}
-                      </Button>
                       <Button
                         disabled={index === 0}
                         onClick={handleBack}

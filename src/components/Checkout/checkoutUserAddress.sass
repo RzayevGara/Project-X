@@ -19,6 +19,14 @@
                     border-radius: 8px
                     padding: 0 30px
                     font-size: 14px
+                select
+                    @include size(280px, 50px)
+                    background-color: #F2F2F2
+                    border: none
+                    border-radius: 8px
+                    padding: 0 30px
+                    font-size: 14px
+                    border-right: 10px solid transparent
     .MuiSelect-select
         padding-left: 30px !important
         padding-right: 0 !important
@@ -31,6 +39,9 @@
                 div
                     width: 310px
                     input
+                        @include size(310px, 50px)
+                        font-size: 16px
+                    select
                         @include size(310px, 50px)
                         font-size: 16px
 

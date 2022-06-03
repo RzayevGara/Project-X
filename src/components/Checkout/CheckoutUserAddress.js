@@ -4,129 +4,153 @@ import {
   setShippingAddress,
   setShippingCountry,
   setShippingCity,
-  setDisable,
-  setCountrySelect,
+  setCountryIndex
 } from "../../Reducer/CheckoutReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
+import Button from "@mui/material/Button";
 
 function CheckoutUserAddress(props) {
   const dispatch = useDispatch();
 
-  const [country, setCountry] = useState([]);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    setValue
+  } = useForm({
+    criteriaMode: "all",
+  });
 
-  const shippingName = useSelector((state) => state.checkout.shippingName);
-  const shippingAddress = useSelector(
-    (state) => state.checkout.shippingAddress
-  );
-  const shippingCountry = useSelector(
-    (state) => state.checkout.shippingCountry
-  );
-  const shippingCity = useSelector((state) => state.checkout.shippingCity);
+  const shippingName = useSelector((state) => state.checkout.shippingName)
+  const shippingAddress = useSelector((state) => state.checkout.shippingAddress)
+  const shippingCountry = useSelector((state) => state.checkout.countryIndex)
+  const shippingCity = useSelector((state) => state.checkout.shippingCity)
 
+  
   useEffect(() => {
-    if (
-      shippingName !== "" &&
-      shippingAddress !== "" &&
-      shippingCountry !== "" &&
-      shippingCity !== ""
-    ) {
-      dispatch(setDisable(false));
-    } else {
-      dispatch(setDisable(true));
+    if(shippingName!=="" && shippingAddress!=="" && shippingCountry!=="" && shippingCity!==""){
+
+      setValue("nameInput", `${shippingName}`)
+      setValue("addressInput", `${shippingAddress}`)
+      // setValue("countryInput", `${shippingCountry}`)
+      setValue("cityInput", `${shippingCity}`)
     }
-  }, [dispatch, shippingName, shippingAddress, shippingCountry, shippingCity]);
+  },[])
+
+
+  const [country, setCountry] = useState([]);
 
   useEffect(() => {
     fetch("https://countriesnow.space/api/v0.1/countries/iso")
       .then((data) => data.json())
       .then((response) => setCountry(response.data));
-  },[]);
+  }, []);
 
-  const handleChange = (event) => {
-    dispatch(setCountrySelect(event.target.value));
+  
+  const onSubmit = (data) => {
+    props.setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (data) {
+      dispatch(setShippingName(data.nameInput));
+      dispatch(setShippingAddress(data.addressInput));
+      dispatch(setShippingCity(data.cityInput));
+      dispatch(setCountryIndex(data.countryInput));
+      country.forEach((item, index) => {
+        if (data.countryInput == index) {
+          dispatch(setShippingCountry(item.Iso2));
+        }
+      });
+    }
   };
-
-  const countrySelect = useSelector((state) => state.checkout.country);
-  console.log(countrySelect)
-
-  useEffect(() => {
-    country.forEach((item, index) => {
-      if (countrySelect === index) {
-        dispatch(setShippingCountry(item.Iso2));
-      }
-    });
-  }, [countrySelect, country, dispatch]);
 
   return (
     <div className="checkout-user-address">
-      <form onSubmit={props.submit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="checkout-user-address_city">
           <div>
             <label>Ad və Soyad</label>
             <input
-              onChange={(e) => {
-                dispatch(setShippingName(e.target.value));
-              }}
               placeholder="Adınızı və soyadınızı daxil edin"
-              type="text"
-              value={shippingName}
-              required
+              {...register("nameInput", {
+                required: "Adınızı və soyadınızı daxil edin",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="nameInput"
+              render={({ message }) => (
+                <p className="error-message">{message}</p>
+              )}
             />
           </div>
           <div>
             <label>Ünvan</label>
             <input
-              onChange={(e) => {
-                dispatch(setShippingAddress(e.target.value));
-              }}
               placeholder="Ünvanınızı daxil edin"
-              type="text"
-              required
-              value={shippingAddress}
+              {...register("addressInput", {
+                required: "Ünvanınızı daxil edin",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="addressInput"
+              render={({ message }) => (
+                <p className="error-message">{message}</p>
+              )}
             />
           </div>
         </div>
         <div className="checkout-user-address_city">
           <div>
             <label>Ölkə</label>
-            <FormControl sx={{ width: "310px" }}>
-              <InputLabel id="demo-simple-select-label">Ölkə</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={countrySelect}
-                label="Age"
-                onChange={handleChange}
-                required
+            <select  
+            defaultValue=""
+              {...register("countryInput", {
+                required: "Ölkənizi qeyd edin",
+              })}
               >
-                {country &&
+                 <option value="" disabled>Ölkənizi qeyd edin</option>
+                 {country &&
                   country.map((item, index) => (
-                    <MenuItem key={index} value={index}>
-                      {item.name}
-                    </MenuItem>
+
+                    <option key={index} value={index}>{item.name}</option>
+
                   ))}
-              </Select>
-            </FormControl>
+            </select>
+            <ErrorMessage
+              errors={errors}
+              name="countryInput"
+              render={({ message }) => (
+                <p className="error-message">{message}</p>
+              )}
+            />
           </div>
           <div>
             <label>Şəhər</label>
             <input
-              onChange={(e) => {
-                dispatch(setShippingCity(e.target.value));
-              }}
               placeholder="Şəhərinizi qeyd edin"
-              type="text"
-              required
-              value={shippingCity}
+              {...register("cityInput", {
+                required: "Şəhərinizi qeyd edin",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="cityInput"
+              render={({ message }) => (
+                <p className="error-message">{message}</p>
+              )}
             />
           </div>
         </div>
-        <button style={{ display: "none" }} type="submit"></button>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ mt: 1, mr: 1, display: "block", width: "150px" }}
+        >
+          Davam
+        </Button>
       </form>
     </div>
   );
