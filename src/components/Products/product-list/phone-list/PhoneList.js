@@ -58,7 +58,7 @@ function PhoneList() {
         <p>Məhsullar yüklənir</p>
       </div>
       }
-      <ul>
+      <ul className="phone-list_ul">
         {displayUsers}
       </ul>
       <ReactPaginate

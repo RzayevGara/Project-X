@@ -21,7 +21,7 @@
             p
                 @include font(20px, 500)
 
-    ul
+    .phone-list_ul
         @include flex(row, space-between, center)
         flex-wrap: wrap
         gap: 15px
@@ -56,6 +56,6 @@
         .next-btn
             @extend .previous-btn
     @media (min-width: 1366px)
-        ul
+        .phone-list_ul
             @include flex(row, flex-start, center)
             gap: 50px
