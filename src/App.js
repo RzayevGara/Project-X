@@ -27,12 +27,8 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const fetcha = ()=>{
       commerce.cart.retrieve().then((cart) =>  dispatch(setSimpleList(cart)));
-    }
-    fetcha()
-  }, [dispatch,]);
-  
+  }, []);
 
   return (
     <>

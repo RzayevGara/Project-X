@@ -68,7 +68,7 @@ const Navbar = ()=> {
           </Link>
           <Link to={`/sebet`}>
             <IconButton className="icon" aria-label="cart">
-              <StyledBadge badgeContent={basketCount && basketCount.line_items.length} color="secondary">
+              <StyledBadge badgeContent={basketCount? basketCount.line_items.length:0} color="secondary">
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>

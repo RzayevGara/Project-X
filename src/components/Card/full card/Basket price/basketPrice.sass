@@ -1,8 +1,8 @@
 .basket-price
     @include flex(column, center)
-    gap: 30px
+    gap: 10px
     position: fixed
-    @include size(100%, 80px)
+    @include size(100%, auto)
     left: 0
     bottom: 0
     z-index: 9
@@ -15,6 +15,7 @@
         @include flex(column)
         position: absolute
         left: 20px
+        padding-top: 15px
         h6
             @include font(25px, 500)
             display: none
@@ -29,6 +30,40 @@
             @include flex(column, $align: center)
             span
                 color: #DB2C66
+    .form-discount
+        @include size(100%)
+        background-color: white
+        padding: 0 30px
+        @include flex(row, space-between)
+        position: relative
+        overflow: hidden
+        padding: 15px
+        .black-page_discount
+            position: absolute
+            background-color: #0000006e
+            @include size(100%, 100%)
+            top: 0
+            left: 0
+            @include flex(row, center, center)
+            .loading
+                @include size(15%, auto)
+        input
+            @include size(60%, 40px)
+            padding: 0 20px
+            background-color: #F2F2F2
+            border: 1px solid #c7c7c7
+            border-radius: 8px
+            &:focus
+                outline: none
+        button
+            @include size(25%, 40px)
+            background-color: white
+            border: 2px solid $hoverText
+            border-radius: 8px
+            color: $hoverText
+            @include font(15px, 500)
+            letter-spacing: 1.5px
+            cursor: pointer
     .btn-confirm
         display: contents
         .confirm-orders
@@ -47,6 +82,7 @@
         z-index: 0
         background-color: transparent
         border-top: none
+        gap: 30px
         .price-detail
             @include size(100%, auto)
             box-shadow: 0px 4px 8px rgba(164, 164, 164, 0.50)
@@ -59,9 +95,28 @@
                 @include flex(row, space-between, center)
             h5
                 @include flex(row, space-between, center)
+        .form-discount
+            box-shadow: 0px 4px 8px rgba(164, 164, 164, 0.50)
+            border-radius: 8px
+            padding: 30px
         .btn-confirm
             display: flex
             .confirm-orders
                 @include size(100%, 50px)
                 position: static
 
+.basket-price_checkout
+    @include size(100%, 80px)
+    .price-detail
+        padding-top: 0
+    @media (min-width: 1366px)
+        flex: 2
+        position: sticky
+        top: 140px
+        @include size(auto, auto)
+        z-index: 0
+        background-color: transparent
+        border-top: none
+        gap: 30px
+        .price-detail
+            padding-top: 50px

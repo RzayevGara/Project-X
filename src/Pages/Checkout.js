@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "./checkout.sass";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -14,10 +14,11 @@ import CheckoutUserAddress from '../components/Checkout/CheckoutUserAddress'
 import CheckoutPayment from '../components/Checkout/CheckoutPayment'
 import commerce from '../lib/Commerce'
 import {useDispatch, useSelector} from "react-redux";
-import {setCartID, setCartToken, setShippingMethod} from '../Reducer/CheckoutReducer'
+import {setCartID, setCartToken, setShippingMethod, setLiveObject} from '../Reducer/CheckoutReducer'
 import { TailSpin  } from 'react-loading-icons'
 import {useNavigate} from 'react-router-dom'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -30,19 +31,24 @@ function Checkout() {
 
   const shippingCountry  = useSelector((state) => state.checkout.shippingCountry)
 
+  const items = useSelector((state) => state.listOrder.SimpleList)
+  const [checkoutLoading, setCheckoutLoading] = useState(true)
+
   useEffect(() => {
-    commerce.cart.retrieve().then((cart) =>{
-      dispatch(setCartID(cart.id))
-      if(cart.line_items.length>0){
+    if(items){
+      if(items.line_items.length>0){
         commerce.checkout
-        .generateToken( cart.id, { type: "cart" })
-        .then((checkout) => {dispatch(setCartToken(checkout.id))});
+        .generateToken( items.id, { type: "cart" })
+        .then((checkout) => {
+          dispatch(setCartToken(checkout.id))
+          commerce.checkout.getLive(checkout.id).then(live => {dispatch(setLiveObject(live)); setCheckoutLoading(false)})
+        });
       }
       else{
-      navigate("/sebet", { replace: true })
+        navigate("/sebet", { replace: true })
       }
-    })
-  }, [])
+    }
+  }, [items])
 
   useEffect(() => {
     if(shippingCountry!==""){
@@ -81,18 +87,41 @@ const [activeStep, setActiveStep] = React.useState(0);
 
   const loading = useSelector((state) => state.checkout.loading)
 
+  const success = () =>   toast.success('Endirim kuponu tətbiq edildi.', {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
+  const error = () =>   
+  toast.error('Endirim kuponu mövcud deyil.', {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
+
   return (
     <div className="checkout">
-
-
       {loading && 
       <div className="black-page">
         <TailSpin  stroke="#00D68F" className="loading"/>
-        <p>Zəhmət olmasa gözləyin</p>
+        <p>Sifarişiniz təsdiqlənir</p>
       </div>
       }
-
-
+      {checkoutLoading && 
+      <div style={{backgroundColor: "white"}} className="black-page">
+        <TailSpin  stroke="#00D68F" className="loading"/>
+        <p style={{color: "black"}}>Zəhmət olmasa gözləyin</p>
+      </div>
+      }
       <div className="container">
         <Box className="checkout-box">
           <Stepper activeStep={activeStep} orientation="vertical">
@@ -132,8 +161,19 @@ const [activeStep, setActiveStep] = React.useState(0);
             </Paper>
           )}
         </Box>
-        <BasketPrice/>
+        <BasketPrice success={success} error={error} checkoutPromo/>
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
