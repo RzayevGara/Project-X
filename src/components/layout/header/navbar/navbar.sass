@@ -8,7 +8,7 @@
     flex-wrap: wrap
     gap: 20px
     .left-section
-        z-index: 99
+        z-index: 9999
         @include flex(row, center, center)
         gap: 20px
         .hamburger
@@ -23,24 +23,26 @@
             width: 130px
             cursor: pointer
     .middle-section
-        @include flex(row, space-between, center)
         @include size (100%)
-        background-color: grey
-        padding: 10px 20px
-        border-radius: 8px
-        background-color: #F7F9FC
-        border: 1px solid #E4E9F2
         order: 3
-        z-index: 8
-        .search-form
-            width: 100%
-            input
-                border: none
-                background-color: transparent
-                @include size(100%, 20px)
-                padding: 10px
-                &:focus
-                    outline: none
+        z-index: 999
+        position: relative
+        .search-div
+            @include flex(row, space-between, center)
+            background-color: grey
+            padding: 10px 20px
+            border-radius: 8px
+            background-color: #F7F9FC
+            border: 1px solid #E4E9F2
+            .search-form
+                width: 100%
+                input
+                    border: none
+                    background-color: transparent
+                    @include size(100%, 20px)
+                    padding: 10px
+                    &:focus
+                        outline: none
 
     .right-section
         .header-icon

@@ -1,0 +1,43 @@
+.search-result
+    position: absolute
+    @include size(100%)
+    max-height: 400px
+    border: 1px solid #BDBDBD
+    border-radius: 8px
+    background-color: white
+    padding: 0 30px 30px
+    overflow-y: scroll
+    .result-clear
+        @include flex(row, space-between, center)
+        position: sticky
+        top: 0
+        background-color: white
+        padding: 20px 10px
+        .search-result-title
+            color: #2E3A59
+            @include font(18px, 600)
+        .search-result-clearBtn
+            color: #8F9BB3
+            @include font(14px, 400)
+            cursor: pointer
+    ul
+        @include flex(column)
+        li
+            @include size(100%, 130px)
+            border-bottom: 1px solid #BDBDBD
+            &:last-child
+                border: none
+                
+            a
+                padding: 20px
+                @include size(100%, 100%)
+                @include flex(row, $align: center)
+                gap: 20px
+                img
+                    height: 90%
+                .result-name
+                    height: 80%
+                    @include flex(column)
+                    gap: 10px
+                    p
+                        @include font(16px, 600)

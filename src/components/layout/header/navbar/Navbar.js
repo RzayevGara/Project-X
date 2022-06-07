@@ -9,9 +9,11 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {useSelector, useDispatch} from "react-redux";
 import {HamburgerClick} from '../../../../Reducer/HamburgerReducer'
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef} from 'react'
 import {setCustomerToken, setCustomerInfo} from '../../../../Reducer/LoginReducer'
 import commerce from '../../../../lib/Commerce'
+import SearchDiv from './search/SearchDiv'
+import {setSearchParams} from '../../../../Reducer/SearchReducer'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -23,6 +25,23 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Navbar = ()=> {
+  const ref = useRef(null);
+
+  useEffect(()=>{
+    if(document.querySelector(".search-result")){
+
+      const handleClickOutside = (event) => {
+          if (ref.current && !ref.current.contains(event.target) && document.querySelector(".search-div")) {
+              dispatch(setSearchParams(""))
+          }
+        };
+        document.addEventListener('click', handleClickOutside, true);
+        return () => {
+          document.removeEventListener('click', handleClickOutside, true);
+        };
+    }
+  })
+
   const dispatch = useDispatch()
   const HamburgerStatus = useSelector((state) => state.setHamburger.HamburgerStatus);
   
@@ -42,6 +61,8 @@ const Navbar = ()=> {
   const token = useSelector((state) => state.login.customerToken)
   const customerInfo = useSelector((state) => state.login.customerInfo)
 
+  const searchParams = useSelector((state) => state.search.searchParams)
+
   return (
     <div className="navbar">
       <div className="left-section">
@@ -54,11 +75,14 @@ const Navbar = ()=> {
           <img className="logo-project" src={LogoProject} alt="ProjectLogo"/>
         </Link>
       </div>
-      <div className="middle-section">
-        <FontAwesomeIcon icon={ faMagnifyingGlass } />
-        <form className="search-form">
-            <input placeholder="Axtarış..."/>
-        </form>
+      <div ref={ref} className="middle-section">
+        <div className="search-div">
+          <FontAwesomeIcon icon={ faMagnifyingGlass } />
+          <form className="search-form">
+              <input className="search-input" value={searchParams} onChange={(e)=>dispatch(setSearchParams(e.target.value))} placeholder="Axtarış..."/>
+          </form>
+        </div>
+        <SearchDiv/>
       </div>
       <div className="right-section">
         <div className="header-icon">

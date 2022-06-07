@@ -9,6 +9,7 @@ import HomePageReducer from './HomePageReducer'
 import LoginReducer from './LoginReducer'
 import CheckoutReducer from './CheckoutReducer'
 import CustomerOrder from './CustomerOrder'
+import SearchReducer from './SearchReducer'
 
 
 export const store = configureStore({
@@ -22,6 +23,7 @@ export const store = configureStore({
     homeList: HomePageReducer,
     login: LoginReducer,
     checkout: CheckoutReducer,
-    customer: CustomerOrder
+    customer: CustomerOrder,
+    search: SearchReducer
   },
 })
