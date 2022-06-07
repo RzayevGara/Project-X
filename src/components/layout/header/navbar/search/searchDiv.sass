@@ -12,7 +12,7 @@
         position: sticky
         top: 0
         background-color: white
-        padding: 20px 10px
+        padding: 20px 0
         .search-result-title
             color: #2E3A59
             @include font(18px, 600)
@@ -23,21 +23,38 @@
     ul
         @include flex(column)
         li
-            @include size(100%, 130px)
+            @include size(100%)
             border-bottom: 1px solid #BDBDBD
             &:last-child
                 border: none
-                
             a
-                padding: 20px
+                padding: 20px 0
                 @include size(100%, 100%)
                 @include flex(row, $align: center)
                 gap: 20px
                 img
-                    height: 90%
+                    width: 25%
                 .result-name
-                    height: 80%
+                    @include size(100%, 80%)
                     @include flex(column)
                     gap: 10px
                     p
-                        @include font(16px, 600)
+                        @include font(15px, 600)
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
+                        width: 90%
+    @media (min-width: 1366px)
+        .result-clear
+            padding: 20px 10px
+        ul
+            li
+                @include size(100%, 130px)
+                a
+                    padding: 20px
+                    img
+                        width: 13%
+                    .result-name
+                        height: 80%
+                        p
+                            @include font(16px, 600)

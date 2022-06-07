@@ -11,8 +11,6 @@ const SearchDiv = () => {
   const list = useSelector((state) => state.search.filteredArray);
   const searchParams = useSelector((state) => state.search.searchParams)
   const searchList = useSelector((state) => state.search.searchList)
-  console.log(searchParams)
-  console.log(list)
 
   useEffect(() => {
     dispatch(setSearchParams(""));

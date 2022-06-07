@@ -14,7 +14,7 @@ import {setCustomerToken, setCustomerInfo} from '../../../../Reducer/LoginReduce
 import commerce from '../../../../lib/Commerce'
 import SearchDiv from './search/SearchDiv'
 import {setSearchParams} from '../../../../Reducer/SearchReducer'
-import { Oval    } from 'react-loading-icons'
+import {Oval} from 'react-loading-icons'
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -26,11 +26,13 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
+
 const Navbar = ()=> {
+  const searchParams = useSelector((state) => state.search.searchParams)
   const ref = useRef(null);
 
   useEffect(()=>{
-    if(document.querySelector(".search-result")){
+    if(searchParams.length!==0){
 
       const handleClickOutside = (event) => {
           if (ref.current && !ref.current.contains(event.target) && document.querySelector(".search-div")) {
@@ -63,7 +65,7 @@ const Navbar = ()=> {
   const token = useSelector((state) => state.login.customerToken)
   const customerInfo = useSelector((state) => state.login.customerInfo)
 
-  const searchParams = useSelector((state) => state.search.searchParams)
+ 
   const searchStatus = useSelector((state) => state.search.searchStatus)
 
   return (
