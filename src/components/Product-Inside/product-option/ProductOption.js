@@ -14,7 +14,6 @@ import {
   setItemID,
   setAssetID,
   setColorMsg, 
-  setSizeMsg
 } from "../../../Reducer/AddCardReducer";
 import commerce from "../../../lib/Commerce";
 import {setSimpleList} from "../../../Reducer/CardListReducer"
@@ -30,6 +29,14 @@ function ProductOption() {
   const sizeop = useSelector((state) => state.AddToCard.OptionSize);
   const quantity = useSelector((state) => state.AddToCard.ItemCount);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+      window.addEventListener('scroll', controlNavbar)
+      return () => {
+          window.removeEventListener('scroll', controlNavbar)
+      }
+  }, [])
+  
   const [IsLoading, setIsLoading] = useState(false)
   
   const [Count, setCount] = useState(1);
@@ -40,9 +47,6 @@ function ProductOption() {
 
 
   const colorMsg = useSelector((state) => state.AddToCard.colorMsg)
-  const sizeMsg = useSelector((state) => state.AddToCard.sizeMsg)
-  
-  const dispatch = useDispatch();
   
   useEffect(() => {
     dispatch(setItemID(product.id))
@@ -73,11 +77,14 @@ function ProductOption() {
   }
 
   useEffect(() => {
-      window.addEventListener('scroll', controlNavbar)
-      return () => {
-          window.removeEventListener('scroll', controlNavbar)
-      }
-  }, [])
+    if(product.variant_groups && product.variant_groups.length>1){
+      setSizeName(product.variant_groups[1].options[0].name)
+      dispatch(setVariantSize(product.variant_groups[1].id));
+      dispatch(setOptionSize(product.variant_groups[1].options[0].id));
+    }else{
+      setSizeName("")
+    }
+  },[product.variant_groups, dispatch])
 
   return (
     <div className="product-option">
@@ -138,20 +145,18 @@ function ProductOption() {
                   setSizeName(item.name);
                   dispatch(setVariantSize(product.variant_groups[1].id));
                   dispatch(setOptionSize(item.id));
-                  dispatch(setSizeMsg(""))
                   document.querySelectorAll(".size-box").forEach((item)=>
                     item.classList.remove("active-size")
                   )
                   document.querySelectorAll(".size-box")[index].classList.add("active-size")
                 }}
-                className={`size-box`}
+                className={index==0?"size-box active-size":"size-box"}
               >
                 {item.name}
               </div>
             )):' '
           }
         </div>
-      <p className="size-msg">{sizeMsg && sizeMsg}</p>
       </div>
       <div className="item-quantity">
         <div
@@ -193,9 +198,6 @@ function ProductOption() {
               }else{
                 if(!colorop){
                   dispatch(setColorMsg("Zəhmət olmasa rəng seçin"))
-                }
-                if(!sizeop){
-                  dispatch(setSizeMsg("Zəhmət olmasa yaddaş seçin"))
                 }
             }
           }else if(product.variant_groups.length===1){

@@ -10,7 +10,6 @@ const initialState = {
     itemID: "",
     assetID: "",
     colorMsg: "",
-    sizeMsg: ""
 }
 
 
@@ -53,13 +52,10 @@ export const FilterReducer = createSlice({
     setColorMsg: (state,action) => {
       state.colorMsg = action.payload
     },
-    setSizeMsg: (state,action) => {
-      state.sizeMsg = action.payload
-    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {setVariantColor, setOptionColor, setVariantSize, setOptionSize, setItemCount, setItemID, setAssetID, setColorMsg, setSizeMsg} = FilterReducer.actions
+export const {setVariantColor, setOptionColor, setVariantSize, setOptionSize, setItemCount, setItemID, setAssetID, setColorMsg} = FilterReducer.actions
 
 export default FilterReducer.reducer
