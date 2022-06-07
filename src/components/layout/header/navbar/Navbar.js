@@ -14,6 +14,8 @@ import {setCustomerToken, setCustomerInfo} from '../../../../Reducer/LoginReduce
 import commerce from '../../../../lib/Commerce'
 import SearchDiv from './search/SearchDiv'
 import {setSearchParams} from '../../../../Reducer/SearchReducer'
+import { Oval    } from 'react-loading-icons'
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -62,6 +64,7 @@ const Navbar = ()=> {
   const customerInfo = useSelector((state) => state.login.customerInfo)
 
   const searchParams = useSelector((state) => state.search.searchParams)
+  const searchStatus = useSelector((state) => state.search.searchStatus)
 
   return (
     <div className="navbar">
@@ -81,6 +84,11 @@ const Navbar = ()=> {
           <form className="search-form">
               <input className="search-input" value={searchParams} onChange={(e)=>dispatch(setSearchParams(e.target.value))} placeholder="Axtarış..."/>
           </form>
+          {searchStatus===true && 
+            <div className="black-page_search">
+              <Oval   stroke="#00D68F" className="loading"/>
+            </div>
+          }
         </div>
         <SearchDiv/>
       </div>

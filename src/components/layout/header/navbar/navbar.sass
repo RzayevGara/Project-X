@@ -34,6 +34,7 @@
             border-radius: 8px
             background-color: #F7F9FC
             border: 1px solid #E4E9F2
+            position: relative
             .search-form
                 width: 100%
                 input
@@ -43,6 +44,13 @@
                     padding: 10px
                     &:focus
                         outline: none
+            .black-page_search
+                @include size(auto, auto)
+                @include flex(row, center, center)
+                .loading
+                    @include size(3%, auto)
+                    position: absolute
+                    right: 20px
 
     .right-section
         .header-icon

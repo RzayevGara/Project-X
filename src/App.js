@@ -21,7 +21,7 @@ import ProfileOrder from './components/Profile/Order/ProfileOrder'
 import ProfileInfo from './components/Profile/User-Info/ProfileInfo'
 import Checkout from './Pages/Checkout'
 import OrderDetail from './components/Profile/Order-detail/OrderDetail'
-import {setSearchList} from './Reducer/SearchReducer'
+// import {setSearchList} from './Reducer/SearchReducer'
 
 
 function App() {
@@ -29,10 +29,10 @@ function App() {
 
   useEffect(() => {
       commerce.cart.retrieve().then((cart) =>  dispatch(setSimpleList(cart)));
-      commerce.products.list({
-        category_slug: ['search'],
-        limit: 200
-      }).then(response => dispatch(setSearchList(response.data)));
+      // commerce.products.list({
+      //   category_slug: ['search'],
+      //   limit: 200
+      // }).then(response => dispatch(setSearchList(response.data)));
   }, []);
 
   return (

@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = { 
     searchList: [],
     searchParams: [],
-    filteredArray: []
+    filteredArray: [],
+    searchStatus: false
 }
 
 
@@ -18,18 +19,20 @@ export const SearchReducer = createSlice({
         state.searchParams=[]
         if(action.payload!==""){
             state.searchParams.push(action.payload.toLowerCase())
-            let copy = state.searchList.filter((item) =>{
-                return (new RegExp(state.searchParams.join('|')).test(item.name.toLowerCase()))
-            })
-            state.filteredArray = copy
         }else{
             state.filteredArray = []
         }
+    },
+    setSearchStatus: (state,action) => {
+        state.searchStatus=action.payload
+    },
+    setFilteredArray: (state,action) => {
+        state.filteredArray=action.payload
     }
 }
 })
 
 // Action creators are generated for each case reducer function
-export const {setSearchList, setSearchParams} = SearchReducer.actions
+export const {setSearchList, setSearchParams,setSearchStatus, setFilteredArray} = SearchReducer.actions
 
 export default SearchReducer.reducer
