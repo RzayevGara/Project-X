@@ -32,7 +32,7 @@ const ProductSwipe = React.memo((props) => {
             <SwiperSlide key={index}>
               <Link className="link" to={`${item.name.split(' ')[0].toLowerCase()}/${item.id}`}>
                 <img src={item.image.url} alt="logo" />
-                <h4>{item.name}</h4>
+                <h4>{item.name} {item.variant_groups.length>1 && item.variant_groups[1].options[0].name}</h4>
                 <p className="product-price">
                   <span>{item.price.formatted_with_symbol}</span>
                 </p>
