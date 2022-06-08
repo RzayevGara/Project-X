@@ -8,9 +8,12 @@ import {Link, useNavigate} from 'react-router-dom'
 
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
+import { config } from '../Constants'
+
 function Login() {
     const dispatch = useDispatch()
     let navigate = useNavigate();
+    const url = config.url.API_URL
 
     const myForm = async (data)=>{
         dispatch(setEmail(data.emailInput))
@@ -20,9 +23,9 @@ function Login() {
     useEffect(() =>{
         if(email!==""){
             navigate("/daxil-ol/hesabiniza-daxil-olunur", { replace: true })
-            commerce.customer.login(`${email}`, 'http://localhost:3000/daxil-ol').then((token) => {dispatch(setLoginStatus(token.success))});
+            commerce.customer.login(`${email}`, `${url}`).then((token) => {dispatch(setLoginStatus(token.success))});
         }
-    }, [email, dispatch, navigate])
+    }, [email, dispatch, navigate,url])
 
     const token  = useSelector((state) => state.login.customerToken)
     useEffect(()=>{
