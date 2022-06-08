@@ -21,7 +21,7 @@
         .swiper-slide 
             width: 65%
             height: 290px
-            padding: 10px 30px 30px 30px
+            padding: 20px 30px 30px 30px
             background: #fff 
 
             /* Center slide text vertically */
@@ -41,7 +41,7 @@
             box-shadow: 0px 4px 8px rgba(164, 164, 164, 0.50)
             border-radius: 4px
             .link
-                @include flex(column, center, center)
+                @include flex(column, $align: center)
                 @include size(100%, 100%)
                 img 
                     display: block 
@@ -52,11 +52,6 @@
                     margin: 25px 0 10px
                     @include font(16px, 500)
                     align-self: flex-start
-                    text-overflow: ellipsis
-                    white-space: nowrap
-                    width: 100%
-                    overflow: hidden
-
                 .product-price
                     align-self: flex-start
     @media (min-width: 1366px)
@@ -73,7 +68,7 @@
                 width: 18%
                 height: 390px
 
-                padding: 20px 40px 30px 40px
+                padding: 40px 40px 30px 40px
                 .link
                     img 
                         width: 85%

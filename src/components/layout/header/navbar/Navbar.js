@@ -76,7 +76,7 @@ const Navbar = ()=> {
           <div className={HamburgerStatus ? "line second-line" : "line"}></div>
           <div className={HamburgerStatus ? "line third-line" : "line"}></div>
         </div>
-        <Link to={`/`}>
+        <Link style={{display: "flex"}} to={`/`}>
           <img className="logo-project" src={LogoProject} alt="ProjectLogo"/>
         </Link>
       </div>
