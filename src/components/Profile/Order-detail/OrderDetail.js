@@ -17,7 +17,7 @@ function OrderDetail() {
 
   const order = useSelector((state) => state.customer.orderDetail);
 
-  const [orderID, lineItemsID] = id.split(' ');
+  const orderID = id
 
   const [selectStatus, setSelectStatus] = useState(true);
 
@@ -91,8 +91,8 @@ function OrderDetail() {
         email: `${e.target[3].value}`,
       },
       shipping: {
-        street: `${e.target[6].value}`,
-        town_city: `${e.target[7].value}`,
+        street: `${e.target[7].value}`,
+        town_city: `${e.target[6].value}`,
         country: `${countryIso}`,
       },
     };
@@ -137,6 +137,8 @@ function OrderDetail() {
     setAge(event.target.value);
   };
 
+  console.log(order)
+
   return (
     <div className="order-detail">
       <Link to="/profil/sifarislerim">
@@ -145,12 +147,15 @@ function OrderDetail() {
           Sifarişin detalları
         </p>
       </Link>
-      {order &&
+      {
+        order && 
+
+      <div className="order-detail_div">
+
+      {
         order.order.line_items.map((lineItem, index) => {
-          if (lineItem.id === lineItemsID) {
             return (
-              <div className="order-detail_div" key={index}>
-                <div className="order-detail-div_specs">
+                <div key={index} className="order-detail-div_specs">
                   <img src={lineItem.image.url} alt="logo" />
                   <div className="order-detail-div-specs_info">
                     <p className="order-detail-div-specs_name">
@@ -185,142 +190,139 @@ function OrderDetail() {
                     </div>
                   </div>
                 </div>
-                <form onSubmit={saveBtn} className="order-detail-div_info">
-                  <div>
-                    <p className="order-detail-div-info_title">
-                      Şəxsi məlumatlar
-                    </p>
-                    <ul>
-                      <li>
-                        <p className="hide-label">Ad:</p>
-                        <input
-                          className="order-detail_input-control"
-                          type="text"
-                          disabled
-                          placeholder={order.customer.firstname}
-                        />
-                      </li>
-                      <li>
-                        <p className="hide-label">Soyad:</p>
-                        <input
-                          className="order-detail_input-control"
-                          type="text"
-                          disabled
-                          placeholder={order.customer.lastname}
-                        />
-                      </li>
-                      <li>
-                      <p className="hide-label">Telefon:</p>
-                        <input
-                          className="order-detail_input-control"
-                          type="number"
-                          disabled
-                          placeholder={order.customer.phone}
-                        />
-                      </li>
-                      <li>
-                        <p className="hide-label">Email:</p>
-                        <input
-                          className="order-detail_input-control"
-                          type="email"
-                          disabled
-                          placeholder={order.customer.email}
-                        />
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="order-detail-div-info_title">
-                      Çatdırılma ünvanı
-                    </p>
-                    <ul>
-                      <li>
-                      <p className="hide-label">Ölkə:</p>
-                        <FormControl sx={{ width: "300px" }}>
-                          <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={age}
-                            onChange={handleChange}
-                            disabled={selectStatus}
-                          >
-                            {country &&
-                              country.map((item, index) => (
-                                <MenuItem key={index} value={index}>
-                                  {item.name}
-                                </MenuItem>
-                              ))}
-                          </Select>
-                        </FormControl>
-                      </li>
-                      <li>
-                      <p className="hide-label">Şəhər:</p>
-                        <input
-                          className="order-detail_input-control"
-                          type="text"
-                          disabled
-                          placeholder={order.shipping.town_city}
-                        />
-                      </li>
-                      <li>
-                      <p className="hide-label">Ünvan:</p>
-                        <input
-                          className="order-detail_input-control"
-                          type="text"
-                          disabled
-                          placeholder={order.shipping.street}
-                        />
-                      </li>
-                    </ul>
-                  </div>
-                  <button
-                    type="button"
-                    className="order-detail-div-info-BTN order-detail_editBtn"
-                    onClick={editBtn}
-                  >
-                    Düzəliş et
-                  </button>
-                  <button
-                    type="submit"
-                    className="order-detail-div-info-BTN order-detail_saveBtn"
-                  >
-                    Yadda saxla
-                  </button>
-                </form>
-                <div className="order-detail-div_payment">
-                  <p className="order-detail-div-payment_title">
-                    Ödəmə detalları
-                  </p>
-                  <div>
-                    <p className="order-detail-div-payment_info">
-                      Ödəmə metodu
-                      <span>
-                        {" "}
-                        <img src={CardIcon} alt="logo" /> Kart ilə
-                      </span>
-                    </p>
-                    <p className="order-detail-div-payment_info">
-                      Toplam məbləğ
-                      <span> {lineItem.line_total.formatted_with_symbol}</span>
-                    </p>
-                    <p className="order-detail-div-payment_info">
-                      Təcili çatdırılma
-                      <span> ₼0</span>
-                    </p>
-                    <p className="order-detail-div-payment_info">
-                      Promo kod
-                      <span> ₼0</span>
-                    </p>
-                  </div>
-                  <p className="order-detail-div-payment-info_total">
-                    Cəmi
-                    <span> {lineItem.line_total.formatted_with_symbol}</span>
-                  </p>
-                </div>
-              </div>
             );
-          }
         })}
+
+        <form onSubmit={saveBtn} className="order-detail-div_info">
+            <div>
+              <p className="order-detail-div-info_title">
+                Şəxsi məlumatlar
+              </p>
+              <ul>
+                <li>
+                  <p className="hide-label">Ad:</p>
+                  <input
+                    className="order-detail_input-control"
+                    type="text"
+                    disabled
+                    placeholder={order.customer.firstname}
+                  />
+                </li>
+                <li>
+                  <p className="hide-label">Soyad:</p>
+                  <input
+                    className="order-detail_input-control"
+                    type="text"
+                    disabled
+                    placeholder={order.customer.lastname}
+                  />
+                </li>
+                <li>
+                <p className="hide-label">Telefon:</p>
+                  <input
+                    className="order-detail_input-control"
+                    type="number"
+                    disabled
+                    placeholder={order.customer.phone}
+                  />
+                </li>
+                <li>
+                  <p className="hide-label">Email:</p>
+                  <input
+                    className="order-detail_input-control"
+                    type="email"
+                    disabled
+                    placeholder={order.customer.email}
+                  />
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className="order-detail-div-info_title">
+                Çatdırılma ünvanı
+              </p>
+              <ul>
+                <li>
+                <p className="hide-label">Ölkə:</p>
+                  <FormControl sx={{ width: "300px" }}>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={age}
+                      onChange={handleChange}
+                      disabled={selectStatus}
+                    >
+                      {country &&
+                        country.map((item, index) => (
+                          <MenuItem key={index} value={index}>
+                            {item.name}
+                          </MenuItem>
+                        ))}
+                    </Select>
+                  </FormControl>
+                </li>
+                <li>
+                <p className="hide-label">Şəhər:</p>
+                  <input
+                    className="order-detail_input-control"
+                    type="text"
+                    disabled
+                    placeholder={order.shipping.town_city}
+                  />
+                </li>
+                <li>
+                <p className="hide-label">Ünvan:</p>
+                  <input
+                    className="order-detail_input-control"
+                    type="text"
+                    disabled
+                    placeholder={order.shipping.street}
+                  />
+                </li>
+              </ul>
+            </div>
+            <button
+              type="button"
+              className="order-detail-div-info-BTN order-detail_editBtn"
+              onClick={editBtn}
+            >
+              Düzəliş et
+            </button>
+            <button
+              type="submit"
+              className="order-detail-div-info-BTN order-detail_saveBtn"
+            >
+              Yadda saxla
+            </button>
+        </form>
+        <div className="order-detail-div_payment">
+          <p className="order-detail-div-payment_title">
+            Ödəmə detalları
+          </p>
+          <div>
+            <p className="order-detail-div-payment_info">
+              Ödəmə metodu
+              <span>
+                {" "}
+                <img src={CardIcon} alt="logo" /> Kart ilə
+              </span>
+            </p>
+            <p className="order-detail-div-payment_info">
+              Məbləğ
+              <span> {order.order.subtotal.formatted_with_symbol}</span>
+            </p>
+            <p className="order-detail-div-payment_info">
+              Promo kod
+              <span> -{order.order.discount.amount_saved?order.order.discount.amount_saved.formatted_with_symbol:"₼0.00"}</span>
+            </p>
+          </div>
+          <p className="order-detail-div-payment-info_total">
+            Cəmi
+            <span> {order.order.total.formatted_with_symbol}</span>
+          </p>
+        </div>
+      </div>
+      }
     </div>
   );
 }

@@ -3,57 +3,90 @@
     flex: 4
     gap: 30px
     width: 100%
-    padding: 0 5%
+    padding: 0
     .profile-order_title
         @include font(24px, 500)
     .profile-order_div
         width: 100%
-        @include flex(row)
-        flex-wrap: wrap
-        gap: 5%
+        @include flex(column)
+        gap: 50px
         .profile-order_list
             background-color: white
             width: 100%
-            margin-bottom: 5%
             border-radius: 8px
-            @include flex(row, space-around, center)
-            padding: 15% 3%
-            img
-                width: 48%
-            .profile-order_detail
-                @include flex(column)
-                gap: 20px
-                padding-right: 10px
-                p
-                    @include flex(column)
-                    gap: 10px
-                    @include font(16px, 500)
-                span
-                    @include font(14px, 400)
-                .profile-order-detail_price
-                    span
-                        color: #DB2C66
+            @include flex(column)
+            padding: 3% 5%
+            gap: 30px
+            .profile-order-list_detail
+                @include flex(row, space-between, center)
+                .profile-order-list-detail_text
+                    @include flex(row, $align: center)
+                    p
+                        @include flex(column)
+                        gap: 1px
+                        @include font(15px, 500)
+                        span
+                            @include font(13px, 400)
+                        &:nth-child(2)
+                            span
+                                color: #DB2C66
+                        &:nth-child(1)
+                            display: none                           
                 button
                     background-color: #F2F2F2
                     border: none
                     border-radius: 4px
-                    @include size(100%, 40px)
+                    @include size(120px, 40px)
                     cursor: pointer
-    @media (min-width: 1366px)
-        padding: 0
-        .profile-order_div
-            width: 95%
-            .profile-order_list
-                width: 45%
-                @include flex(row, space-between, center)
-                padding: 4% 3%
+                    font-size: 12px
+            .profile-order_container
+                @include flex( row, $align: center)
+                border: 1px solid #BDBDBD
+                border-radius: 8px
+                gap: 30px
+                padding: 5% 7% 5% 5%
                 img
-                    width: 45%
+                    width: 20%
                 .profile-order_detail
-                    gap: 40px
+                    @include flex(row, space-between)
+                    gap: 20px
+                    width: 100%
                     p
-                        @include font(18px, 500)
-                    span
-                        @include font(16px, 400)
+                        @include flex(column)
+                        gap: 10px
+                        @include font(14px, 500)
+                        span
+                            @include font(12px, 400)
+                        &:nth-child(1)
+                            display: none
+                    .profile-order-detail_price
+                        span
+                            color: #DB2C66
+    @media (min-width: 1366px)
+        .profile-order_div
+            .profile-order_list
+                .profile-order-list_detail
+                    .profile-order-list-detail_text
+                        p
+                            width: 200px
+                            span
+                                @include font(15px, 400)
+                            &:nth-child(1)
+                                display: flex                          
                     button
-                        @include size(200px, 40px)
+                        @include size(170px, 40px)
+                .profile-order_container
+                    gap: 10%
+                    padding: 2%
+                    img
+                        width: 10%
+                    .profile-order_detail
+                        @include flex(row, flex-start)
+                        padding-right: 10px
+                        p
+                            @include font(16px, 500)
+                            width: 200px
+                            span
+                                @include font(14px, 400)
+                            &:nth-child(1)
+                                display: flex

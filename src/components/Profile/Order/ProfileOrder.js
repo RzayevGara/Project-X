@@ -3,7 +3,6 @@ import commerce from "../../../lib/Commerce";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setOrder,
-  setOrderCount,
   setProfileMenuActive
 } from "../../../Reducer/CustomerOrder";
 import { useNavigate } from "react-router-dom";
@@ -26,60 +25,71 @@ function ProfileOrder() {
     commerce.customer
       .getOrders(`${localStorage.getItem("commercejs_customer_id")}`)
       .then((orders) => dispatch(setOrder(orders.data)))
-      .then(() => {
-        if (document.querySelector(".profile-order_div")) {
-          const order =
-            document.querySelector(".profile-order_div").childElementCount;
-
-          dispatch(setOrderCount(order));
-        }
-      });
   }, [dispatch]);
 
   const orders = useSelector((state) => state.customer.orders);
-
-  const orderCount = useSelector((state) => state.customer.orderCount);
+  console.log(orders)
 
   return (
     <div className="profile-order">
       <p className="profile-order_title">
-        Sifarişlərim ({orderCount? orderCount: 0} məhsul)
+        Sifarişlərim ({orders? orders.length: 0} məhsul)
       </p>
       {orders? (
         <ul className="profile-order_div">
-          {orders.map((item) =>
-            item.order.line_items.map((lineItem, index) => (
-              <li className="profile-order_list" key={index}>
-                <img src={lineItem.image.url} alt="logo" />
-                <div className="profile-order_detail">
-                  <p className="profile-order-detail_date">
-                    Sifariş tarixi:
-                    <br />
-                    <span>12.04.2020</span>
-                  </p>
-                  <p className="profile-order-detail_name">
-                    Məhsul:
-                    <br />
-                    <span>{lineItem.product_name}</span>
-                  </p>
-                  <p className="profile-order-detail_price">
-                    Ümumi məbləğ:
-                    <br />
-                    <span>{lineItem.line_total.formatted_with_symbol}</span>
-                  </p>
-                  <button
-                    onClick={() => {
-                      navigate(`/profil/sifarislerim/${item.id} ${lineItem.id}`, {
-                        replace: true,
-                      });
-                    }}
-                    type="button"
-                  >
-                    Sifarişin detalları
-                  </button>
-                </div>
-              </li>
-            ))
+          {orders.map((item, index) =>
+
+          <li className="profile-order_list" key={index}>
+            <div className="profile-order-list_detail">
+              <div  className="profile-order-list-detail_text">
+                <p>
+                  Alıcı:
+                  <br />
+                  <span>{item.customer.firstname} {item.customer.lastname}</span>
+                </p>
+                <p>
+                  Ümumi məbləğ:
+                  <br />
+                  <span>{item.order.total.formatted_with_code}</span>
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  navigate(`/profil/sifarislerim/${item.id}`, {
+                    replace: true,
+                  });
+                }}
+                type="button"
+              >
+                Sifarişin detalları
+              </button>
+            </div>
+            {
+              item.order.line_items.map((lineItem, indexx) => (
+                  <div className="profile-order_container" key={indexx}>
+                    <img src={lineItem.image.url} alt="logo" />
+                    <div className="profile-order_detail">
+                      <p className="profile-order-detail_date">
+                        Sifariş tarixi:
+                        <br />
+                        <span>12.04.2020</span>
+                      </p>
+                      <p className="profile-order-detail_name">
+                        Məhsul:
+                        <br />
+                        <span>{lineItem.product_name}</span>
+                      </p>
+                      <p className="profile-order-detail_price">
+                        Qiymət:
+                        <br />
+                        <span>{lineItem.line_total.formatted_with_symbol}</span>
+                      </p>
+                    </div>
+              </div>
+                ))
+            }
+            </li>
+
           )}
         </ul>
       ): 
