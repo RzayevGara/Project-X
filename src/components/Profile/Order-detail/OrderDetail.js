@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import commerce from "../../../lib/Commerce";
 import { useSelector, useDispatch } from "react-redux";
-import { setOrderDetail, setProfileMenuActive } from "../../../Reducer/CustomerOrder";
+import {
+  setOrderDetail,
+  setProfileMenuActive,
+} from "../../../Reducer/CustomerOrder";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ArrowIcon from "../../../assets/images/arrow-icon-order.svg";
@@ -10,6 +13,7 @@ import CardIcon from "../../../assets/images/card.svg";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { TailSpin } from "react-loading-icons";
 
 function OrderDetail() {
   let { id } = useParams();
@@ -17,7 +21,7 @@ function OrderDetail() {
 
   const order = useSelector((state) => state.customer.orderDetail);
 
-  const orderID = id
+  const orderID = id;
 
   const [selectStatus, setSelectStatus] = useState(true);
 
@@ -38,10 +42,14 @@ function OrderDetail() {
         }
       });
     document.querySelectorAll(".hide-label").forEach((item) => {
-        item.style.display="block"
-      });
-    document.querySelector(".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon").style.display= "flex"
-    document.querySelector(".css-1d3z3hw-MuiOutlinedInput-notchedOutline").style.border= "1px solid rgb(130, 130, 130)"
+      item.style.display = "block";
+    });
+    document.querySelector(
+      ".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+    ).style.display = "flex";
+    document.querySelector(
+      ".css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+    ).style.border = "1px solid rgb(130, 130, 130)";
     document.querySelector(".order-detail_editBtn").style.display = "none";
     document.querySelector(".order-detail_saveBtn").style.display = "flex";
   };
@@ -49,20 +57,22 @@ function OrderDetail() {
   const saveBtn = (e) => {
     e.preventDefault();
     setSelectStatus(true);
-    const countryName = document.querySelector(
-      ".MuiSelect-select"
-      ).innerText;
-      
+    const countryName = document.querySelector(".MuiSelect-select").innerText;
+
     updateInfo(e, countryName);
     document.querySelectorAll(".order-detail_input-control").forEach((item) => {
       item.disabled = true;
       item.style.border = "none";
     });
     document.querySelectorAll(".hide-label").forEach((item) => {
-      item.style.display="none"
+      item.style.display = "none";
     });
-    document.querySelector(".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon").style.display= "none"
-    document.querySelector(".css-1d3z3hw-MuiOutlinedInput-notchedOutline").style.border= "none"
+    document.querySelector(
+      ".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+    ).style.display = "none";
+    document.querySelector(
+      ".css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+    ).style.border = "none";
     document.querySelector(".order-detail_editBtn").style.display = "flex";
     document.querySelector(".order-detail_saveBtn").style.display = "none";
   };
@@ -105,11 +115,12 @@ function OrderDetail() {
   const [age, setAge] = React.useState("");
 
   useEffect(() => {
-    dispatch(setProfileMenuActive("order"))
+    dispatch(setProfileMenuActive("order"));
+    dispatch(setOrderDetail(""));
     const changePage = () => {
-      window.scrollTo({top: 0});
+      window.scrollTo({ top: 0 });
     };
-    changePage()
+    changePage();
     commerce.customer
       .getOrder(`${orderID}`)
       .then((order) => {
@@ -137,7 +148,7 @@ function OrderDetail() {
     setAge(event.target.value);
   };
 
-  console.log(order)
+  console.log(order);
 
   return (
     <div className="order-detail">
@@ -147,14 +158,16 @@ function OrderDetail() {
           Sifarişin detalları
         </p>
       </Link>
-      {
-        order && 
-
       <div className="order-detail_div">
-
-      {
-        order.order.line_items.map((lineItem, index) => {
-            return (
+        {order === "" ? (
+          <div className="black-page">
+            <TailSpin stroke="#00D68F" className="loading" />
+            <p>Zəhmət olmasa gözləyin</p>
+          </div>
+        ) : (
+          <>
+            {order.order.line_items.map((lineItem, index) => {
+              return (
                 <div key={index} className="order-detail-div_specs">
                   <img src={lineItem.image.url} alt="logo" />
                   <div className="order-detail-div-specs_info">
@@ -190,139 +203,140 @@ function OrderDetail() {
                     </div>
                   </div>
                 </div>
-            );
-        })}
+              );
+            })}
 
-        <form onSubmit={saveBtn} className="order-detail-div_info">
-            <div>
-              <p className="order-detail-div-info_title">
-                Şəxsi məlumatlar
+            <form onSubmit={saveBtn} className="order-detail-div_info">
+              <div>
+                <p className="order-detail-div-info_title">Şəxsi məlumatlar</p>
+                <ul>
+                  <li>
+                    <p className="hide-label">Ad:</p>
+                    <input
+                      className="order-detail_input-control"
+                      type="text"
+                      disabled
+                      placeholder={order.customer.firstname}
+                    />
+                  </li>
+                  <li>
+                    <p className="hide-label">Soyad:</p>
+                    <input
+                      className="order-detail_input-control"
+                      type="text"
+                      disabled
+                      placeholder={order.customer.lastname}
+                    />
+                  </li>
+                  <li>
+                    <p className="hide-label">Telefon:</p>
+                    <input
+                      className="order-detail_input-control"
+                      type="number"
+                      disabled
+                      placeholder={order.customer.phone}
+                    />
+                  </li>
+                  <li>
+                    <p className="hide-label">Email:</p>
+                    <input
+                      className="order-detail_input-control"
+                      type="email"
+                      disabled
+                      placeholder={order.customer.email}
+                    />
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p className="order-detail-div-info_title">Çatdırılma ünvanı</p>
+                <ul>
+                  <li>
+                    <p className="hide-label">Ölkə:</p>
+                    <FormControl sx={{ width: "300px" }}>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        onChange={handleChange}
+                        disabled={selectStatus}
+                      >
+                        {country &&
+                          country.map((item, index) => (
+                            <MenuItem key={index} value={index}>
+                              {item.name}
+                            </MenuItem>
+                          ))}
+                      </Select>
+                    </FormControl>
+                  </li>
+                  <li>
+                    <p className="hide-label">Şəhər:</p>
+                    <input
+                      className="order-detail_input-control"
+                      type="text"
+                      disabled
+                      placeholder={order.shipping.town_city}
+                    />
+                  </li>
+                  <li>
+                    <p className="hide-label">Ünvan:</p>
+                    <input
+                      className="order-detail_input-control"
+                      type="text"
+                      disabled
+                      placeholder={order.shipping.street}
+                    />
+                  </li>
+                </ul>
+              </div>
+              <button
+                type="button"
+                className="order-detail-div-info-BTN order-detail_editBtn"
+                onClick={editBtn}
+              >
+                Düzəliş et
+              </button>
+              <button
+                type="submit"
+                className="order-detail-div-info-BTN order-detail_saveBtn"
+              >
+                Yadda saxla
+              </button>
+            </form>
+            <div className="order-detail-div_payment">
+              <p className="order-detail-div-payment_title">Ödəmə detalları</p>
+              <div>
+                <p className="order-detail-div-payment_info">
+                  Ödəmə metodu
+                  <span>
+                    {" "}
+                    <img src={CardIcon} alt="logo" /> Kart ilə
+                  </span>
+                </p>
+                <p className="order-detail-div-payment_info">
+                  Məbləğ
+                  <span> {order.order.subtotal.formatted_with_symbol}</span>
+                </p>
+                <p className="order-detail-div-payment_info">
+                  Promo kod
+                  <span>
+                    {" "}
+                    -
+                    {order.order.discount.amount_saved
+                      ? order.order.discount.amount_saved.formatted_with_symbol
+                      : "₼0.00"}
+                  </span>
+                </p>
+              </div>
+              <p className="order-detail-div-payment-info_total">
+                Cəmi
+                <span> {order.order.total.formatted_with_symbol}</span>
               </p>
-              <ul>
-                <li>
-                  <p className="hide-label">Ad:</p>
-                  <input
-                    className="order-detail_input-control"
-                    type="text"
-                    disabled
-                    placeholder={order.customer.firstname}
-                  />
-                </li>
-                <li>
-                  <p className="hide-label">Soyad:</p>
-                  <input
-                    className="order-detail_input-control"
-                    type="text"
-                    disabled
-                    placeholder={order.customer.lastname}
-                  />
-                </li>
-                <li>
-                <p className="hide-label">Telefon:</p>
-                  <input
-                    className="order-detail_input-control"
-                    type="number"
-                    disabled
-                    placeholder={order.customer.phone}
-                  />
-                </li>
-                <li>
-                  <p className="hide-label">Email:</p>
-                  <input
-                    className="order-detail_input-control"
-                    type="email"
-                    disabled
-                    placeholder={order.customer.email}
-                  />
-                </li>
-              </ul>
             </div>
-            <div>
-              <p className="order-detail-div-info_title">
-                Çatdırılma ünvanı
-              </p>
-              <ul>
-                <li>
-                <p className="hide-label">Ölkə:</p>
-                  <FormControl sx={{ width: "300px" }}>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={age}
-                      onChange={handleChange}
-                      disabled={selectStatus}
-                    >
-                      {country &&
-                        country.map((item, index) => (
-                          <MenuItem key={index} value={index}>
-                            {item.name}
-                          </MenuItem>
-                        ))}
-                    </Select>
-                  </FormControl>
-                </li>
-                <li>
-                <p className="hide-label">Şəhər:</p>
-                  <input
-                    className="order-detail_input-control"
-                    type="text"
-                    disabled
-                    placeholder={order.shipping.town_city}
-                  />
-                </li>
-                <li>
-                <p className="hide-label">Ünvan:</p>
-                  <input
-                    className="order-detail_input-control"
-                    type="text"
-                    disabled
-                    placeholder={order.shipping.street}
-                  />
-                </li>
-              </ul>
-            </div>
-            <button
-              type="button"
-              className="order-detail-div-info-BTN order-detail_editBtn"
-              onClick={editBtn}
-            >
-              Düzəliş et
-            </button>
-            <button
-              type="submit"
-              className="order-detail-div-info-BTN order-detail_saveBtn"
-            >
-              Yadda saxla
-            </button>
-        </form>
-        <div className="order-detail-div_payment">
-          <p className="order-detail-div-payment_title">
-            Ödəmə detalları
-          </p>
-          <div>
-            <p className="order-detail-div-payment_info">
-              Ödəmə metodu
-              <span>
-                {" "}
-                <img src={CardIcon} alt="logo" /> Kart ilə
-              </span>
-            </p>
-            <p className="order-detail-div-payment_info">
-              Məbləğ
-              <span> {order.order.subtotal.formatted_with_symbol}</span>
-            </p>
-            <p className="order-detail-div-payment_info">
-              Promo kod
-              <span> -{order.order.discount.amount_saved?order.order.discount.amount_saved.formatted_with_symbol:"₼0.00"}</span>
-            </p>
-          </div>
-          <p className="order-detail-div-payment-info_total">
-            Cəmi
-            <span> {order.order.total.formatted_with_symbol}</span>
-          </p>
-        </div>
+          </>
+        )}
       </div>
-      }
     </div>
   );
 }

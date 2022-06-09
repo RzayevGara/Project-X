@@ -4,8 +4,20 @@
     gap: 30px
     width: 100%
     padding: 0
+    .black-page
+        background-color: white
+        @include size(100%, 500px)
+        gap: 50px
+        @include flex(column, center, center)
+        box-shadow: 0px 0px 8px rgba(164, 164, 164, 0.50)
+        border-radius: 8px
+        .loading
+            @include size(20%, auto)
+        p
+            @include font(18px, 500)
     .profile-order_title
         @include font(24px, 500)
+        padding-left: 5%
     .profile-order_div
         width: 100%
         @include flex(column)
@@ -17,6 +29,7 @@
             @include flex(column)
             padding: 3% 5%
             gap: 30px
+            box-shadow: 0px 0px 8px rgba(164, 164, 164, 0.50)
             .profile-order-list_detail
                 @include flex(row, space-between, center)
                 .profile-order-list-detail_text
@@ -63,6 +76,14 @@
                         span
                             color: #DB2C66
     @media (min-width: 1366px)
+        .black-page
+            @include size(100%, 600px)
+            .loading
+                @include size(10%, auto)
+            p
+                @include font(20px, 500)
+        .profile-order_title
+            padding-left: 0
         .profile-order_div
             .profile-order_list
                 .profile-order-list_detail

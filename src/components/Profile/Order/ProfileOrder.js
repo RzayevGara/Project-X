@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import commerce from "../../../lib/Commerce";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -7,12 +7,15 @@ import {
 } from "../../../Reducer/CustomerOrder";
 import { useNavigate } from "react-router-dom";
 import ProfileOrderEmpty from './ProfileOrderEmpty'
+import { TailSpin  } from 'react-loading-icons'
 
 function ProfileOrder() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
+  const orderFetchStatus = useSelector((state) => state.customer.orderFetchStatus);
+  const orders = useSelector((state) => state.customer.orders);
+  
   useEffect(() => {
     dispatch(setProfileMenuActive("order"))
     const changePage = () => {
@@ -22,20 +25,29 @@ function ProfileOrder() {
   }, []);
 
   useEffect(() => {
-    commerce.customer
-      .getOrders(`${localStorage.getItem("commercejs_customer_id")}`)
-      .then((orders) => dispatch(setOrder(orders.data)))
-  }, [dispatch]);
+    if(orderFetchStatus===true){
+      commerce.customer
+        .getOrders(`${localStorage.getItem("commercejs_customer_id")}`)
+        .then((orders) => {dispatch(setOrder(orders.data))})
+    }
+  }, [dispatch, orderFetchStatus]);
 
-  const orders = useSelector((state) => state.customer.orders);
   console.log(orders)
 
   return (
+    <>
     <div className="profile-order">
+     
       <p className="profile-order_title">
         Sifarişlərim ({orders? orders.length: 0} məhsul)
       </p>
-      {orders? (
+      {orders===""? 
+      <div style={{backgroundColor: "white"}} className="black-page">
+        <TailSpin  stroke="#00D68F" className="loading"/>
+        <p >Zəhmət olmasa gözləyin</p>
+      </div>
+      :
+      orders!==undefined?
         <ul className="profile-order_div">
           {orders.map((item, index) =>
 
@@ -92,10 +104,11 @@ function ProfileOrder() {
 
           )}
         </ul>
-      ): 
+      : 
       <ProfileOrderEmpty/>
     }
     </div>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 .phone-list
-    @include flex(column, $align: flex-start)
-    gap: 60px
+    // @include flex(column, $align: flex-start)
+    // gap: 60px
     .black-page
         position: fixed
         background-color: #0000006e
@@ -22,15 +22,14 @@
                 @include font(20px, 500)
 
     .phone-list_ul
-        @include flex(row, space-between, center)
+        @include flex(row, flex-start, stretch)
         flex-wrap: wrap
-        gap: 20px
     .pagination-btns
         @include flex(row, center)
         align-self: center
         gap: 20px
         cursor: pointer
-        margin-bottom: 10%
+        margin: 10% 0 20% 0
 
         .pagination-active
             a
@@ -57,5 +56,6 @@
             @extend .previous-btn
     @media (min-width: 1366px)
         .phone-list_ul
-            @include flex(row, flex-start, center)
-            gap: 50px
+            @include flex(row, flex-start, stretch)
+        .pagination-btns
+            margin: 5% 0 10% 0

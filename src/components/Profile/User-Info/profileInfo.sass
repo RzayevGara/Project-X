@@ -37,21 +37,23 @@
                 font-size: 16px
                 gap: 10px
                 cursor: pointer
-                margin-top: 30px
+                margin-top: 5%
             .btn-save
                 display: none
     @media(min-width: 1366px)
         .profile-info_title
             padding: 0
         .profile-info_div
-            width: 70%
+            width: 100%
+            padding: 5%
             form
                 .profile-info_name_surname
                     @include flex(row, space-around)
                     gap: 0
                     div
                         gap: 10px
+                        width: 35%
                         input
-                            @include size(310px, 50px)
+                            @include size(100%, 50px)
                 .btn-save
                     display: none

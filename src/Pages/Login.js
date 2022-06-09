@@ -15,6 +15,13 @@ function Login() {
     let navigate = useNavigate();
     const url = config.url.API_URL
 
+    useEffect(() => {
+        const changePage = () => {
+            window.scrollTo({ top: 0 });
+          };
+          changePage();
+    }, [])
+
     const myForm = async (data)=>{
         dispatch(setEmail(data.emailInput))
     }

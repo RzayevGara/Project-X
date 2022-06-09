@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import './signup.sass'
 import Image from '../assets/images/login-new-img.svg'
 import axios from 'axios'
@@ -13,6 +13,13 @@ import { useForm } from "react-hook-form";
 function Signup() {
     let navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const changePage = () => {
+            window.scrollTo({ top: 0 });
+          };
+          changePage();
+    }, [])
     
     const addCustomer = async (e)=>{
         const url = new URL("https://api.chec.io/v1/customers")
