@@ -19,7 +19,7 @@ import { TailSpin  } from 'react-loading-icons'
 import {useNavigate} from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import CloseIcon from '@mui/icons-material/Close';
 
 
 function Checkout() {
@@ -34,6 +34,9 @@ function Checkout() {
   const items = useSelector((state) => state.listOrder.SimpleList)
   const [checkoutLoading, setCheckoutLoading] = useState(true)
 
+  const [modalCount, setModalCount] = useState("")
+  const [showModal, setShowModal] = useState(false)
+
   useEffect(() => {
     if(items){
       if(items.line_items.length>0){
@@ -45,17 +48,32 @@ function Checkout() {
         });
       }
       else{
-        navigate("/sebet", { replace: true })
+        setCheckoutLoading(false)
+        setShowModal(true)
+        function delay(i) {
+          setTimeout(() => {
+            setModalCount(i)
+          },i * 1000);
+        }
+        for(let i = 0; i<=5; i++){
+          delay(i)
+        }
       }
     }
   }, [items])
+
+
+  useEffect(()=>{
+    if(modalCount==5){
+      navigate("/sebet", { replace: true })
+    }
+  }, [modalCount])
 
   useEffect(() => {
     if(shippingCountry!==""){
       commerce.checkout.getShippingOptions(cartToken, {
       country: `${shippingCountry}`,
     }).then((response) =>{
-      console.log("shipping", response)
       if(response.length>0){
         dispatch(setShippingMethod(response[0].id))}
       }
@@ -121,6 +139,15 @@ const [activeStep, setActiveStep] = React.useState(0);
         <TailSpin  stroke="#00D68F" className="loading"/>
         <p style={{color: "black"}}>Zəhmət olmasa gözləyin</p>
       </div>
+      }
+      {showModal &&
+        <div className="modal-background">
+          <div className="modal-checkout">
+            <p className="modal-title">Səbətiniz boş olduğu üçün 5 saniyə sonra Ana Səhifəyə yönləndiriləcəksiniz!</p>
+            <p className="modal-count">{modalCount}</p>
+            <CloseIcon onClick={() => navigate("/sebet", { replace: true })} className="modal-close_btn"/>
+          </div>
+        </div>
       }
       <div className="container">
         <Box className="checkout-box">

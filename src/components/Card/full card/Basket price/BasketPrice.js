@@ -45,7 +45,6 @@ function BasketPrice(props) {
         code: `${e.target[0].value}`,
       })
       .then((response) => {
-        console.log(response)
         if(response.valid===false){
           props.error()
           setPromoCheck(false)
@@ -62,7 +61,6 @@ function BasketPrice(props) {
   };
 
   const liveObject = useSelector((state) => state.checkout.checkoutLiveObject);
-  console.log(liveObject)
 
   return (
     <div className={props.checkoutBtn?

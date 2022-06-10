@@ -148,7 +148,6 @@ function OrderDetail() {
     setAge(event.target.value);
   };
 
-  console.log(order);
 
   return (
     <div className="order-detail">

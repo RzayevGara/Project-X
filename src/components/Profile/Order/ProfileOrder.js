@@ -13,7 +13,6 @@ function ProfileOrder() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const orderFetchStatus = useSelector((state) => state.customer.orderFetchStatus);
   const orders = useSelector((state) => state.customer.orders);
   
   useEffect(() => {
@@ -25,14 +24,10 @@ function ProfileOrder() {
   }, []);
 
   useEffect(() => {
-    if(orderFetchStatus===true){
-      commerce.customer
-        .getOrders(`${localStorage.getItem("commercejs_customer_id")}`)
-        .then((orders) => {dispatch(setOrder(orders.data))})
-    }
-  }, [dispatch, orderFetchStatus]);
-
-  console.log(orders)
+    commerce.customer
+      .getOrders(`${localStorage.getItem("commercejs_customer_id")}`)
+      .then((orders) => {dispatch(setOrder(orders.data))})
+  }, [dispatch]);
 
   return (
     <>

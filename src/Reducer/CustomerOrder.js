@@ -5,7 +5,6 @@ const initialState = {
     orderDetail: "",
     customerInfo: "",
     profileMenuActive: "",
-    orderFetchStatus: true
 }
 
 
@@ -15,7 +14,6 @@ export const CustomerOrder = createSlice({
   reducers: {
     setOrder: (state,action) => {
       state.orders = action.payload
-      state.orderFetchStatus = false
     },
     setOrderDetail: (state,action) => {
       state.orderDetail = action.payload

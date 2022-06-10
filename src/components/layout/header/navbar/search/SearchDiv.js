@@ -19,7 +19,6 @@ const SearchDiv = () => {
   useEffect(()=>{
       if(searchParams.length!==0 && searchList.length === 0){
           dispatch(setSearchStatus(true))
-          console.log('isledi')
         commerce.products.list({
             category_slug: ['search'],
             limit: 200

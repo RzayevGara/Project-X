@@ -45,8 +45,51 @@
             margin-top: 40px
             color: white
             @include font(16px, 500)
+        
         @media (min-width: 1366px)
             .loading
                 @include size(10%, auto)
             p
                 @include font(20px, 500)
+    .modal-background
+        position: fixed
+        background-color: #0000009a
+        @include size(100vw, 100vh)
+        top: 0
+        left: 0
+        z-index: 9999
+        @include flex(column, center, center)
+        .modal-checkout
+            @include size(90%, 200px)
+            background-color: white
+            border-radius: 8px
+            @include flex(column, center, center)
+            padding: 10% 3%
+            gap: 20px
+            position: relative
+            .modal-close_btn
+                position: absolute
+                top: 10px
+                right: 10px
+                cursor: pointer
+                border-radius: 8px
+                &:hover
+                    background-color: #bdbdbd
+                    transition: 0.5s
+            p
+                text-align: center
+            .modal-title
+                @include font(16px, 400)
+                width: 100%
+            .modal-count
+                @include font(28px, 600)
+        @media (min-width: 1366px)
+            .modal-checkout
+                @include size(550px, 230px)
+                padding: 3%
+                gap: 40px
+                .modal-title
+                    @include font(18px, 400)
+                    width: 400px
+                .modal-count
+                    @include font(28px, 600)
